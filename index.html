@@ -259,6 +259,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/异步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="楚妍的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/23/异步/" itemprop="url">异步</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-23T14:41:43+08:00">
+                2018-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/basic/" itemprop="url" rel="index">
+                    <span itemprop="name">basic</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="异步的实现原理"><a href="#异步的实现原理" class="headerlink" title="异步的实现原理"></a>异步的实现原理</h1><p>例如AJAX，不会立即执行，而是等待请求成功之后才能执行<br><em>传递过去不执行，等待结果后再执行的函数，称之为回调函数</em><br>实现异步的核心原理：将callback作为参数传递给异步执行函数，当有结果返回之后再触发callback<br>常见的异步操作：<br>网络请求<br>IO操作<br>定时函数：<em>setTimeout只在指定时间后执行一次</em><br><em>setInterval以指定时间为周期循环执行</em></p>
+<p>异步操作不进入主线程，而是进入“任务队列”</p>
+<blockquote>
+<p>异步执行机制：·分为执行栈和任务队列两步<br>·主线程空，就会去读取“任务队列”<br>异步必须指定回调函数，主线程执行异步任务，就是执行对应的回调函数</p>
+</blockquote>
+<h1 id="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"><a href="#异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件" class="headerlink" title="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"></a>异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件</h1><p><img src="../picture/eventloop" alt="avatar"></p>
+<h2 id="Node-js的event-loop：不同于浏览器环境"><a href="#Node-js的event-loop：不同于浏览器环境" class="headerlink" title="Node.js的event-loop：不同于浏览器环境"></a>Node.js的event-loop：不同于浏览器环境</h2><blockquote>
+<p>process.nextTick:它指定的任务总是发生在所有异步任务之前<br>setImmediate:在当前“任务队列”的底部添加事件，它指定的任务总是在下一次<br>event loop执行（setImmediate指定的回调函数，总是排在setTimeout前面，实际上，这种情况只发生递归调用的时候）</p>
+</blockquote>
+<h1 id="事件绑定算不算异步？"><a href="#事件绑定算不算异步？" class="headerlink" title="事件绑定算不算异步？"></a>事件绑定算不算异步？</h1><blockquote>
+<p><em>看起来一样<br>同：同样使用event-loop，<br>异：事件绑定有明显的订阅-发布模式<br>       异步操作完成后，系统会自动调用；事件绑定之后，需要用户手动调用</em></p>
+</blockquote>
+<h1 id="异步调用方式"><a href="#异步调用方式" class="headerlink" title="异步调用方式"></a>异步调用方式</h1><ol>
+<li>回调函数callback</li>
+<li>事件订阅/发布（ES5）</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/webStorm报错Import-declarations-are-not-supported-by-current-Javascript-version/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1120,7 +1277,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1131,7 +1288,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
