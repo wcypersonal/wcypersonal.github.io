@@ -357,7 +357,7 @@
 <blockquote>
 <p>异步执行机制：·分为执行栈和任务队列两步<br>●主线程空，就会去读取“任务队列”<br> ●异步必须指定回调函数，主线程执行异步任务，就是执行对应的回调函数</p>
 </blockquote>
-<h1 id="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"><a href="#异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件" class="headerlink" title="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"></a>异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件</h1><p><img src="../picture/eventloop.png" alt="avatar"></p>
+<h1 id="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"><a href="#异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件" class="headerlink" title="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"></a>异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件</h1><p><img src="../picture/eventloop.png" alt="avatar"><br><img src="../picture/webstorm.jpg" alt="avatar"></p>
 <h2 id="Node-js的event-loop：不同于浏览器环境"><a href="#Node-js的event-loop：不同于浏览器环境" class="headerlink" title="Node.js的event-loop：不同于浏览器环境"></a>Node.js的event-loop：不同于浏览器环境</h2><blockquote>
 <p>process.nextTick:它指定的任务总是发生在所有异步任务之前<br>setImmediate:在当前“任务队列”的底部添加事件，它指定的任务总是在下一次<br>event loop执行（setImmediate指定的回调函数，总是排在setTimeout前面，实际上，这种情况只发生递归调用的时候）</p>
 </blockquote>
@@ -366,10 +366,7 @@
 </blockquote>
 <h1 id="异步调用方式"><a href="#异步调用方式" class="headerlink" title="异步调用方式"></a>异步调用方式</h1><ol>
 <li>回调函数callback<br>fn2(fn3)：fn2和fn3完全耦合在一起，保证fn3是在fn2之后执行的</li>
-<li>事件订阅/发布（ES5）<blockquote>
-<p>如何顺序执行？（保证const asyncFunArr = new AsyncFunArr(fn1, fn2, fn3)中fn函数是顺序执行的）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class AsyncFunArr &#123;</span><br><span class="line">    constructor (...arr) &#123;</span><br><span class="line">       this.funcArr = [...arr]</span><br><span class="line">    &#125;</span><br><span class="line">    next() &#123;</span><br><span class="line">        const fn = this.funcArr.shift()</span><br><span class="line">        if (typeof fn === &apos;function&apos;) fn()</span><br><span class="line">    &#125;</span><br><span class="line">    run () &#123;</span><br><span class="line">        this.next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote>
-</li>
+<li>事件订阅/发布（ES5）<br>如何顺序执行？（保证const asyncFunArr = new AsyncFunArr(fn1, fn2, fn3)中fn函数是顺序执行的）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class AsyncFunArr &#123;</span><br><span class="line">    constructor (...arr) &#123;</span><br><span class="line">       this.funcArr = [...arr]</span><br><span class="line">    &#125;</span><br><span class="line">    next() &#123;</span><br><span class="line">        const fn = this.funcArr.shift()</span><br><span class="line">        if (typeof fn === &apos;function&apos;) fn()</span><br><span class="line">    &#125;</span><br><span class="line">    run () &#123;</span><br><span class="line">        this.next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
           
