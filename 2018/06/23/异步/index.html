@@ -86,12 +86,12 @@
 <meta property="og:site_name" content="楚妍的blog">
 <meta property="og:description" content="异步的实现原理例如AJAX，不会立即执行，而是等待请求成功之后才能执行传递过去不执行，等待结果后再执行的函数，称之为回调函数实现异步的核心原理：将callback作为参数传递给异步执行函数，当有结果返回之后再触发callback常见的异步操作：网络请求IO操作定时函数：setTimeout只在指定时间后执行一次setInterval以指定时间为周期循环执行 异步操作不进入主线程，而是进入“任务队列">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/06/23/picture/eventloop">
-<meta property="og:updated_time" content="2018-06-23T07:06:51.780Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/23/picture/eventloop.png">
+<meta property="og:updated_time" content="2018-06-23T07:20:06.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异步">
 <meta name="twitter:description" content="异步的实现原理例如AJAX，不会立即执行，而是等待请求成功之后才能执行传递过去不执行，等待结果后再执行的函数，称之为回调函数实现异步的核心原理：将callback作为参数传递给异步执行函数，当有结果返回之后再触发callback常见的异步操作：网络请求IO操作定时函数：setTimeout只在指定时间后执行一次setInterval以指定时间为周期循环执行 异步操作不进入主线程，而是进入“任务队列">
-<meta name="twitter:image" content="http://yoursite.com/2018/06/23/picture/eventloop">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/23/picture/eventloop.png">
 
 
 
@@ -356,9 +356,9 @@
         <h1 id="异步的实现原理"><a href="#异步的实现原理" class="headerlink" title="异步的实现原理"></a>异步的实现原理</h1><p>例如AJAX，不会立即执行，而是等待请求成功之后才能执行<br><em>传递过去不执行，等待结果后再执行的函数，称之为回调函数</em><br>实现异步的核心原理：将callback作为参数传递给异步执行函数，当有结果返回之后再触发callback<br>常见的异步操作：<br>网络请求<br>IO操作<br>定时函数：<em>setTimeout只在指定时间后执行一次</em><br><em>setInterval以指定时间为周期循环执行</em></p>
 <p>异步操作不进入主线程，而是进入“任务队列”</p>
 <blockquote>
-<p>异步执行机制：·分为执行栈和任务队列两步<br>·主线程空，就会去读取“任务队列”<br>异步必须指定回调函数，主线程执行异步任务，就是执行对应的回调函数</p>
+<p>异步执行机制：·分为执行栈和任务队列两步<br>●主线程空，就会去读取“任务队列”<br> ●异步必须指定回调函数，主线程执行异步任务，就是执行对应的回调函数</p>
 </blockquote>
-<h1 id="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"><a href="#异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件" class="headerlink" title="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"></a>异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件</h1><p><img src="../picture/eventloop" alt="avatar"></p>
+<h1 id="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"><a href="#异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件" class="headerlink" title="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"></a>异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件</h1><p><img src="../picture/eventloop.png" alt="avatar"></p>
 <h2 id="Node-js的event-loop：不同于浏览器环境"><a href="#Node-js的event-loop：不同于浏览器环境" class="headerlink" title="Node.js的event-loop：不同于浏览器环境"></a>Node.js的event-loop：不同于浏览器环境</h2><blockquote>
 <p>process.nextTick:它指定的任务总是发生在所有异步任务之前<br>setImmediate:在当前“任务队列”的底部添加事件，它指定的任务总是在下一次<br>event loop执行（setImmediate指定的回调函数，总是排在setTimeout前面，实际上，这种情况只发生递归调用的时候）</p>
 </blockquote>
@@ -366,8 +366,11 @@
 <p><em>看起来一样<br>同：同样使用event-loop，<br>异：事件绑定有明显的订阅-发布模式<br>       异步操作完成后，系统会自动调用；事件绑定之后，需要用户手动调用</em></p>
 </blockquote>
 <h1 id="异步调用方式"><a href="#异步调用方式" class="headerlink" title="异步调用方式"></a>异步调用方式</h1><ol>
-<li>回调函数callback</li>
-<li>事件订阅/发布（ES5）</li>
+<li>回调函数callback<br>fn2(fn3)：fn2和fn3完全耦合在一起，保证fn3是在fn2之后执行的</li>
+<li>事件订阅/发布（ES5）<blockquote>
+<p>如何顺序执行？（保证const asyncFunArr = new AsyncFunArr(fn1, fn2, fn3)中fn函数是顺序执行的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class AsyncFunArr &#123;</span><br><span class="line">    constructor (...arr) &#123;</span><br><span class="line">       this.funcArr = [...arr]</span><br><span class="line">    &#125;</span><br><span class="line">    next() &#123;</span><br><span class="line">        const fn = this.funcArr.shift()</span><br><span class="line">        if (typeof fn === &apos;function&apos;) fn()</span><br><span class="line">    &#125;</span><br><span class="line">    run () &#123;</span><br><span class="line">        this.next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote>
+</li>
 </ol>
 
       
