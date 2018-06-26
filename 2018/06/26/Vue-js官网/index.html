@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="所有的Vue组件都是Vue实例  只有实例被创建时data中存在的属性才是响应式的后添的属性为非响应式的  除非Object.freeze()，即阻止修改的属性前缀$:与用户定义的属性区分开 1vm.$el === document.getElementById(&amp;apos;example&amp;apos;)   $watch实例方法: 123vm.$watch(&amp;apos;a&amp;apos;,funct">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-26T15:14:47.541Z">
+<meta property="og:updated_time" content="2018-06-26T15:17:38.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js官网">
 <meta name="twitter:description" content="所有的Vue组件都是Vue实例  只有实例被创建时data中存在的属性才是响应式的后添的属性为非响应式的  除非Object.freeze()，即阻止修改的属性前缀$:与用户定义的属性区分开 1vm.$el === document.getElementById(&amp;apos;example&amp;apos;)   $watch实例方法: 123vm.$watch(&amp;apos;a&amp;apos;,funct">
@@ -376,33 +376,9 @@
 <li><p>计算属性computed：—复杂逻辑</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(复杂逻辑放在Vue实例)(return绑定关系)</span><br><span class="line">computed:&#123;</span><br><span class="line">reversedMessage:function()&#123;</span><br><span class="line">	return this.message....</span><br><span class="line">&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>计算属性缓存(computed) vs 方法(methods)<br>学号|姓名|分数<br>-|-|-<br>小明|男|75<br>小红|女|79<br>小陆|男|92</p>
+<li><p>计算属性缓存(computed) vs 方法(methods)<br>| 计算属性缓存 | 方法<br>| - | :-<br>| computed | methods<br>| 只有依赖改变时才重新求值响应 | 每次触发重新渲染，调用方法将总会再次执行函数<br>| e.g Data.now()不改变 | 无<br>| 使用情况：多个计算属性依赖于很大的数组A，避免多次执行getter | 无</p>
 </li>
 </ol>
-<table>
-<thead>
-<tr>
-<th>计算属性缓存</th>
-<th style="text-align:left">方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>computed</td>
-<td style="text-align:left">methods</td>
-</tr>
-<tr>
-<td>只有依赖改变时才重新求值响应</td>
-<td style="text-align:left">每次触发重新渲染，调用方法将总会再次执行函数</td>
-</tr>
-<tr>
-<td>e.g Data.now()不改变</td>
-</tr>
-<tr>
-<td>使用情况：多个计算属性依赖于很大的数组A，避免多次执行getter</td>
-</tr>
-</tbody>
-</table>
 <p>| 计算属性 | 侦听属性<br>| computed | watch<br>| | 观察和响应Vue实例上的数据变动<br>| 默认只有getter属性，可添加setter属性 | 执行异步或者开销较大的操作</p>
 <ol start="7">
 <li><p>Class 与 Style 绑定<br><1> v-bind处理</1></p>
