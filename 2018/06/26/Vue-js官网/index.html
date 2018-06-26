@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="所有的Vue组件都是Vue实例  只有实例被创建时data中存在的属性才是响应式的后添的属性为非响应式的  除非Object.freeze()，即阻止修改的属性前缀$:与用户定义的属性区分开 1vm.$el === document.getElementById(&amp;apos;example&amp;apos;)   $watch实例方法: 123vm.$watch(&amp;apos;a&amp;apos;,funct">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-26T16:40:21.949Z">
+<meta property="og:updated_time" content="2018-06-26T17:19:58.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js官网">
 <meta name="twitter:description" content="所有的Vue组件都是Vue实例  只有实例被创建时data中存在的属性才是响应式的后添的属性为非响应式的  除非Object.freeze()，即阻止修改的属性前缀$:与用户定义的属性区分开 1vm.$el === document.getElementById(&amp;apos;example&amp;apos;)   $watch实例方法: 123vm.$watch(&amp;apos;a&amp;apos;,funct">
@@ -366,7 +366,7 @@
 </blockquote>
 </li>
 <li><p>生命周期钩子 created mounted updated destroyed<br>this指向Vue实例<br>不能使用 =&gt; 函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   new Vue(&#123;</span><br><span class="line">      ......</span><br><span class="line">      created: function()&#123;</span><br><span class="line">      console.log(&apos;a is:&apos;+ this.a)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">   ......</span><br><span class="line">   created: function()&#123;</span><br><span class="line">   console.log(&apos;a is:&apos;+ this.a)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>模板语法</p>
 <blockquote>
@@ -374,7 +374,7 @@
 </blockquote>
 </li>
 <li><p>计算属性computed：—复杂逻辑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(复杂逻辑放在Vue实例)(return绑定关系)</span><br><span class="line">computed:&#123;</span><br><span class="line">reversedMessage:function()&#123;</span><br><span class="line">	return this.message....</span><br><span class="line">&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(复杂逻辑放在Vue实例)(return绑定关系)</span><br><span class="line">computed:&#123;</span><br><span class="line">   reversedMessage:function()&#123;</span><br><span class="line">	     return this.message....  </span><br><span class="line">       &#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>计算属性缓存(computed) vs 方法(methods)</p>
 </li>
@@ -431,25 +431,27 @@
 </tbody>
 </table>
 <ol start="8">
-<li><p>Class 与 Style 绑定<br><1> v-bind处理<br>Class: 动态切换多个Class</1></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   &lt;div v-bind:class=&quot;&#123;~定义在computed里，返回对象的计算属性~&#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line">   computed:&#123;</span><br><span class="line">   classObject: function() &#123;</span><br><span class="line">   return &#123;</span><br><span class="line">   active:</span><br><span class="line">   &apos;text-danger&apos;:</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>数组</li>
-<li>组件</li>
-</ol>
+<li>Class 与 Style 绑定<br><1> v-bind处理</1></li>
+<li><p>Class: 动态切换多个Class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-bind:class=&quot;&#123;~定义在computed里，返回对象的计算属性~&#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">computed:&#123;</span><br><span class="line">   classObject: function() &#123;</span><br><span class="line">       return &#123;</span><br><span class="line">          active:</span><br><span class="line">          &apos;text-danger&apos;:</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p><2> 内联样式<br>也可绑定数组样式<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   v-bind:style = &quot;styleObject&quot;</span><br><span class="line">   data: &#123;</span><br><span class="line">   styleObject: &#123;</span><br><span class="line">   color: &apos;red&apos;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></2></p>
-<ol start="9">
-<li><p>条件渲染</p>
-<ol>
-<li><p>在template元素上使用v-if条件渲染分组</p>
+<li><p>数组</p>
+</li>
+<li><p>组件<br><2> 内联样式<br>也可绑定数组样式</2></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">v-bind:style = &quot;styleObject&quot;</span><br><span class="line">data: &#123;</span><br><span class="line">   styleObject: &#123;</span><br><span class="line">      color: &apos;red&apos;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>条件渲染<br>（1）在template元素上使用v-if条件渲染分组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-if=&quot;ok&quot;&gt;&lt;/template&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure></li>
 </ol>
-</li>
+<p>（2）<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-else&gt;</span><br><span class="line">&lt;div v-else-if=&quot;type === B&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>（3）可复用的元素<br>   e.g 切换用户类型，不会清除input内容</p>
+<blockquote>
+<p>用key方法：<br>    <1>v-if v-else 中复用已有元素<template><br>    <2>规定不要复用：添加key，未添加key仍会复用<br>（4） v-show= “ok” 相当于display<br>   不支持<template>和v-else<br>   总被渲染，只是简单CSS显示切换<br>   初始化渲染开销大<br>   频繁切换时使用  </template></2></template></1></p>
+<ol start="10">
+<li>列表渲染<br>(1)item in items<br></li><li v-for="item in items"><br></li><li v-for="item of items"><br>(2)可提供多个参数 </li><li v-for="(value,key) in object"></li><br>(3)为已有对象赋予多个新属性：用两个对象的属性创建一个新的对象<br>e.g Object.assign()或_.extend()<br>vm.userProfile = Object.assign({},vm.userProfile,{<br>age:27,<br>favoriteColor:’Vue Green’<br>})<br>(4)
 </ol>
+</blockquote>
 
       
     </div>
