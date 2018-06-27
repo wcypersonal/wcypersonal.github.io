@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Guides这部分包含对webpack不同的工具和特性的理解和掌握。完成后更容易完成DOCUMENTATION中的CONFIGURATION。 InstallationGuide 会完成使用各种方法来安装webpack安装分为Local Installation和GlobalInstallation  LoaclInstallation：通常webpack是通过npm-scripts运行（在本地的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack官网">
+<meta property="og:url" content="http://yoursite.com/2018/06/28/webpack官网/index.html">
+<meta property="og:site_name" content="会飞@-@鱼">
+<meta property="og:description" content="Guides这部分包含对webpack不同的工具和特性的理解和掌握。完成后更容易完成DOCUMENTATION中的CONFIGURATION。 InstallationGuide 会完成使用各种方法来安装webpack安装分为Local Installation和GlobalInstallation  LoaclInstallation：通常webpack是通过npm-scripts运行（在本地的">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-27T16:39:25.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack官网">
+<meta name="twitter:description" content="Guides这部分包含对webpack不同的工具和特性的理解和掌握。完成后更容易完成DOCUMENTATION中的CONFIGURATION。 InstallationGuide 会完成使用各种方法来安装webpack安装分为Local Installation和GlobalInstallation  LoaclInstallation：通常webpack是通过npm-scripts运行（在本地的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/28/webpack官网/"/>
+
+
+
+
+
+  <title>webpack官网 | 会飞@-@鱼</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会飞@-@鱼</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/webpack官网/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack官网</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T00:31:04+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Guides"><a href="#Guides" class="headerlink" title="Guides"></a>Guides</h1><p>这部分包含对webpack不同的工具和特性的理解和掌握。完成后更容易完成DOCUMENTATION中的CONFIGURATION。</p>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Guide 会完成使用各种方法来安装webpack<br>安装分为Local Installation和GlobalInstallation</p>
+<blockquote>
+<p>LoaclInstallation：通常webpack是通过npm-scripts运行（在本地的node_modules文件中找到webpack的安装）<br>webpack中beta版本是不稳定版，可能不能在production中使用。</p>
+</blockquote>
+<hr>
+<h1 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h1><p>Webpack用来编译Javascript的模块。安装后，你能和通过webpack的CLI或者API来和webpack连接。</p>
+<h2 id="1-Basic-Setup"><a href="#1-Basic-Setup" class="headerlink" title="1.Basic Setup"></a>1.Basic Setup</h2><p>npm init -y（生成package.json）<br>npm install —save-dev webpack（生成node_modules和package-lock.json）</p>
+<h3 id="1-1-index-html文件中标签之间有依赖，index-js文件依赖于lodash，lodash在页边加载之前加载，index-js中未声明lodash因为默认-本地存在"><a href="#1-1-index-html文件中标签之间有依赖，index-js文件依赖于lodash，lodash在页边加载之前加载，index-js中未声明lodash因为默认-本地存在" class="headerlink" title="1.1 index.html文件中标签之间有依赖，index.js文件依赖于lodash，lodash在页边加载之前加载，index.js中未声明lodash因为默认_本地存在"></a>1.1 index.html文件中<script>标签之间有依赖，index.js文件依赖于lodash，lodash在页边加载之前加载，index.js中未声明lodash因为默认<code>_</code>本地存在</h3><h3 id="1-2-在index-html中添加依赖文件有一些问题"><a href="#1-2-在index-html中添加依赖文件有一些问题" class="headerlink" title="1.2.在index.html中添加依赖文件有一些问题"></a>1.2.在index.html中添加依赖文件有一些问题</h3><p>（1）无法立即体现，script依赖于外部库<br>（2）若依赖丢失或者顺序错误，应用无法正常运行<br>（3）若依赖被包含但是没有使用，浏览器会被迫下载多余的代码</p>
+<h2 id="2-Creating-a-Bundle（创建bundle文件）"><a href="#2-Creating-a-Bundle（创建bundle文件）" class="headerlink" title="2.Creating a Bundle（创建bundle文件）"></a>2.Creating a Bundle（创建bundle文件）</h2><p>本地安装之后，不需要在index.html文件<script>中声明。<br>在index.js的文件中import ，webpack根据import来构建依赖图表，加载时会根据依赖图表来生成一个优化过的bundle，并且会以正确的顺序执行<br>手动生成文件：npx webpack src/index.js dist/bundle.js<br>（npx是node版本大于8.2时提供，可以运行webpack初始化的时候安装的二进制文件./node_modules/.bin/webpack）<br>3.Modules<br>webpack通常会编译代码以便旧的浏览器可以使用，可以在dist／bundle.js的文件中看到编译的过程<br>webpack只会更改import和export的内容，若使用其他的ES2015的teasing，需要通过loader例如Babel或者Bublé 的编译器<br>4.Using a Configuration<br>使用配置文件，所以创建一个文件代替上面的CLI方式。使用配置文件的方式更加灵活<br>5.NPM script<br>可以在package.json中配置简写<br>Asset Management<br>    webpack之前，前端开发人员会使用grunt和gulp来处理这些assets并且把它们从src文件夹移动到dist或者build文件夹。同样的方式也会用于Javascript，但是像webpack这样的工具会自动bundle所有的依赖并出依赖图表。每个模块明确自己的依赖，可以避免bundle不需要的modules。<br>    Webpack可以包括（loader）其他类型的文件（不止是Javascript类型文件）<br>    在module-rule中配置loader，所以我们可以在import css文件，模块运行时，含有CSS字符串的<style>标签将被插入到html文件的<head>中。<br>导入css时编译出错：</p>
+<p>错误原因：webpack.config.js中module-rules配置写错了“$”<br>导入image图片：图片被处理并加入到输出文件夹中。举例：css-loader处理后，loader会分辨出这是一个本地文件，并将png文件的路径替换为输出文件夹中的路径。<br>在css文件中通过url(….)导入<br>载入Data，有四种类型的文件,载入数据时，可以使用类似d3的工具来实现数据的可视化，欲加载数据会很有用，可以不再加载Ajax请求，直接在构建过程中将其提前加载并打包到模块中，以便浏览器加载模块之后，可以立即从模块中解析数据<br>Output Management<br>一旦开始对文件名使用哈希并且输出多个bundle，手动对index.html进行管理，会变得很困难。<br>所以通过使用一些插件来进行管理。<br>输出的名称可以在webpack.config.js中根据输入的名称自动生成<br>问题：webpack.config.js中entry改变后，output也改变，就需要手动修改index.html中的<script>中src调用的名称，所以使用HtmlWebpackPlugin来完成自动工作<br>解决：webpack.config.js中配置plugins来自动生成index.html，所以原有的会被覆盖<br>问题；dist文件夹中内容不会自动清除，多次编译后会很混乱<br>解决：使用clean-webpack-plugin 管理插件<br>问题：webpack和插件如何知道哪些文件被生成<br>解决：通过 manifest，webpack 能够对「你的模块映射到输出 bundle 的过程」保持追踪<br>           通过使用 WebpackManifestPlugin，可以直接将数据提取到一个 json 文件，以供使用<br>Development<br>建立开发环境<br>using source maps：若将a.js,b.js,c.js三个文件打包进bundle.js一个文件，若某个文件出错，则只能查看到bunde.js文件出错，不能查到其中哪个出错<br>所以，source maps提供了具体错误的位置<br>问题：每次编译代码需要npm run build，所以很麻烦，选择自动编译工具</p>
+<ul>
+<li>webpack’s Watch Mode</li>
+<li>webpack-dev-server</li>
+<li>webpack-dev-middleware<br>Development Tool：（1）webpack’s Watch Mode     package.json中添加watch：webpack —watch，不会退出命令行，可以持续观察<br>但是需要刷新<br>（2）webpack-dev-server.   devServer         自动编译<br>提供一个简单的web服务器和live loading的功能<br>（3）webpack-dev-middleware<br>是一个中间容器（wrapper），将通过webpack处理后的文件发布到一个服务器（server）中。需要配置服务器，（例如express服务器）<br>Hot Module Replacement<br>使得所有模块可以的运行时间启动而不需要重新刷新<br>只适用于开发环境，不适用于生产环境<br>通过Node.js  API:想要启用 HMR，还需要修改 webpack 配置对象，使其包含 HMR 入口起  <pre><code>           点。webpack-dev-server package 中具有一个叫做     
+addDevServerEntrypoints 的方法
+</code></pre>Loader使得模块热替换的过程变得更容易<br>热加载样式表<br>Tree Shaking</li>
+</ul>
+<p>1.表示移除Javascript上下文中的未引用代码（dead-code）,依赖于import和export<br>2.问题：并没有import，但是有export时，运行npm run build后bundle.js仍然会有import中的内容<br>解决：使用第三方压缩工具UglifyJSPlugin在配置中进行配置<br>3.webpack本身需要像 UglifyJS 这样的第三方工具来执行删除操作<br>当一个工具不能保证某些特定的代码路径(path)不会导致副作用(side-effects)时，即使你确信它不应该存在生成的 bundle 中，但这个代码仍然会保留。常见的情况有：从第三方模块中调用一个函数，webpack 和/或 压缩工具(minifier)无法检查此模块；从第三方模块导入的函数被重新导出，等等。<br>Production（生产环境构建）<br>1.在开发环境中:强大的、具有实时重新加载(live reloading)或热模块替换(hot module replacement)能力的 source map 和 localhost server。<br>在生产环境中:关注更小的 bundle，更轻量的 source map，以及更优化的资源，以改善加载时间。<br>2.由于要遵循逻辑分离，每个环境编写彼此独立的 webpack 配置<br>遵循不重复原则(Don’t repeat yourself - DRY)，保留一个“通用”配置,不必在环境特定(environment-specific)的配置中重复代码。<br>使用 webpack-merge 的工具将配置合并在一起<br>3.将webpack.config.js替换成<br>webpack.common.js :定义通用设置<br>webpack.dev.js，<br>webpack.prod.js：使用<br>module.exports = merge(common, {<br>  //…<br> });<br>中common来调用webpack.common.js中的通用设置<br>4.source mapping：生产环境中，对debug和运行基准测试(benchmark tests)很有帮助<br>5.DefinePlugin插件：如果你正在使用像 react 这样的 library，那么在添加此 DefinePlugin 插件后，你应该看到 bundle 大小显著下降<br>/src 的本地代码都可以关联到 process.env.NODE_ENV 环境变量<br>Code Splitting<br>将代码分解到不同的bundle之中去，确保能够按需加载<br>有三种方式：</p>
+<ul>
+<li>入口起点：使用 entry 配置手动地分离代码（最简单,但是不够灵活，不同chunk入口若有重复模块，仍会重复引用到各个bundle）</li>
+<li>防止重复：使用 CommonsChunkPlugin （在Plugin中定义）去重和分离 chunk，会生成一个含有重复部分的bundle.js.  除此之外仍有很多另外的插件可以实现更加细分或者相同的功能</li>
+<li>动态导入：通过模块的内联函数调用来分离代码（第一种，也是优先选择的方式是，使用符合 ECMAScript 提案 的 import() 语法，定义chunkfilename：决定非入口chunk的名称。第二种，则是使用 webpack 特定的 require.ensure）<br>分析检查bundle数据，关注官方分析工具<br>懒加载<br>按需加载，很好的优化网页或应用<br>等到第一次交互时再加载print.js代码块<br>缓存<br>webpack生成可部署的dist目录，浏览器使用缓存技术来降低网络流量，是网站加载更快<br>问题：部署新的版本但不更新资源的文件名，浏览器可能会认为他没有更新<br>解决；通过必要的配置（改变filename名称，添加【chunkhash】，但是不修改再次构建生成可能相同也可能不同，主要因为webpack在chunk处包含某些样板）来确保编译生成的文件能够被客户端缓存并请求到新的文件<br>将第三方库提取到单独的vendor chunk文件中：通过使用新的entry再配置一个CommonsChunkPlugin来实现,必须在manifest之前引用<br>创建Library<br>除了打包应用程序代码，还可以打包Javascript library<br>Shimming<br>解决第三方库中“不符合规范的模块”<br>全局变量：使用ProvidePlugin插件，可以通过编译的每个模块中，通过访问一个变量来获取package包。所以先移除import语句，并通过插件提供他<br>细粒度：this的问题，一般传统模块依赖的是window对象，CommonJS中this指module.exports，可在webpack.config.js中用 imports-loader 覆写 this</li>
+</ul>
+<p><strong>(二)</strong><br>Concepts<br>webpack是一个静态的模块打包器。当webpack处理你的application时，它递归地建立一个依赖图表，包括你需要的所有模块，并将所有的模块转化为一个或者多个包。<br>Entry：规定从哪儿开始依赖图表的建立，进入之后，webpack理解入口需要依赖哪些其他模块和库<br>           每一个依赖之后处理和输出的是包<br>           可以在wenpack的配置中配置一个或者多个entry 属性<br>Output：规定输出的包的位置（path.resolve(__dirname,’dis’)）和名称，也可以规定部分名称<br>Loaders:可以webpack处理除Javascript文件以外的文件（webpack本身只能理解Javascript）。他们提升了webpack<br>              的打包能力，通过将其他类型的文件转化为webpack能处理的可用的模块，从而可以包含在依赖图表中<br>              （将import语法添加进modules语法中可以使开发者更加灵活的依赖图表）<br>               高阶的loaders中webpack的配置有两个目的：（使用import或者require时）<br>                                                                                  （1）test属性定义哪些文件需要转化<br>                                                                                  （2） use属性定义用来转化的loader是什么<br>               在webpack中使用module.rules来定义<br>Plugins：loaders用来转化特定类型的文件，pligins可以更高级的完成更大范围内的任务。Plugins通过打包最优化，打包缩小来定义环境变量。插件系统极其强大并且用来处理很多任务。<br>Entry Points<br>app+vendors：更加复杂。Scalable webpack configuration：可以多次使用并且可以和部分配置相结合。这可以用来将关注点和环境／构建目标／运行时间分开。然后用特定的工具将它们合并。这些图表是完全分离且独立的，每个 bundle都有一个webpack引导<br>Multi Page Application      entry：e.g pageOne+pageTwo+pageThree。      生成三个依赖图表<br>                                    使用CommonChunkPlugin来为共享代码创建bundle，适合于在entry points之间重用很多代码<br>                                    和模块多页应用<br>Output<br>publicPath：不知道时可以设置为自动<br>Loaders<br>在应用中，可以通过三种方式使用loaders<br>configuration：module.rules,在webpack.config.js文件<br>Inline：import规定<br>CLI：Terminal中webpack 。。。。。配置<br>Plugins<br>webpack插件是一个有apply属性的Javascript对象，该属性被webpack compiler调用，在整个compilation的声明周期都可以调用。<br>Configuration<br>Modules<br>webpack module：</p>
+<ul>
+<li>An ES2015 import statement</li>
+<li>A CommonJS require() statement</li>
+<li>An AMD define and require statement</li>
+<li>An @import statement inside of a css/sass/less file.</li>
+<li>An image url in a stylesheet (url(…)) or html (<img src=...>) file.<br>Module Resolution<br>模块解析<br>解析规则：使用enhance-resolve。绝对路径。相对路径，模块路径<br>模块路径：modules会搜索resolve.modules中的所有文件，可以替换：在resolve.alias中配置选项来创建别名。<br>缓存：每个文件系统访问都被缓存，以便更快触发对同一文件的多个并行或穿行请求。在观察模式下，只有修改过的文件会从缓存中摘出。如果关闭观察模式，在每次编译前清理缓存。<br>Dependency Graph依赖图表</li>
+</ul>
+<p>webpack当作依赖处理：一个文件根据另一个文件。<br>Target<br>每个target都有各种部署(deployment)/环境(environment)特定的附加项，以支持满足其需求。<br>Hot Module Replacement</p>
+</script></h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/28/href/" rel="next" title="href">
+                <i class="fa fa-chevron-left"></i> href
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="yMTAyMC8zNzU3Mi8xNDEwNA=="></div>
+    </div>
+
+  
+
+  
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">楚妍</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Guides"><span class="nav-number">1.</span> <span class="nav-text">Guides</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">2.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getting-Started"><span class="nav-number">3.</span> <span class="nav-text">Getting Started</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Basic-Setup"><span class="nav-number">3.1.</span> <span class="nav-text">1.Basic Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-index-html文件中标签之间有依赖，index-js文件依赖于lodash，lodash在页边加载之前加载，index-js中未声明lodash因为默认-本地存在"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1 index.html文件中标签之间有依赖，index.js文件依赖于lodash，lodash在页边加载之前加载，index.js中未声明lodash因为默认&lt;code&gt;_&lt;/code&gt;本地存在&lt;/h3&gt;&lt;h3 id=&quot;1-2-在index-html中添加依赖文件有一些问题&quot;&gt;&lt;a href=&quot;#1-2-在index-html中添加依赖文件有一些问题&quot; class=&quot;headerlink&quot; title=&quot;1.2.在index.html中添加依赖文件有一些问题&quot;&gt;&lt;/a&gt;1.2.在index.html中添加依赖文件有一些问题&lt;/h3&gt;&lt;p&gt;（1）无法立即体现，script依赖于外部库&lt;br&gt;（2）若依赖丢失或者顺序错误，应用无法正常运行&lt;br&gt;（3）若依赖被包含但是没有使用，浏览器会被迫下载多余的代码&lt;/p&gt;
+&lt;h2 id=&quot;2-Creating-a-Bundle（创建bundle文件）&quot;&gt;&lt;a href=&quot;#2-Creating-a-Bundle（创建bundle文件）&quot; class=&quot;headerlink&quot; title=&quot;2.Creating a Bundle（创建bundle文件）&quot;&gt;&lt;/a&gt;2.Creating a Bundle（创建bundle文件）&lt;/h2&gt;&lt;p&gt;本地安装之后，不需要在index.html文件&lt;script&gt;中声明。&lt;br&gt;在index.js的文件中import ，webpack根据import来构建依赖图表，加载时会根据依赖图表来生成一个优化过的bundle，并且会以正确的顺序执行&lt;br&gt;手动生成文件：npx webpack src/index.js dist/bundle.js&lt;br&gt;（npx是node版本大于8.2时提供，可以运行webpack初始化的时候安装的二进制文件./node_modules/.bin/webpack）&lt;br&gt;3.Modules&lt;br&gt;webpack通常会编译代码以便旧的浏览器可以使用，可以在dist／bundle.js的文件中看到编译的过程&lt;br&gt;webpack只会更改import和export的内容，若使用其他的ES2015的teasing，需要通过loader例如Babel或者Bublé 的编译器&lt;br&gt;4.Using a Configuration&lt;br&gt;使用配置文件，所以创建一个文件代替上面的CLI方式。使用配置文件的方式更加灵活&lt;br&gt;5.NPM script&lt;br&gt;可以在package.json中配置简写&lt;br&gt;Asset Management&lt;br&gt;    webpack之前，前端开发人员会使用grunt和gulp来处理这些assets并且把它们从src文件夹移动到dist或者build文件夹。同样的方式也会用于Javascript，但是像webpack这样的工具会自动bundle所有的依赖并出依赖图表。每个模块明确自己的依赖，可以避免bundle不需要的modules。&lt;br&gt;    Webpack可以包括（loader）其他类型的文件（不止是Javascript类型文件）&lt;br&gt;    在module-rule中配置loader，所以我们可以在import css文件，模块运行时，含有CSS字符串的&lt;style&gt;标签将被插入到html文件的&lt;head&gt;中。&lt;br&gt;导入css时编译出错：&lt;/p&gt;
+&lt;p&gt;错误原因：webpack.config.js中module-rules配置写错了“$”&lt;br&gt;导入image图片：图片被处理并加入到输出文件夹中。举例：css-loader处理后，loader会分辨出这是一个本地文件，并将png文件的路径替换为输出文件夹中的路径。&lt;br&gt;在css文件中通过url(….)导入&lt;br&gt;载入Data，有四种类型的文件,载入数据时，可以使用类似d3的工具来实现数据的可视化，欲加载数据会很有用，可以不再加载Ajax请求，直接在构建过程中将其提前加载并打包到模块中，以便浏览器加载模块之后，可以立即从模块中解析数据&lt;br&gt;Output Management&lt;br&gt;一旦开始对文件名使用哈希并且输出多个bundle，手动对index.html进行管理，会变得很困难。&lt;br&gt;所以通过使用一些插件来进行管理。&lt;br&gt;输出的名称可以在webpack.config.js中根据输入的名称自动生成&lt;br&gt;问题：webpack.config.js中entry改变后，output也改变，就需要手动修改index.html中的&lt;script&gt;中src调用的名称，所以使用HtmlWebpackPlugin来完成自动工作&lt;br&gt;解决：webpack.config.js中配置plugins来自动生成index.html，所以原有的会被覆盖&lt;br&gt;问题；dist文件夹中内容不会自动清除，多次编译后会很混乱&lt;br&gt;解决：使用clean-webpack-plugin 管理插件&lt;br&gt;问题：webpack和插件如何知道哪些文件被生成&lt;br&gt;解决：通过 manifest，webpack 能够对「你的模块映射到输出 bundle 的过程」保持追踪&lt;br&gt;           通过使用 WebpackManifestPlugin，可以直接将数据提取到一个 json 文件，以供使用&lt;br&gt;Development&lt;br&gt;建立开发环境&lt;br&gt;using source maps：若将a.js,b.js,c.js三个文件打包进bundle.js一个文件，若某个文件出错，则只能查看到bunde.js文件出错，不能查到其中哪个出错&lt;br&gt;所以，source maps提供了具体错误的位置&lt;br&gt;问题：每次编译代码需要npm run build，所以很麻烦，选择自动编译工具&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;webpack’s Watch Mode&lt;/li&gt;
+&lt;li&gt;webpack-dev-server&lt;/li&gt;
+&lt;li&gt;webpack-dev-middleware&lt;br&gt;Development Tool：（1）webpack’s Watch Mode     package.json中添加watch：webpack —watch，不会退出命令行，可以持续观察&lt;br&gt;但是需要刷新&lt;br&gt;（2）webpack-dev-server.   devServer         自动编译&lt;br&gt;提供一个简单的web服务器和live loading的功能&lt;br&gt;（3）webpack-dev-middleware&lt;br&gt;是一个中间容器（wrapper），将通过webpack处理后的文件发布到一个服务器（server）中。需要配置服务器，（例如express服务器）&lt;br&gt;Hot Module Replacement&lt;br&gt;使得所有模块可以的运行时间启动而不需要重新刷新&lt;br&gt;只适用于开发环境，不适用于生产环境&lt;br&gt;通过Node.js  API:想要启用 HMR，还需要修改 webpack 配置对象，使其包含 HMR 入口起  &lt;pre&gt;&lt;code&gt;           点。webpack-dev-server package 中具有一个叫做     
+addDevServerEntrypoints 的方法
+&lt;/code&gt;&lt;/pre&gt;Loader使得模块热替换的过程变得更容易&lt;br&gt;热加载样式表&lt;br&gt;Tree Shaking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;1.表示移除Javascript上下文中的未引用代码（dead-code）,依赖于import和export&lt;br&gt;2.问题：并没有import，但是有export时，运行npm run build后bundle.js仍然会有import中的内容&lt;br&gt;解决：使用第三方压缩工具UglifyJSPlugin在配置中进行配置&lt;br&gt;3.webpack本身需要像 UglifyJS 这样的第三方工具来执行删除操作&lt;br&gt;当一个工具不能保证某些特定的代码路径(path)不会导致副作用(side-effects)时，即使你确信它不应该存在生成的 bundle 中，但这个代码仍然会保留。常见的情况有：从第三方模块中调用一个函数，webpack 和/或 压缩工具(minifier)无法检查此模块；从第三方模块导入的函数被重新导出，等等。&lt;br&gt;Production（生产环境构建）&lt;br&gt;1.在开发环境中:强大的、具有实时重新加载(live reloading)或热模块替换(hot module replacement)能力的 source map 和 localhost server。&lt;br&gt;在生产环境中:关注更小的 bundle，更轻量的 source map，以及更优化的资源，以改善加载时间。&lt;br&gt;2.由于要遵循逻辑分离，每个环境编写彼此独立的 webpack 配置&lt;br&gt;遵循不重复原则(Don’t repeat yourself - DRY)，保留一个“通用”配置,不必在环境特定(environment-specific)的配置中重复代码。&lt;br&gt;使用 webpack-merge 的工具将配置合并在一起&lt;br&gt;3.将webpack.config.js替换成&lt;br&gt;webpack.common.js :定义通用设置&lt;br&gt;webpack.dev.js，&lt;br&gt;webpack.prod.js：使用&lt;br&gt;module.exports = merge(common, {&lt;br&gt;  //…&lt;br&gt; });&lt;br&gt;中common来调用webpack.common.js中的通用设置&lt;br&gt;4.source mapping：生产环境中，对debug和运行基准测试(benchmark tests)很有帮助&lt;br&gt;5.DefinePlugin插件：如果你正在使用像 react 这样的 library，那么在添加此 DefinePlugin 插件后，你应该看到 bundle 大小显著下降&lt;br&gt;/src 的本地代码都可以关联到 process.env.NODE_ENV 环境变量&lt;br&gt;Code Splitting&lt;br&gt;将代码分解到不同的bundle之中去，确保能够按需加载&lt;br&gt;有三种方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;入口起点：使用 entry 配置手动地分离代码（最简单,但是不够灵活，不同chunk入口若有重复模块，仍会重复引用到各个bundle）&lt;/li&gt;
+&lt;li&gt;防止重复：使用 CommonsChunkPlugin （在Plugin中定义）去重和分离 chunk，会生成一个含有重复部分的bundle.js.  除此之外仍有很多另外的插件可以实现更加细分或者相同的功能&lt;/li&gt;
+&lt;li&gt;动态导入：通过模块的内联函数调用来分离代码（第一种，也是优先选择的方式是，使用符合 ECMAScript 提案 的 import() 语法，定义chunkfilename：决定非入口chunk的名称。第二种，则是使用 webpack 特定的 require.ensure）&lt;br&gt;分析检查bundle数据，关注官方分析工具&lt;br&gt;懒加载&lt;br&gt;按需加载，很好的优化网页或应用&lt;br&gt;等到第一次交互时再加载print.js代码块&lt;br&gt;缓存&lt;br&gt;webpack生成可部署的dist目录，浏览器使用缓存技术来降低网络流量，是网站加载更快&lt;br&gt;问题：部署新的版本但不更新资源的文件名，浏览器可能会认为他没有更新&lt;br&gt;解决；通过必要的配置（改变filename名称，添加【chunkhash】，但是不修改再次构建生成可能相同也可能不同，主要因为webpack在chunk处包含某些样板）来确保编译生成的文件能够被客户端缓存并请求到新的文件&lt;br&gt;将第三方库提取到单独的vendor chunk文件中：通过使用新的entry再配置一个CommonsChunkPlugin来实现,必须在manifest之前引用&lt;br&gt;创建Library&lt;br&gt;除了打包应用程序代码，还可以打包Javascript library&lt;br&gt;Shimming&lt;br&gt;解决第三方库中“不符合规范的模块”&lt;br&gt;全局变量：使用ProvidePlugin插件，可以通过编译的每个模块中，通过访问一个变量来获取package包。所以先移除import语句，并通过插件提供他&lt;br&gt;细粒度：this的问题，一般传统模块依赖的是window对象，CommonJS中this指module.exports，可在webpack.config.js中用 imports-loader 覆写 this&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;(二)&lt;/strong&gt;&lt;br&gt;Concepts&lt;br&gt;webpack是一个静态的模块打包器。当webpack处理你的application时，它递归地建立一个依赖图表，包括你需要的所有模块，并将所有的模块转化为一个或者多个包。&lt;br&gt;Entry：规定从哪儿开始依赖图表的建立，进入之后，webpack理解入口需要依赖哪些其他模块和库&lt;br&gt;           每一个依赖之后处理和输出的是包&lt;br&gt;           可以在wenpack的配置中配置一个或者多个entry 属性&lt;br&gt;Output：规定输出的包的位置（path.resolve(__dirname,’dis’)）和名称，也可以规定部分名称&lt;br&gt;Loaders:可以webpack处理除Javascript文件以外的文件（webpack本身只能理解Javascript）。他们提升了webpack&lt;br&gt;              的打包能力，通过将其他类型的文件转化为webpack能处理的可用的模块，从而可以包含在依赖图表中&lt;br&gt;              （将import语法添加进modules语法中可以使开发者更加灵活的依赖图表）&lt;br&gt;               高阶的loaders中webpack的配置有两个目的：（使用import或者require时）&lt;br&gt;                                                                                  （1）test属性定义哪些文件需要转化&lt;br&gt;                                                                                  （2） use属性定义用来转化的loader是什么&lt;br&gt;               在webpack中使用module.rules来定义&lt;br&gt;Plugins：loaders用来转化特定类型的文件，pligins可以更高级的完成更大范围内的任务。Plugins通过打包最优化，打包缩小来定义环境变量。插件系统极其强大并且用来处理很多任务。&lt;br&gt;Entry Points&lt;br&gt;app+vendors：更加复杂。Scalable webpack configuration：可以多次使用并且可以和部分配置相结合。这可以用来将关注点和环境／构建目标／运行时间分开。然后用特定的工具将它们合并。这些图表是完全分离且独立的，每个 bundle都有一个webpack引导&lt;br&gt;Multi Page Application      entry：e.g pageOne+pageTwo+pageThree。      生成三个依赖图表&lt;br&gt;                                    使用CommonChunkPlugin来为共享代码创建bundle，适合于在entry points之间重用很多代码&lt;br&gt;                                    和模块多页应用&lt;br&gt;Output&lt;br&gt;publicPath：不知道时可以设置为自动&lt;br&gt;Loaders&lt;br&gt;在应用中，可以通过三种方式使用loaders&lt;br&gt;configuration：module.rules,在webpack.config.js文件&lt;br&gt;Inline：import规定&lt;br&gt;CLI：Terminal中webpack 。。。。。配置&lt;br&gt;Plugins&lt;br&gt;webpack插件是一个有apply属性的Javascript对象，该属性被webpack compiler调用，在整个compilation的声明周期都可以调用。&lt;br&gt;Configuration&lt;br&gt;Modules&lt;br&gt;webpack module：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An ES2015 import statement&lt;/li&gt;
+&lt;li&gt;A CommonJS require() statement&lt;/li&gt;
+&lt;li&gt;An AMD define and require statement&lt;/li&gt;
+&lt;li&gt;An @import statement inside of a css/sass/less file.&lt;/li&gt;
+&lt;li&gt;An image url in a stylesheet (url(…)) or html (&lt;img src=...&gt;) file.&lt;br&gt;Module Resolution&lt;br&gt;模块解析&lt;br&gt;解析规则：使用enhance-resolve。绝对路径。相对路径，模块路径&lt;br&gt;模块路径：modules会搜索resolve.modules中的所有文件，可以替换：在resolve.alias中配置选项来创建别名。&lt;br&gt;缓存：每个文件系统访问都被缓存，以便更快触发对同一文件的多个并行或穿行请求。在观察模式下，只有修改过的文件会从缓存中摘出。如果关闭观察模式，在每次编译前清理缓存。&lt;br&gt;Dependency Graph依赖图表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;webpack当作依赖处理：一个文件根据另一个文件。&lt;br&gt;Target&lt;br&gt;每个target都有各种部署(deployment)/环境(environment)特定的附加项，以支持满足其需求。&lt;br&gt;Hot Module Replacement&lt;/p&gt;
+</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">楚妍</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

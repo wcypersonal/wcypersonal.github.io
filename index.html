@@ -259,6 +259,1081 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/webpack官网/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/webpack官网/" itemprop="url">webpack官网</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T00:31:04+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Guides"><a href="#Guides" class="headerlink" title="Guides"></a>Guides</h1><p>这部分包含对webpack不同的工具和特性的理解和掌握。完成后更容易完成DOCUMENTATION中的CONFIGURATION。</p>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Guide 会完成使用各种方法来安装webpack<br>安装分为Local Installation和GlobalInstallation</p>
+<blockquote>
+<p>LoaclInstallation：通常webpack是通过npm-scripts运行（在本地的node_modules文件中找到webpack的安装）<br>webpack中beta版本是不稳定版，可能不能在production中使用。</p>
+</blockquote>
+<hr>
+<h1 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h1><p>Webpack用来编译Javascript的模块。安装后，你能和通过webpack的CLI或者API来和webpack连接。</p>
+<h2 id="1-Basic-Setup"><a href="#1-Basic-Setup" class="headerlink" title="1.Basic Setup"></a>1.Basic Setup</h2><p>npm init -y（生成package.json）<br>npm install —save-dev webpack（生成node_modules和package-lock.json）</p>
+<h3 id="1-1-index-html文件中标签之间有依赖，index-js文件依赖于lodash，lodash在页边加载之前加载，index-js中未声明lodash因为默认-本地存在"><a href="#1-1-index-html文件中标签之间有依赖，index-js文件依赖于lodash，lodash在页边加载之前加载，index-js中未声明lodash因为默认-本地存在" class="headerlink" title="1.1 index.html文件中标签之间有依赖，index.js文件依赖于lodash，lodash在页边加载之前加载，index.js中未声明lodash因为默认_本地存在"></a>1.1 index.html文件中<script>标签之间有依赖，index.js文件依赖于lodash，lodash在页边加载之前加载，index.js中未声明lodash因为默认<code>_</code>本地存在</h3><h3 id="1-2-在index-html中添加依赖文件有一些问题"><a href="#1-2-在index-html中添加依赖文件有一些问题" class="headerlink" title="1.2.在index.html中添加依赖文件有一些问题"></a>1.2.在index.html中添加依赖文件有一些问题</h3><p>（1）无法立即体现，script依赖于外部库<br>（2）若依赖丢失或者顺序错误，应用无法正常运行<br>（3）若依赖被包含但是没有使用，浏览器会被迫下载多余的代码</p>
+<h2 id="2-Creating-a-Bundle（创建bundle文件）"><a href="#2-Creating-a-Bundle（创建bundle文件）" class="headerlink" title="2.Creating a Bundle（创建bundle文件）"></a>2.Creating a Bundle（创建bundle文件）</h2><p>本地安装之后，不需要在index.html文件<script>中声明。<br>在index.js的文件中import ，webpack根据import来构建依赖图表，加载时会根据依赖图表来生成一个优化过的bundle，并且会以正确的顺序执行<br>手动生成文件：npx webpack src/index.js dist/bundle.js<br>（npx是node版本大于8.2时提供，可以运行webpack初始化的时候安装的二进制文件./node_modules/.bin/webpack）<br>3.Modules<br>webpack通常会编译代码以便旧的浏览器可以使用，可以在dist／bundle.js的文件中看到编译的过程<br>webpack只会更改import和export的内容，若使用其他的ES2015的teasing，需要通过loader例如Babel或者Bublé 的编译器<br>4.Using a Configuration<br>使用配置文件，所以创建一个文件代替上面的CLI方式。使用配置文件的方式更加灵活<br>5.NPM script<br>可以在package.json中配置简写<br>Asset Management<br>    webpack之前，前端开发人员会使用grunt和gulp来处理这些assets并且把它们从src文件夹移动到dist或者build文件夹。同样的方式也会用于Javascript，但是像webpack这样的工具会自动bundle所有的依赖并出依赖图表。每个模块明确自己的依赖，可以避免bundle不需要的modules。<br>    Webpack可以包括（loader）其他类型的文件（不止是Javascript类型文件）<br>    在module-rule中配置loader，所以我们可以在import css文件，模块运行时，含有CSS字符串的<style>标签将被插入到html文件的<head>中。<br>导入css时编译出错：</p>
+<p>错误原因：webpack.config.js中module-rules配置写错了“$”<br>导入image图片：图片被处理并加入到输出文件夹中。举例：css-loader处理后，loader会分辨出这是一个本地文件，并将png文件的路径替换为输出文件夹中的路径。<br>在css文件中通过url(….)导入<br>载入Data，有四种类型的文件,载入数据时，可以使用类似d3的工具来实现数据的可视化，欲加载数据会很有用，可以不再加载Ajax请求，直接在构建过程中将其提前加载并打包到模块中，以便浏览器加载模块之后，可以立即从模块中解析数据<br>Output Management<br>一旦开始对文件名使用哈希并且输出多个bundle，手动对index.html进行管理，会变得很困难。<br>所以通过使用一些插件来进行管理。<br>输出的名称可以在webpack.config.js中根据输入的名称自动生成<br>问题：webpack.config.js中entry改变后，output也改变，就需要手动修改index.html中的<script>中src调用的名称，所以使用HtmlWebpackPlugin来完成自动工作<br>解决：webpack.config.js中配置plugins来自动生成index.html，所以原有的会被覆盖<br>问题；dist文件夹中内容不会自动清除，多次编译后会很混乱<br>解决：使用clean-webpack-plugin 管理插件<br>问题：webpack和插件如何知道哪些文件被生成<br>解决：通过 manifest，webpack 能够对「你的模块映射到输出 bundle 的过程」保持追踪<br>           通过使用 WebpackManifestPlugin，可以直接将数据提取到一个 json 文件，以供使用<br>Development<br>建立开发环境<br>using source maps：若将a.js,b.js,c.js三个文件打包进bundle.js一个文件，若某个文件出错，则只能查看到bunde.js文件出错，不能查到其中哪个出错<br>所以，source maps提供了具体错误的位置<br>问题：每次编译代码需要npm run build，所以很麻烦，选择自动编译工具</p>
+<ul>
+<li>webpack’s Watch Mode</li>
+<li>webpack-dev-server</li>
+<li>webpack-dev-middleware<br>Development Tool：（1）webpack’s Watch Mode     package.json中添加watch：webpack —watch，不会退出命令行，可以持续观察<br>但是需要刷新<br>（2）webpack-dev-server.   devServer         自动编译<br>提供一个简单的web服务器和live loading的功能<br>（3）webpack-dev-middleware<br>是一个中间容器（wrapper），将通过webpack处理后的文件发布到一个服务器（server）中。需要配置服务器，（例如express服务器）<br>Hot Module Replacement<br>使得所有模块可以的运行时间启动而不需要重新刷新<br>只适用于开发环境，不适用于生产环境<br>通过Node.js  API:想要启用 HMR，还需要修改 webpack 配置对象，使其包含 HMR 入口起  <pre><code>           点。webpack-dev-server package 中具有一个叫做     
+addDevServerEntrypoints 的方法
+</code></pre>Loader使得模块热替换的过程变得更容易<br>热加载样式表<br>Tree Shaking</li>
+</ul>
+<p>1.表示移除Javascript上下文中的未引用代码（dead-code）,依赖于import和export<br>2.问题：并没有import，但是有export时，运行npm run build后bundle.js仍然会有import中的内容<br>解决：使用第三方压缩工具UglifyJSPlugin在配置中进行配置<br>3.webpack本身需要像 UglifyJS 这样的第三方工具来执行删除操作<br>当一个工具不能保证某些特定的代码路径(path)不会导致副作用(side-effects)时，即使你确信它不应该存在生成的 bundle 中，但这个代码仍然会保留。常见的情况有：从第三方模块中调用一个函数，webpack 和/或 压缩工具(minifier)无法检查此模块；从第三方模块导入的函数被重新导出，等等。<br>Production（生产环境构建）<br>1.在开发环境中:强大的、具有实时重新加载(live reloading)或热模块替换(hot module replacement)能力的 source map 和 localhost server。<br>在生产环境中:关注更小的 bundle，更轻量的 source map，以及更优化的资源，以改善加载时间。<br>2.由于要遵循逻辑分离，每个环境编写彼此独立的 webpack 配置<br>遵循不重复原则(Don’t repeat yourself - DRY)，保留一个“通用”配置,不必在环境特定(environment-specific)的配置中重复代码。<br>使用 webpack-merge 的工具将配置合并在一起<br>3.将webpack.config.js替换成<br>webpack.common.js :定义通用设置<br>webpack.dev.js，<br>webpack.prod.js：使用<br>module.exports = merge(common, {<br>  //…<br> });<br>中common来调用webpack.common.js中的通用设置<br>4.source mapping：生产环境中，对debug和运行基准测试(benchmark tests)很有帮助<br>5.DefinePlugin插件：如果你正在使用像 react 这样的 library，那么在添加此 DefinePlugin 插件后，你应该看到 bundle 大小显著下降<br>/src 的本地代码都可以关联到 process.env.NODE_ENV 环境变量<br>Code Splitting<br>将代码分解到不同的bundle之中去，确保能够按需加载<br>有三种方式：</p>
+<ul>
+<li>入口起点：使用 entry 配置手动地分离代码（最简单,但是不够灵活，不同chunk入口若有重复模块，仍会重复引用到各个bundle）</li>
+<li>防止重复：使用 CommonsChunkPlugin （在Plugin中定义）去重和分离 chunk，会生成一个含有重复部分的bundle.js.  除此之外仍有很多另外的插件可以实现更加细分或者相同的功能</li>
+<li>动态导入：通过模块的内联函数调用来分离代码（第一种，也是优先选择的方式是，使用符合 ECMAScript 提案 的 import() 语法，定义chunkfilename：决定非入口chunk的名称。第二种，则是使用 webpack 特定的 require.ensure）<br>分析检查bundle数据，关注官方分析工具<br>懒加载<br>按需加载，很好的优化网页或应用<br>等到第一次交互时再加载print.js代码块<br>缓存<br>webpack生成可部署的dist目录，浏览器使用缓存技术来降低网络流量，是网站加载更快<br>问题：部署新的版本但不更新资源的文件名，浏览器可能会认为他没有更新<br>解决；通过必要的配置（改变filename名称，添加【chunkhash】，但是不修改再次构建生成可能相同也可能不同，主要因为webpack在chunk处包含某些样板）来确保编译生成的文件能够被客户端缓存并请求到新的文件<br>将第三方库提取到单独的vendor chunk文件中：通过使用新的entry再配置一个CommonsChunkPlugin来实现,必须在manifest之前引用<br>创建Library<br>除了打包应用程序代码，还可以打包Javascript library<br>Shimming<br>解决第三方库中“不符合规范的模块”<br>全局变量：使用ProvidePlugin插件，可以通过编译的每个模块中，通过访问一个变量来获取package包。所以先移除import语句，并通过插件提供他<br>细粒度：this的问题，一般传统模块依赖的是window对象，CommonJS中this指module.exports，可在webpack.config.js中用 imports-loader 覆写 this</li>
+</ul>
+<p><strong>(二)</strong><br>Concepts<br>webpack是一个静态的模块打包器。当webpack处理你的application时，它递归地建立一个依赖图表，包括你需要的所有模块，并将所有的模块转化为一个或者多个包。<br>Entry：规定从哪儿开始依赖图表的建立，进入之后，webpack理解入口需要依赖哪些其他模块和库<br>           每一个依赖之后处理和输出的是包<br>           可以在wenpack的配置中配置一个或者多个entry 属性<br>Output：规定输出的包的位置（path.resolve(__dirname,’dis’)）和名称，也可以规定部分名称<br>Loaders:可以webpack处理除Javascript文件以外的文件（webpack本身只能理解Javascript）。他们提升了webpack<br>              的打包能力，通过将其他类型的文件转化为webpack能处理的可用的模块，从而可以包含在依赖图表中<br>              （将import语法添加进modules语法中可以使开发者更加灵活的依赖图表）<br>               高阶的loaders中webpack的配置有两个目的：（使用import或者require时）<br>                                                                                  （1）test属性定义哪些文件需要转化<br>                                                                                  （2） use属性定义用来转化的loader是什么<br>               在webpack中使用module.rules来定义<br>Plugins：loaders用来转化特定类型的文件，pligins可以更高级的完成更大范围内的任务。Plugins通过打包最优化，打包缩小来定义环境变量。插件系统极其强大并且用来处理很多任务。<br>Entry Points<br>app+vendors：更加复杂。Scalable webpack configuration：可以多次使用并且可以和部分配置相结合。这可以用来将关注点和环境／构建目标／运行时间分开。然后用特定的工具将它们合并。这些图表是完全分离且独立的，每个 bundle都有一个webpack引导<br>Multi Page Application      entry：e.g pageOne+pageTwo+pageThree。      生成三个依赖图表<br>                                    使用CommonChunkPlugin来为共享代码创建bundle，适合于在entry points之间重用很多代码<br>                                    和模块多页应用<br>Output<br>publicPath：不知道时可以设置为自动<br>Loaders<br>在应用中，可以通过三种方式使用loaders<br>configuration：module.rules,在webpack.config.js文件<br>Inline：import规定<br>CLI：Terminal中webpack 。。。。。配置<br>Plugins<br>webpack插件是一个有apply属性的Javascript对象，该属性被webpack compiler调用，在整个compilation的声明周期都可以调用。<br>Configuration<br>Modules<br>webpack module：</p>
+<ul>
+<li>An ES2015 import statement</li>
+<li>A CommonJS require() statement</li>
+<li>An AMD define and require statement</li>
+<li>An @import statement inside of a css/sass/less file.</li>
+<li>An image url in a stylesheet (url(…)) or html (<img src=...>) file.<br>Module Resolution<br>模块解析<br>解析规则：使用enhance-resolve。绝对路径。相对路径，模块路径<br>模块路径：modules会搜索resolve.modules中的所有文件，可以替换：在resolve.alias中配置选项来创建别名。<br>缓存：每个文件系统访问都被缓存，以便更快触发对同一文件的多个并行或穿行请求。在观察模式下，只有修改过的文件会从缓存中摘出。如果关闭观察模式，在每次编译前清理缓存。<br>Dependency Graph依赖图表</li>
+</ul>
+<p>webpack当作依赖处理：一个文件根据另一个文件。<br>Target<br>每个target都有各种部署(deployment)/环境(environment)特定的附加项，以支持满足其需求。<br>Hot Module Replacement</p>
+</script></h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/href/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/href/" itemprop="url">href</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T00:23:37+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>href使用情况</p>
+<blockquote>
+<p>相对，绝对URL<br>片段标识符<br>Javascript代码段</p>
+</blockquote>
+<hr>
+<h1 id="Javascript代码段"><a href="#Javascript代码段" class="headerlink" title="Javascript代码段"></a>Javascript代码段</h1><p>href=”javascript”(伪协议)<br>实现A标签的点击事件运行</p>
+<blockquote>
+<p>可绑定回调<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getElementById().addEventListener(&apos;click&apos;,function (e)&#123;</span><br><span class="line"></span><br><span class="line">	&#125;,false)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>href=”javascript:void(0)”</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/html页面布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/html页面布局/" itemprop="url">html页面布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T00:08:08+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>div和css定义</p>
+<h1 id="1-float-浮动属性"><a href="#1-float-浮动属性" class="headerlink" title="1.float 浮动属性"></a>1.float 浮动属性</h1><blockquote>
+<p>left<br> right<br> none<br> inherit</p>
+</blockquote>
+<h1 id="2-页面布局"><a href="#2-页面布局" class="headerlink" title="2.页面布局"></a>2.页面布局</h1><ol>
+<li>header:文档或者节的页眉</li>
+<li>nav:导航链接的容器</li>
+<li>section:文档中的节</li>
+<li>article:独立的自包含文章</li>
+<li>aside:内容之外的内容（e.g 侧栏）</li>
+<li>footer:文档或者节的页脚</li>
+<li>details:额外的细节</li>
+<li>summary:details元素的标题<h1 id="3-table-不是布局，尽量不用以布局"><a href="#3-table-不是布局，尽量不用以布局" class="headerlink" title="3.table  不是布局，尽量不用以布局"></a>3.table  <strong>不是布局，尽量不用以布局</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td/&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="4-所有元素样式"><a href="#4-所有元素样式" class="headerlink" title="4.所有元素样式"></a>4.所有元素样式</h1><p>默认包含所有元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//css</span><br><span class="line">* &#123;</span><br><span class="line">	padding: 0px</span><br><span class="line">	margin: 0px</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/html引用外部CSS文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/html引用外部CSS文件/" itemprop="url">html引用外部CSS文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T00:01:26+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&lt; link定义文档与外部资源的关系，多用于CSS文件</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; -&gt; 规定当前文档与被链接文档之间的关系
+      href=&quot;index.css&quot; -&gt; 文档位置
+      type=&quot;text/css&quot;  -&gt; 链接文档的MIME类型
+&gt;&lt;/link&gt; 
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/github上传程序代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/github上传程序代码/" itemprop="url">github上传程序代码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T23:39:05+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h1><p>git clone -b 分支名 仓库地址(https://……)</p>
+<h1 id="上传代码"><a href="#上传代码" class="headerlink" title="上传代码"></a>上传代码</h1><ol>
+<li>fork进个人仓库</li>
+<li>git status</li>
+<li>git add .</li>
+<li>git commit -m ‘描述’</li>
+<li>git push</li>
+<li>网址 new merge request</li>
+</ol>
+<h1 id="删除仓库"><a href="#删除仓库" class="headerlink" title="删除仓库"></a>删除仓库</h1><ol>
+<li>settings</li>
+<li>general</li>
+<li>Advanded settings</li>
+<li>remove project</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/page加载-微信小程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/page加载-微信小程序/" itemprop="url">page加载-微信小程序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T23:22:32+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Page：用page-注册一个页面"><a href="#Page：用page-注册一个页面" class="headerlink" title="Page：用page()注册一个页面"></a>Page：用page()注册一个页面</h1><h3 id="data：页面初始数据"><a href="#data：页面初始数据" class="headerlink" title="data：页面初始数据"></a>data：页面初始数据</h3><h3 id="onLoad：监听加载"><a href="#onLoad：监听加载" class="headerlink" title="onLoad：监听加载"></a>onLoad：监听加载</h3><h3 id="onReady：监听初次渲染完成-gt-调用一次，可以和视图层进行交互"><a href="#onReady：监听初次渲染完成-gt-调用一次，可以和视图层进行交互" class="headerlink" title="onReady：监听初次渲染完成-&gt;调用一次，可以和视图层进行交互"></a>onReady：监听初次渲染完成-&gt;调用一次，可以和视图层进行交互</h3><h3 id="onShow：监听页面显示-gt-调用一次"><a href="#onShow：监听页面显示-gt-调用一次" class="headerlink" title="onShow：监听页面显示-&gt;调用一次"></a>onShow：监听页面显示-&gt;调用一次</h3><h3 id="onHide：监听页面隐藏"><a href="#onHide：监听页面隐藏" class="headerlink" title="onHide：监听页面隐藏"></a>onHide：监听页面隐藏</h3><h3 id="onUnload：监听页面卸载-gt-close页面"><a href="#onUnload：监听页面卸载-gt-close页面" class="headerlink" title="onUnload：监听页面卸载-&gt;close页面"></a>onUnload：监听页面卸载-&gt;close页面</h3><h3 id="onPageScroll：页面滚动触发事件的处理函数"><a href="#onPageScroll：页面滚动触发事件的处理函数" class="headerlink" title="onPageScroll：页面滚动触发事件的处理函数"></a>onPageScroll：页面滚动触发事件的处理函数</h3><h3 id="页面加载顺序：onLoad-gt-onShow-gt-onReady-gt-onHide-gt-onShow-gt-onUnload"><a href="#页面加载顺序：onLoad-gt-onShow-gt-onReady-gt-onHide-gt-onShow-gt-onUnload" class="headerlink" title="页面加载顺序：onLoad-&gt;onShow-&gt;onReady-&gt;onHide-&gt;onShow-&gt;onUnload"></a>页面加载顺序：onLoad-&gt;onShow-&gt;onReady-&gt;onHide-&gt;onShow-&gt;onUnload</h3><h3 id="setData-接受一个对象"><a href="#setData-接受一个对象" class="headerlink" title="setData()接受一个对象"></a>setData()接受一个对象</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/过渡-动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/过渡-动画/" itemprop="url">过渡&动画</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T22:21:03+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="进入-离开-amp-列表过渡"><a href="#进入-离开-amp-列表过渡" class="headerlink" title="进入/离开 &amp; 列表过渡"></a>进入/离开 &amp; 列表过渡</h1><p>插入、更新或者移除DOM</p>
+<h4 id="transition封装组件，添加离开过渡"><a href="#transition封装组件，添加离开过渡" class="headerlink" title="transition封装组件，添加离开过渡"></a>transition封装组件，添加离开过渡</h4><blockquote>
+<p>v-if<br> v-show<br> 动态组件<br> 组件根节点<br>（自动嗅探）是否应用CSS过渡或者动画<br>判断是否提供了JS钩子函数<br>（否则）DOM插入/删除，在下一帧立即执行</p>
+</blockquote>
+<h4 id="不同过渡的类名-有6个Class切换"><a href="#不同过渡的类名-有6个Class切换" class="headerlink" title="不同过渡的类名 有6个Class切换"></a>不同过渡的类名 有6个Class切换</h4><h4 id="CSS过渡"><a href="#CSS过渡" class="headerlink" title="CSS过渡"></a>CSS过渡</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition name=&quot;slide-fade&quot;&gt;   (html)</span><br><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">	transition:all .3s ease      (css)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="CSS动画"><a href="#CSS动画" class="headerlink" title="CSS动画"></a>CSS动画</h4><p>在animationd事件触发时删除<br>html不变<br>css中transition换为animation</p>
+<h4 id="自定义过渡的类名-e-g-Animation-css"><a href="#自定义过渡的类名-e-g-Animation-css" class="headerlink" title="自定义过渡的类名 e.g Animation css"></a>自定义过渡的类名 e.g Animation css</h4><p>.enter-class<br>.enter-active-class<br>……</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/服务器代码重新部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -804,1021 +1879,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/Node-js安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/24/Node-js安装/" itemprop="url">Node.js安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:21:06+08:00">
-                2018-06-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node-js/" itemprop="url" rel="index">
-                    <span itemprop="name">Node.js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h1><p>官网下载安装包</p>
-<h1 id="Node-exe"><a href="#Node-exe" class="headerlink" title="Node.exe"></a>Node.exe</h1><p>进入node.exe所在的目录运行node –version</p>
-<h1 id="安装后检测"><a href="#安装后检测" class="headerlink" title="安装后检测"></a>安装后检测</h1><p>node -v<br>输入node，即进入Node.js的交互环境，在交互环境下，输入任意Javascript语句，回车即可得到结果</p>
-<h1 id="安装版本"><a href="#安装版本" class="headerlink" title="安装版本"></a>安装版本</h1><p>错误信息：安装create-react-app出错<br>原因：版本需要大于6</p>
-<blockquote>
-<p>安装cnpm和create-react-app需要检查path<br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>输入npm list -g -depth=0检查安装包的路径<br>添加路径到环境变量PATH中，结尾添加“;”<br>npm set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a> # 注册模块镜像<br>npm set disturl <a href="https://npm.taobao.org/dist" target="_blank" rel="noopener">https://npm.taobao.org/dist</a> # node-gyp 编译依赖的 node 源码镜像<br>npm cache clean # 清空缓存</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/异步/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/23/异步/" itemprop="url">异步</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-23T14:41:43+08:00">
-                2018-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/basic/" itemprop="url" rel="index">
-                    <span itemprop="name">basic</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="异步的实现原理"><a href="#异步的实现原理" class="headerlink" title="异步的实现原理"></a>异步的实现原理</h1><p>例如AJAX，不会立即执行，而是等待请求成功之后才能执行<br><em>传递过去不执行，等待结果后再执行的函数，称之为回调函数</em><br>实现异步的核心原理：将callback作为参数传递给异步执行函数，当有结果返回之后再触发callback<br>常见的异步操作：<br>网络请求<br>IO操作<br>定时函数：<em>setTimeout只在指定时间后执行一次</em><br><em>setInterval以指定时间为周期循环执行</em></p>
-<p>异步操作不进入主线程，而是进入“任务队列”</p>
-<blockquote>
-<p>异步执行机制：·分为执行栈和任务队列两步<br>●主线程空，就会去读取“任务队列”<br> ●异步必须指定回调函数，主线程执行异步任务，就是执行对应的回调函数</p>
-</blockquote>
-<h1 id="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"><a href="#异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件" class="headerlink" title="异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件"></a>异步和event-loop（轮询机制）：主线程丛“任务队列”中读取事件</h1><p><img src="../picture/eventloop.png" alt="avatar"></p>
-<h2 id="Node-js的event-loop：不同于浏览器环境"><a href="#Node-js的event-loop：不同于浏览器环境" class="headerlink" title="Node.js的event-loop：不同于浏览器环境"></a>Node.js的event-loop：不同于浏览器环境</h2><blockquote>
-<p>process.nextTick:它指定的任务总是发生在所有异步任务之前<br>setImmediate:在当前“任务队列”的底部添加事件，它指定的任务总是在下一次<br>event loop执行（setImmediate指定的回调函数，总是排在setTimeout前面，实际上，这种情况只发生递归调用的时候）</p>
-</blockquote>
-<h1 id="事件绑定算不算异步？"><a href="#事件绑定算不算异步？" class="headerlink" title="事件绑定算不算异步？"></a>事件绑定算不算异步？</h1><blockquote>
-<p><em>看起来一样<br>同：同样使用event-loop，<br>异：事件绑定有明显的订阅-发布模式<br>       异步操作完成后，系统会自动调用；事件绑定之后，需要用户手动调用</em></p>
-</blockquote>
-<h1 id="异步调用方式"><a href="#异步调用方式" class="headerlink" title="异步调用方式"></a>异步调用方式</h1><ol>
-<li>回调函数callback<br>fn2(fn3)：fn2和fn3完全耦合在一起，保证fn3是在fn2之后执行的</li>
-<li><p>事件订阅/发布（ES5）<br>如何顺序执行？（保证const asyncFunArr = new AsyncFunArr(fn1, fn2, fn3)中fn函数是顺序执行的）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class AsyncFunArr &#123;</span><br><span class="line">    constructor (...arr) &#123;</span><br><span class="line">       this.funcArr = [...arr]</span><br><span class="line">    &#125;</span><br><span class="line">    next() &#123;</span><br><span class="line">        const fn = this.funcArr.shift()</span><br><span class="line">        if (typeof fn === &apos;function&apos;) fn()</span><br><span class="line">    &#125;</span><br><span class="line">    run () &#123;</span><br><span class="line">        this.next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const asyncFunArr = new AsyncFunArr(fn1,fn2,fn3)</span><br><span class="line"></span><br><span class="line">function fn1 ()&#123;</span><br><span class="line">    console.log(&quot;Funtion1&quot;)</span><br><span class="line">    asyncFunArr.next()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn2 ()&#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        console.log(&apos;Function2&apos;)</span><br><span class="line">        asyncFunArr.next()</span><br><span class="line">        &#125;,500)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn3 () &#123;</span><br><span class="line">    console.log(&apos;Function 3&apos;)</span><br><span class="line">    asyncFunArr.next()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Promise：函数返回Promise</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn2 () &#123;</span><br><span class="line">    return new Promise((resolve,reject) =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(&apos;Function 2&apos;)</span><br><span class="line">            resolve()</span><br><span class="line">        &#125;,500)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>generator:异步函数会通过yield执行，异步函数内通过next激活generator函数的下一步操作（维护内部yield的执行）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function fn2 () &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        console.log(&apos;Function 2&apos;)</span><br><span class="line">        af.next()</span><br><span class="line">    &#125;,500)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function* asyncFunArr (...fn) &#123;</span><br><span class="line">    fn[0]()</span><br><span class="line">    yield fn[1]()</span><br><span class="line">    fn[2]()</span><br><span class="line">&#125;</span><br><span class="line">const af = asyncFunArr(fn1,fn2,fn3)</span><br><span class="line"></span><br><span class="line">af.next()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用async/await——————Promise-async/await</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function fn2 () &#123;</span><br><span class="line">    return new Promise((resolve,reject)=&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(&apos;Function 2&apos;)</span><br><span class="line">            resolve()</span><br><span class="line">        &#125;,500)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">async function asyncFunArr()&#123;</span><br><span class="line">    fn1()</span><br><span class="line">    await fn2()</span><br><span class="line">    fn3()</span><br><span class="line">&#125;</span><br><span class="line">asyncFunArr()</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/webStorm报错Import-declarations-are-not-supported-by-current-Javascript-version/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/23/webStorm报错Import-declarations-are-not-supported-by-current-Javascript-version/" itemprop="url">webStorm报错Import declarations are not supported by current Javascript version</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-23T13:32:14+08:00">
-                2018-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webstorm/" itemprop="url" rel="index">
-                    <span itemprop="name">webstorm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="贴出报错信息"><a href="#贴出报错信息" class="headerlink" title="贴出报错信息"></a>贴出报错信息</h1><p>首先贴出报错信息，在webStorm编辑器上的报错：<br>Import declarations are not supported by current JavaScript version.</p>
-<h1 id="修改webstorm基本配置"><a href="#修改webstorm基本配置" class="headerlink" title="修改webstorm基本配置"></a>修改webstorm基本配置</h1><p>在webstorm–&gt;prefrences–&gt;Languages &amp; Frameworks –&gt;JavaScript—&gt;React JSX即可<br><img src="../picture/webstorm.jpg" alt="avatar"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/Eslint官网/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/23/Eslint官网/" itemprop="url">Eslint官网</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-23T12:28:05+08:00">
-                2018-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Eslint/" itemprop="url" rel="index">
-                    <span itemprop="name">Eslint</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Eslint介绍"><a href="#Eslint介绍" class="headerlink" title="Eslint介绍"></a>Eslint介绍</h1><p>插件化的javasceipt代码检测工具<br>以可扩展/每条规则独立/不内置编码风格为理念编写一个lint工具<br>通过集成进入，eslint检查代码质量<br>根据自己的喜好制定一套Eslint配置，然后应用到编写的项目上，所以实现辅助编码规则的执行<br>eslint可通过npm快速安装<br>eslint通过Node.js来提供快速运行环境</p>
-<h1 id="Getting-Started-with-Eslint"><a href="#Getting-Started-with-Eslint" class="headerlink" title="Getting Started with Eslint"></a>Getting Started with Eslint</h1><p>1.Eslint使用Espress进行Javascript解析<br>2.使用AST进行代码评估模式<br>3.Eslint是完全插件化的，每一条均为插件，在运行时间内可以增加更多<br>4.可以自己配置显示错误，waring还是不显示 </p>
-<h1 id="Configure-Eslint"><a href="#Configure-Eslint" class="headerlink" title="Configure Eslint"></a>Configure Eslint</h1><ol>
-<li>配置comments</li>
-<li>配置文件: 使用Javascript，JSON或者YAML文件来为一整个文件夹及其子文件夹（并不是home文件夹）指定配置信息。这些可能为.eslintrc.*或者package.json中的eslintConfig，或者在命令行中规定过的<br>如果在home文件夹下，Eslint只在无法找到其他配置文件的情况下才会使用</li>
-<li>配置内容<br>Environment<br>Globals<br>Rules  </li>
-<li>注意：支持JSX语法和React不同，React应用特定语义到JSX语法，Eslint无法识别  </li>
-<li>React建议使用eslint-plugin-react</li>
-<li>支持ES6和支持新的ES6 globals不一样</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/20/test-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/20/test-1/" itemprop="url">test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-20T23:57:30+08:00">
-                2018-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo教程/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo教程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/20/nginx反向代理-检查网址无法访问/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/20/nginx反向代理-检查网址无法访问/" itemprop="url">nginx反向代理-检查网址无法访问</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-20T23:35:57+08:00">
-                2018-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="nginx反向代理-检查网址无法访问"><a href="#nginx反向代理-检查网址无法访问" class="headerlink" title="nginx反向代理-检查网址无法访问"></a>nginx反向代理-检查网址无法访问</h1><h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><h2 id="检查步骤"><a href="#检查步骤" class="headerlink" title="检查步骤"></a>检查步骤</h2><h3 id="检查nginx是否正常工作"><a href="#检查nginx是否正常工作" class="headerlink" title="检查nginx是否正常工作"></a>检查nginx是否正常工作</h3><h4 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h4><h4 id="查看nginx配置"><a href="#查看nginx配置" class="headerlink" title="查看nginx配置"></a>查看nginx配置</h4><h3 id="解决域名过期导致的网页无法浏览"><a href="#解决域名过期导致的网页无法浏览" class="headerlink" title="解决域名过期导致的网页无法浏览"></a>解决域名过期导致的网页无法浏览</h3><p>找到一个新的域名去替换掉过期的域名</p>
-<h4 id="如何找到线上环境的域名"><a href="#如何找到线上环境的域名" class="headerlink" title="如何找到线上环境的域名"></a>如何找到线上环境的域名</h4><p>在crontab中有个可执行程序用于数据处理，在可执行程序的统计目录下找到其源代码，源代码中有相关域名</p>
-<h4 id="更换新的域名"><a href="#更换新的域名" class="headerlink" title="更换新的域名"></a>更换新的域名</h4><p>在阿里云中进行域名解析，解析域名到（当前服务器）</p>
-<h4 id="重新配置nginx"><a href="#重新配置nginx" class="headerlink" title="重新配置nginx"></a>重新配置nginx</h4><p>修改nginx配置文件中对应条目的域名，并且重新启动nginx</p>
-<h4 id="crontab域名替换"><a href="#crontab域名替换" class="headerlink" title="crontab域名替换"></a>crontab域名替换</h4><p>检查crontab中可执行程序目录下的源码，将域名替换成新的域名，并进行重新编译</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/20/after/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/20/after/" itemprop="url">after</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-20T21:18:54+08:00">
-                2018-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo教程/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo教程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="这是第一个测试博客"><a href="#这是第一个测试博客" class="headerlink" title="这是第一个测试博客"></a>这是第一个测试博客</h1><h2 id="这是一个二级标题"><a href="#这是一个二级标题" class="headerlink" title="这是一个二级标题"></a>这是一个二级标题</h2><h3 id="这是一个三级标题"><a href="#这是一个三级标题" class="headerlink" title="这是一个三级标题"></a>这是一个三级标题</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1871,7 +1931,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1882,7 +1942,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1893,7 +1953,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
