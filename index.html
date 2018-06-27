@@ -447,7 +447,8 @@
 </li>
 </ol>
 <p>(2)else else-if<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-else&gt;</span><br><span class="line">&lt;div v-else-if=&quot;type === B&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-<p>(3)可复用的元素<br>e.g 切换用户类型，不会清除input内容<br><em>用key方法：</em><br><em>v-if v-else 中复用已有元素<template></template></em><br><em>规定不要复用：添加key，未添加key仍会复用</em><br>(4)v-show= “ok” 相当于display<br>不支持<template>和v-else<br>总被渲染，只是简单CSS显示切换<br>初始化渲染开销大<br>频繁切换时使用  </template></p>
+<p>(3)可复用的元素<br>e.g 切换用户类型，不会清除input内容<br><em>用key方法：</em><br><em>v-if v-else 中复用已有template元素
+</em>规定不要复用：添加key，未添加key仍会复用<em><br>(4)v-show= “ok” 相当于display<br>不支持template元素和v-else<br>总被渲染，只是简单CSS显示切换<br>初始化渲染开销大<br>频繁切换时使用</em>  </p>
 <ol start="10">
 <li>列表渲染<br>(1)item in items<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-for=&quot;item in items&quot;&gt;</span><br><span class="line">&lt;li v-for=&quot;item of items&quot;&gt;</span><br></pre></td></tr></table></figure>
 </li>
