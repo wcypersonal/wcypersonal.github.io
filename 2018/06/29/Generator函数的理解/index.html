@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="Generator 语法上：状态机器，封装了多个内部状态；遍历器对象生成函数 返回：遍历器对象遍历Generator函数内部的每一个状态 特征（1）function*（2）内部使用yield 调用调用后并不执行，返回一个指向状态的指针对象（IteratorObject）1234567891011function* helloworld () &amp;#123;	yield &amp;apos;hello&amp;apo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/05/17/hello-world/index.html">
+<meta property="og:title" content="Generator函数的理解">
+<meta property="og:url" content="http://yoursite.com/2018/06/29/Generator函数的理解/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Generator 语法上：状态机器，封装了多个内部状态；遍历器对象生成函数 返回：遍历器对象遍历Generator函数内部的每一个状态 特征（1）function*（2）内部使用yield 调用调用后并不执行，返回一个指向状态的指针对象（IteratorObject）1234567891011function* helloworld () &amp;#123;	yield &amp;apos;hello&amp;apo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-17T15:04:06.967Z">
+<meta property="og:updated_time" content="2018-06-28T17:38:25.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Generator函数的理解">
+<meta name="twitter:description" content="Generator 语法上：状态机器，封装了多个内部状态；遍历器对象生成函数 返回：遍历器对象遍历Generator函数内部的每一个状态 特征（1）function*（2）内部使用yield 调用调用后并不执行，返回一个指向状态的指针对象（IteratorObject）1234567891011function* helloworld () &amp;#123;	yield &amp;apos;hello&amp;apo">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/17/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/29/Generator函数的理解/"/>
 
 
 
 
 
-  <title>Hello World | 会飞@-@鱼</title>
+  <title>Generator函数的理解 | 会飞@-@鱼</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Generator函数的理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="楚妍">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Generator函数的理解</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-17T23:04:06+08:00">
-                2018-05-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T00:55:46+08:00">
+                2018-06-29
               </time>
             
 
@@ -301,6 +301,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/异步/" itemprop="url" rel="index">
+                    <span itemprop="name">异步</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -329,15 +351,21 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h1><ol>
+<li>语法上：状态机器，封装了多个内部状态；遍历器对象生成函数</li>
+<li>返回：遍历器对象<br>遍历Generator函数内部的每一个状态</li>
+<li>特征<br>（1）function*<br>（2）内部使用yield</li>
+<li>调用<br>调用后并不执行，返回一个指向状态的指针对象（IteratorObject）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function* helloworld () &#123;</span><br><span class="line">	yield &apos;hello&apos;;</span><br><span class="line">	yield &apos;world&apos;;</span><br><span class="line">	return &apos;ending&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">=&gt; </span><br><span class="line">执行函数 当前状态值 布尔值</span><br><span class="line">hw.next() 返回hello   done:false    //执行第一个yield</span><br><span class="line">hw.next() world done:false</span><br><span class="line">hw.next() undefined done:true。//遍历已经结束</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>可暂停执行的函数，yield为暂停标志</p>
+<blockquote>
+<p>next方法：可有一个参数，作为上个yield的返回值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function* f() &#123;</span><br><span class="line">  for (var i = 0;true;i++)&#123;</span><br><span class="line">  	 var reset = yield ;</span><br><span class="line">  	 if (reset) &#123;i = -1 &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br><span class="line">var g = f()</span><br><span class="line">g.next()</span><br><span class="line">g.next()</span><br><span class="line">g.next(true)</span><br><span class="line">=&gt;</span><br><span class="line">value:0 false</span><br><span class="line">value:1 false</span><br><span class="line">value:0 false</span><br><span class="line">next函数中有参数true，可调整函数行为</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ol start="5">
+<li>return<br>若无return，则返回对象值undefined</li>
+<li>return与yield：return无记忆功能，只返回一次</li>
+</ol>
 
       
     </div>
@@ -362,15 +390,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/29/yield的理解/" rel="next" title="yield的理解">
+                <i class="fa fa-chevron-left"></i> yield的理解
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/20/after/" rel="prev" title="after">
-                after <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -507,7 +535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Generator"><span class="nav-number">1.</span> <span class="nav-text">Generator</span></a></li></ol></div>
             
 
           </div>
