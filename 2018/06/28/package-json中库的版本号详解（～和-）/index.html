@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="微信小程序," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="Page：用page()注册一个页面data：页面初始数据onLoad：监听加载onReady：监听初次渲染完成-&amp;gt;调用一次，可以和视图层进行交互onShow：监听页面显示-&amp;gt;调用一次onHide：监听页面隐藏onUnload：监听页面卸载-&amp;gt;close页面onPageScroll：页面滚动触发事件的处理函数页面加载顺序：onLoad-&amp;gt;onShow-&amp;gt;onReady">
-<meta name="keywords" content="微信小程序">
+<meta name="description" content="1. 使用npm install –save XXX2. 会优先考虑使用插入符号^而不是～3. ~：更新到当前minor version（中间那位数字）中最新的版本e.g body-parser:~1.15.2 会匹配1.15.x的最新版本出现1.16.0,不会自动升级 4. 把当前库的版本更新到当前major version也就是第一位的最新版本e.g bluebird：^3.3.4会匹配3.x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="page加载-微信小程序">
-<meta property="og:url" content="http://yoursite.com/2018/06/27/page加载-微信小程序/index.html">
+<meta property="og:title" content="package.json中库的版本号详解（～和^）">
+<meta property="og:url" content="http://yoursite.com/2018/06/28/package-json中库的版本号详解（～和-）/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="Page：用page()注册一个页面data：页面初始数据onLoad：监听加载onReady：监听初次渲染完成-&amp;gt;调用一次，可以和视图层进行交互onShow：监听页面显示-&amp;gt;调用一次onHide：监听页面隐藏onUnload：监听页面卸载-&amp;gt;close页面onPageScroll：页面滚动触发事件的处理函数页面加载顺序：onLoad-&amp;gt;onShow-&amp;gt;onReady">
+<meta property="og:description" content="1. 使用npm install –save XXX2. 会优先考虑使用插入符号^而不是～3. ~：更新到当前minor version（中间那位数字）中最新的版本e.g body-parser:~1.15.2 会匹配1.15.x的最新版本出现1.16.0,不会自动升级 4. 把当前库的版本更新到当前major version也就是第一位的最新版本e.g bluebird：^3.3.4会匹配3.x">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-27T15:37:48.191Z">
+<meta property="og:updated_time" content="2018-06-28T16:10:31.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="page加载-微信小程序">
-<meta name="twitter:description" content="Page：用page()注册一个页面data：页面初始数据onLoad：监听加载onReady：监听初次渲染完成-&amp;gt;调用一次，可以和视图层进行交互onShow：监听页面显示-&amp;gt;调用一次onHide：监听页面隐藏onUnload：监听页面卸载-&amp;gt;close页面onPageScroll：页面滚动触发事件的处理函数页面加载顺序：onLoad-&amp;gt;onShow-&amp;gt;onReady">
+<meta name="twitter:title" content="package.json中库的版本号详解（～和^）">
+<meta name="twitter:description" content="1. 使用npm install –save XXX2. 会优先考虑使用插入符号^而不是～3. ~：更新到当前minor version（中间那位数字）中最新的版本e.g body-parser:~1.15.2 会匹配1.15.x的最新版本出现1.16.0,不会自动升级 4. 把当前库的版本更新到当前major version也就是第一位的最新版本e.g bluebird：^3.3.4会匹配3.x">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/27/page加载-微信小程序/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/28/package-json中库的版本号详解（～和-）/"/>
 
 
 
 
 
-  <title>page加载-微信小程序 | 会飞@-@鱼</title>
+  <title>package.json中库的版本号详解（～和^） | 会飞@-@鱼</title>
   
 
 
@@ -263,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/page加载-微信小程序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/package-json中库的版本号详解（～和-）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="楚妍">
@@ -280,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">page加载-微信小程序</h1>
+          <h1 class="post-title" itemprop="name headline">package.json中库的版本号详解（～和^）</h1>
         
 
         <div class="post-meta">
@@ -292,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T23:22:32+08:00">
-                2018-06-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T23:58:06+08:00">
+                2018-06-28
               </time>
             
 
@@ -315,8 +314,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">微信小程序</span>
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
                   </a>
                 </span>
 
@@ -352,7 +351,12 @@
       
 
       
-        <h1 id="Page：用page-注册一个页面"><a href="#Page：用page-注册一个页面" class="headerlink" title="Page：用page()注册一个页面"></a>Page：用page()注册一个页面</h1><h3 id="data：页面初始数据"><a href="#data：页面初始数据" class="headerlink" title="data：页面初始数据"></a>data：页面初始数据</h3><h3 id="onLoad：监听加载"><a href="#onLoad：监听加载" class="headerlink" title="onLoad：监听加载"></a>onLoad：监听加载</h3><h3 id="onReady：监听初次渲染完成-gt-调用一次，可以和视图层进行交互"><a href="#onReady：监听初次渲染完成-gt-调用一次，可以和视图层进行交互" class="headerlink" title="onReady：监听初次渲染完成-&gt;调用一次，可以和视图层进行交互"></a>onReady：监听初次渲染完成-&gt;调用一次，可以和视图层进行交互</h3><h3 id="onShow：监听页面显示-gt-调用一次"><a href="#onShow：监听页面显示-gt-调用一次" class="headerlink" title="onShow：监听页面显示-&gt;调用一次"></a>onShow：监听页面显示-&gt;调用一次</h3><h3 id="onHide：监听页面隐藏"><a href="#onHide：监听页面隐藏" class="headerlink" title="onHide：监听页面隐藏"></a>onHide：监听页面隐藏</h3><h3 id="onUnload：监听页面卸载-gt-close页面"><a href="#onUnload：监听页面卸载-gt-close页面" class="headerlink" title="onUnload：监听页面卸载-&gt;close页面"></a>onUnload：监听页面卸载-&gt;close页面</h3><h3 id="onPageScroll：页面滚动触发事件的处理函数"><a href="#onPageScroll：页面滚动触发事件的处理函数" class="headerlink" title="onPageScroll：页面滚动触发事件的处理函数"></a>onPageScroll：页面滚动触发事件的处理函数</h3><h3 id="页面加载顺序：onLoad-gt-onShow-gt-onReady-gt-onHide-gt-onShow-gt-onUnload"><a href="#页面加载顺序：onLoad-gt-onShow-gt-onReady-gt-onHide-gt-onShow-gt-onUnload" class="headerlink" title="页面加载顺序：onLoad-&gt;onShow-&gt;onReady-&gt;onHide-&gt;onShow-&gt;onUnload"></a>页面加载顺序：onLoad-&gt;onShow-&gt;onReady-&gt;onHide-&gt;onShow-&gt;onUnload</h3><h3 id="setData-接受一个对象"><a href="#setData-接受一个对象" class="headerlink" title="setData()接受一个对象"></a>setData()接受一个对象</h3>
+        <h2 id="1-使用npm-install-–save-XXX"><a href="#1-使用npm-install-–save-XXX" class="headerlink" title="1. 使用npm install –save XXX"></a>1. 使用npm install –save XXX</h2><h2 id="2-会优先考虑使用插入符号-而不是～"><a href="#2-会优先考虑使用插入符号-而不是～" class="headerlink" title="2. 会优先考虑使用插入符号^而不是～"></a>2. 会优先考虑使用插入符号^而不是～</h2><h2 id="3-：更新到当前minor-version（中间那位数字）中最新的版本"><a href="#3-：更新到当前minor-version（中间那位数字）中最新的版本" class="headerlink" title="3. ~：更新到当前minor version（中间那位数字）中最新的版本"></a>3. ~：更新到当前minor version（中间那位数字）中最新的版本</h2><p>e.g body-parser:~1.15.2 会匹配1.15.x的最新版本<br>出现1.16.0,不会自动升级</p>
+<h2 id="4-把当前库的版本更新到当前major-version"><a href="#4-把当前库的版本更新到当前major-version" class="headerlink" title="4. 把当前库的版本更新到当前major version"></a>4. 把当前库的版本更新到当前major version</h2><p>也就是第一位的最新版本<br>e.g bluebird：^3.3.4<br>会匹配3.x.x中的最新版本，不会更新到4.0.0</p>
+<h2 id="1-15-2"><a href="#1-15-2" class="headerlink" title="1.15.2"></a>1.15.2</h2><p>1:major version：有了一个不可以和上一个版本兼容的大更改<br>15:minor version：增加了新的功能，可以向后兼容<br>2:patch version：表示修复了bug，可以向后兼容</p>
+<hr>
+<h2 id="使用yarn"><a href="#使用yarn" class="headerlink" title="使用yarn"></a>使用yarn</h2><p>yarn.lock：只要文件不发生变化，线上的包管理系统，无论如何更新，使用的antd版本永远是3.0.2</p>
+
       
     </div>
     
@@ -367,12 +371,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/微信小程序/" rel="tag"># 微信小程序</a>
-          
-        </div>
-      
 
       
       
@@ -382,8 +380,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/27/过渡-动画/" rel="next" title="过渡&动画">
-                <i class="fa fa-chevron-left"></i> 过渡&动画
+              <a href="/2018/06/28/布局定位/" rel="next" title="布局定位">
+                <i class="fa fa-chevron-left"></i> 布局定位
               </a>
             
           </div>
@@ -392,8 +390,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/27/github上传程序代码/" rel="prev" title="github上传程序代码">
-                github上传程序代码 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/29/action/" rel="prev" title="action">
+                action <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -531,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Page：用page-注册一个页面"><span class="nav-number">1.</span> <span class="nav-text">Page：用page()注册一个页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data：页面初始数据"><span class="nav-number">1.0.1.</span> <span class="nav-text">data：页面初始数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onLoad：监听加载"><span class="nav-number">1.0.2.</span> <span class="nav-text">onLoad：监听加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onReady：监听初次渲染完成-gt-调用一次，可以和视图层进行交互"><span class="nav-number">1.0.3.</span> <span class="nav-text">onReady：监听初次渲染完成-&gt;调用一次，可以和视图层进行交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onShow：监听页面显示-gt-调用一次"><span class="nav-number">1.0.4.</span> <span class="nav-text">onShow：监听页面显示-&gt;调用一次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onHide：监听页面隐藏"><span class="nav-number">1.0.5.</span> <span class="nav-text">onHide：监听页面隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onUnload：监听页面卸载-gt-close页面"><span class="nav-number">1.0.6.</span> <span class="nav-text">onUnload：监听页面卸载-&gt;close页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onPageScroll：页面滚动触发事件的处理函数"><span class="nav-number">1.0.7.</span> <span class="nav-text">onPageScroll：页面滚动触发事件的处理函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面加载顺序：onLoad-gt-onShow-gt-onReady-gt-onHide-gt-onShow-gt-onUnload"><span class="nav-number">1.0.8.</span> <span class="nav-text">页面加载顺序：onLoad-&gt;onShow-&gt;onReady-&gt;onHide-&gt;onShow-&gt;onUnload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setData-接受一个对象"><span class="nav-number">1.0.9.</span> <span class="nav-text">setData()接受一个对象</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用npm-install-–save-XXX"><span class="nav-number">1.</span> <span class="nav-text">1. 使用npm install –save XXX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-会优先考虑使用插入符号-而不是～"><span class="nav-number">2.</span> <span class="nav-text">2. 会优先考虑使用插入符号^而不是～</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-：更新到当前minor-version（中间那位数字）中最新的版本"><span class="nav-number">3.</span> <span class="nav-text">3. ~：更新到当前minor version（中间那位数字）中最新的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-把当前库的版本更新到当前major-version"><span class="nav-number">4.</span> <span class="nav-text">4. 把当前库的版本更新到当前major version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-15-2"><span class="nav-number">5.</span> <span class="nav-text">1.15.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用yarn"><span class="nav-number">6.</span> <span class="nav-text">使用yarn</span></a></li></ol></div>
             
 
           </div>
