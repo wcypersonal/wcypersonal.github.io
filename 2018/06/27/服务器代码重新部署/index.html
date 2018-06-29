@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前段配置 ls 进入pp-test：测试环境进入pp-production：公众号运行环境 git branch -a显示当前分支名称 feature/in… (可使用npm或者yarn)yarn/npm 检查包是否完整success Already up-to-date yarn build 来build工程  后端配置 ls cd tmp 在工程root目录下pumactl -hpumactl">
+<meta name="description" content="一.前端配置基础 带宽较低 4/6M 静态文件 CDN服务器 静态加快，可加快95% 独立域名 CDN独立域名 （加载CSS，js，图像） 正式环境下 index.ejs，约几百个字节；编译环境下可能会出问题 html的真实文件  操作 ls 进入pp-test：测试环境进入pp-production：公众号运行环境 git branch -a显示当前分支名称 feature/in… (可使用np">
 <meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="服务器代码重新部署">
 <meta property="og:url" content="http://yoursite.com/2018/06/27/服务器代码重新部署/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="前段配置 ls 进入pp-test：测试环境进入pp-production：公众号运行环境 git branch -a显示当前分支名称 feature/in… (可使用npm或者yarn)yarn/npm 检查包是否完整success Already up-to-date yarn build 来build工程  后端配置 ls cd tmp 在工程root目录下pumactl -hpumactl">
+<meta property="og:description" content="一.前端配置基础 带宽较低 4/6M 静态文件 CDN服务器 静态加快，可加快95% 独立域名 CDN独立域名 （加载CSS，js，图像） 正式环境下 index.ejs，约几百个字节；编译环境下可能会出问题 html的真实文件  操作 ls 进入pp-test：测试环境进入pp-production：公众号运行环境 git branch -a显示当前分支名称 feature/in… (可使用np">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-27T14:12:32.969Z">
+<meta property="og:updated_time" content="2018-06-29T18:56:52.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="服务器代码重新部署">
-<meta name="twitter:description" content="前段配置 ls 进入pp-test：测试环境进入pp-production：公众号运行环境 git branch -a显示当前分支名称 feature/in… (可使用npm或者yarn)yarn/npm 检查包是否完整success Already up-to-date yarn build 来build工程  后端配置 ls cd tmp 在工程root目录下pumactl -hpumactl">
+<meta name="twitter:description" content="一.前端配置基础 带宽较低 4/6M 静态文件 CDN服务器 静态加快，可加快95% 独立域名 CDN独立域名 （加载CSS，js，图像） 正式环境下 index.ejs，约几百个字节；编译环境下可能会出问题 html的真实文件  操作 ls 进入pp-test：测试环境进入pp-production：公众号运行环境 git branch -a显示当前分支名称 feature/in… (可使用np">
 
 
 
@@ -352,17 +352,34 @@
       
 
       
-        <h1 id="前段配置"><a href="#前段配置" class="headerlink" title="前段配置"></a>前段配置</h1><ol>
+        <h1 id="一-前端配置"><a href="#一-前端配置" class="headerlink" title="一.前端配置"></a>一.前端配置</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ol>
+<li>带宽较低 4/6M</li>
+<li>静态文件 CDN服务器 静态加快，可加快95%</li>
+<li>独立域名 CDN独立域名 （加载CSS，js，图像）</li>
+<li>正式环境下 index.ejs，约几百个字节；编译环境下可能会出问题</li>
+<li>html的真实文件</li>
+</ol>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
 <li>ls</li>
 <li>进入pp-test：测试环境<br>进入pp-production：公众号运行环境</li>
 <li>git branch -a<br>显示当前分支名称 <em>feature/in…</em></li>
 <li>(可使用npm或者yarn)yarn/npm 检查包是否完整<br>success Already up-to-date</li>
 <li>yarn build 来build工程</li>
 </ol>
-<h1 id="后端配置"><a href="#后端配置" class="headerlink" title="后端配置"></a>后端配置</h1><ol>
+<h1 id="二-后端配置"><a href="#二-后端配置" class="headerlink" title="二.后端配置"></a>二.后端配置</h1><ol>
 <li>ls</li>
 <li>cd tmp</li>
-<li>在工程root目录下<br>pumactl -h<br>pumactl restart/start<br>puma -d<br>command restart sent success</li>
+<li>在工程root目录下（重启puma）<br>pumactl -h<br>pumactl restart/start （-d）<br>puma -d<br>command restart sent success</li>
+</ol>
+<h1 id="前端和后端"><a href="#前端和后端" class="headerlink" title="前端和后端"></a>前端和后端</h1><h2 id="交互"><a href="#交互" class="headerlink" title="交互"></a>交互</h2><ol>
+<li>前端</li>
+<li>nginx:前端编译为静态，处理静态能力强</li>
+<li>puma:处理动态能力强</li>
+<li>后端</li>
+</ol>
+<h2 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h2><ol>
+<li>可以重启puma</li>
+<li>或者重启nginx</li>
 </ol>
 
       
@@ -488,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -543,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前段配置"><span class="nav-number">1.</span> <span class="nav-text">前段配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后端配置"><span class="nav-number">2.</span> <span class="nav-text">后端配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-前端配置"><span class="nav-number">1.</span> <span class="nav-text">一.前端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">1.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">1.2.</span> <span class="nav-text">操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-后端配置"><span class="nav-number">2.</span> <span class="nav-text">二.后端配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前端和后端"><span class="nav-number">3.</span> <span class="nav-text">前端和后端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交互"><span class="nav-number">3.1.</span> <span class="nav-text">交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作-1"><span class="nav-number">3.2.</span> <span class="nav-text">操作</span></a></li></ol></li></ol></div>
             
 
           </div>
