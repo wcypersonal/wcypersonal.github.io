@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="标签1,标签2," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,15 +79,17 @@
 
 
 
-<meta name="keywords" content="标签1,标签2">
+<meta name="description" content="一.(1)javascript的宿主环境是web浏览器，浏览器环境需要提供一些接口javascript引擎才是真正执行代码的地方，e.g V8，Javascript core(2)Javascript的宿主环境是nodejs，对应引擎是V8 二.global thisthis == window对象(1)声明变量没有var/let -&amp;gt; 给全局的this添加或改改变属性值(2)node环境中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2018/06/20/test-1/index.html">
+<meta property="og:title" content="this用法">
+<meta property="og:url" content="http://yoursite.com/2018/06/29/this用法/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
+<meta property="og:description" content="一.(1)javascript的宿主环境是web浏览器，浏览器环境需要提供一些接口javascript引擎才是真正执行代码的地方，e.g V8，Javascript core(2)Javascript的宿主环境是nodejs，对应引擎是V8 二.global thisthis == window对象(1)声明变量没有var/let -&amp;gt; 给全局的this添加或改改变属性值(2)node环境中">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-21T15:30:06.067Z">
+<meta property="og:updated_time" content="2018-06-29T16:45:50.669Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
+<meta name="twitter:title" content="this用法">
+<meta name="twitter:description" content="一.(1)javascript的宿主环境是web浏览器，浏览器环境需要提供一些接口javascript引擎才是真正执行代码的地方，e.g V8，Javascript core(2)Javascript的宿主环境是nodejs，对应引擎是V8 二.global thisthis == window对象(1)声明变量没有var/let -&amp;gt; 给全局的this添加或改改变属性值(2)node环境中">
 
 
 
@@ -117,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/20/test-1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/29/this用法/"/>
 
 
 
 
 
-  <title>test | 会飞@-@鱼</title>
+  <title>this用法 | 会飞@-@鱼</title>
   
 
 
@@ -260,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/20/test-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/this用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="楚妍">
@@ -277,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test</h1>
+          <h1 class="post-title" itemprop="name headline">this用法</h1>
         
 
         <div class="post-meta">
@@ -289,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-20T23:57:30+08:00">
-                2018-06-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T23:38:14+08:00">
+                2018-06-29
               </time>
             
 
@@ -312,8 +314,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo教程/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo教程</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -349,7 +351,57 @@
       
 
       
-        
+        <h1 id="一"><a href="#一" class="headerlink" title="一."></a>一.</h1><p>(1)javascript的宿主环境是web浏览器，浏览器环境需要提供一些接口<br>javascript引擎才是真正执行代码的地方，e.g V8，Javascript core<br>(2)Javascript的宿主环境是nodejs，对应引擎是V8</p>
+<h1 id="二-global-this"><a href="#二-global-this" class="headerlink" title="二.global this"></a>二.global this</h1><p>this == window对象<br>(1)声明变量没有var/let -&gt; 给全局的this添加或改改变属性值<br>(2)node环境中 REPL：交互的编程环境</p>
+<ol>
+<li>执行js脚本，全局范围内this以一个空对象开始作为最高级的命名空间，this不等同于global</li>
+<li>执行js脚本，用REPL执行一个脚本，用var声明一个变量不会将变量添加给this<br>执行js脚本，不用REPL执行一个脚本，用var声明一个变量会将变量添加给this<br>（和浏览器中一样）</li>
+<li>声明变量无var和let<br>||global对象|this|<br>|-|–|–|<br>|用REPL执行|有|无|<br>|直接执行|有|有|</li>
+<li><blockquote>
+<p>浏览器 this == window，this最大<br>node<br>执行写好的：声明的变量不会自动添加到this，会自动添加global<br>一行行执行：global最大，global=this，声明的变量自动添加到this和global</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="三-function-this"><a href="#三-function-this" class="headerlink" title="三.function this"></a>三.function this</h1><ol>
+<li>指代全局范围内this</li>
+<li>严格 –&gt; this变成undefined</li>
+<li>调用函数前有new，this变成一个新值，this不等于global</li>
+<li>绑定事件处理程序，this指代事件处理程序对应的对象 e.g button</li>
+</ol>
+<h1 id="四-prototype-this"><a href="#四-prototype-this" class="headerlink" title="四.prototype this"></a>四.prototype this</h1><p>prototype:每一个函数都是函数对象，会自动获得一个特殊属性prototype；用new方法调用函数，可以用this访问给prototype赋的值</p>
+<ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thing.prototype.foo = &quot;bar&quot;</span><br><span class="line">var thing = new Thing</span><br><span class="line">console.log(thing.foo) //&quot;bar&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例中this是一个特殊对象，new之后会隐藏同名属性</p>
+</li>
+<li>从一个function中new的实例，会共享所有的prototype赋值</li>
+<li>可形成原型链，this会一层一层寻值<br>Thing1.prototype.foo = “bar”<br>Thing2.prototype = new Thing1<br>原型链中重新赋值，就会隐藏本身的值</li>
+<li><em>嵌套函数</em> 中的this没有继承 –&gt; undefined<br>把一个实例的方法当成一个值，把值当成函数参数传给另一个函数，但不把实例传给这个函数<br>–&gt; 环境变为全局global</li>
+<li><p>把this捕捉到变量里 self （改变undefined）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thing.prototype.logFoo = function()&#123;</span><br><span class="line">	var self = this</span><br><span class="line">	//可调用self.foo</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把一个方法作为一个值传递给一个函数无效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function doItIndirectly(method) &#123;</span><br><span class="line">	method()</span><br><span class="line">&#125;</span><br><span class="line">doItIndirectly(thing.logFoo) //logs undefined</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用bind解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doItIndirectly(thing.logFoo.bind(thing)) //logs bar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用apply和call解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thing.prototype.logFoo = function () &#123;</span><br><span class="line">	doIt.apply(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用Object.create(Thing.prototype)替换new</p>
+</li>
+</ol>
+<h1 id="五-object-this"><a href="#五-object-this" class="headerlink" title="五.object this"></a>五.object this</h1><ol>
+<li>用apply将function绑定到var obj上</li>
+<li>只有有相同直接父元素的属性才能通过this共享变量，即元素嵌套不可以</li>
+<li>嵌套后可以直接用obj.foo调用</li>
+</ol>
+<h1 id="六-DOM-event-this"><a href="#六-DOM-event-this" class="headerlink" title="六.DOM event this"></a>六.DOM event this</h1><p>HTML DOM事件处理程序里，this始终指向DOM节点</p>
+<h1 id="七-HTML-this"><a href="#七-HTML-this" class="headerlink" title="七.HTML this"></a>七.HTML this</h1><h1 id="八-重写this"><a href="#八-重写this" class="headerlink" title="八.重写this"></a>八.重写this</h1><p>不可override</p>
+<h1 id="九-with-this"><a href="#九-with-this" class="headerlink" title="九.with this"></a>九.with this</h1><p>with 将this添加到当前环境<br>Thing.prototype.logFoo = function () {<br>    with(this) {<br> }<br>}</p>
+<h1 id="十-jQuery-this"><a href="#十-jQuery-this" class="headerlink" title="十.jQuery this"></a>十.jQuery this</h1><p>this指向HTML元素节点<br>e.g $( ).each</p>
+<h1 id="十一-thisArg-this"><a href="#十一-thisArg-this" class="headerlink" title="十一.thisArg this"></a>十一.thisArg this</h1>
       
     </div>
     
@@ -364,14 +416,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/标签1/" rel="tag"># 标签1</a>
-          
-            <a href="/tags/标签2/" rel="tag"># 标签2</a>
-          
-        </div>
-      
 
       
       
@@ -381,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/20/nginx反向代理-检查网址无法访问/" rel="next" title="nginx反向代理-检查网址无法访问">
-                <i class="fa fa-chevron-left"></i> nginx反向代理-检查网址无法访问
+              <a href="/2018/06/29/基础命令/" rel="next" title="基础命令">
+                <i class="fa fa-chevron-left"></i> 基础命令
               </a>
             
           </div>
@@ -391,8 +435,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/23/Eslint官网/" rel="prev" title="Eslint官网">
-                Eslint官网 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/30/redux基础/" rel="prev" title="redux基础">
+                redux基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -450,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -511,6 +564,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一"><span class="nav-number">1.</span> <span class="nav-text">一.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-global-this"><span class="nav-number">2.</span> <span class="nav-text">二.global this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-function-this"><span class="nav-number">3.</span> <span class="nav-text">三.function this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-prototype-this"><span class="nav-number">4.</span> <span class="nav-text">四.prototype this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-object-this"><span class="nav-number">5.</span> <span class="nav-text">五.object this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-DOM-event-this"><span class="nav-number">6.</span> <span class="nav-text">六.DOM event this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七-HTML-this"><span class="nav-number">7.</span> <span class="nav-text">七.HTML this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八-重写this"><span class="nav-number">8.</span> <span class="nav-text">八.重写this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九-with-this"><span class="nav-number">9.</span> <span class="nav-text">九.with this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十-jQuery-this"><span class="nav-number">10.</span> <span class="nav-text">十.jQuery this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十一-thisArg-this"><span class="nav-number">11.</span> <span class="nav-text">十一.thisArg this</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="会飞@-@鱼">
-<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
+<meta name="description" content="一. Basics Actions(纯js对象):从application中发送数据到内存使用store.dispatch(),是信息的payloads，必须有type属性(string常量)，所有Action存储在Array中，建议使用 ActionCreators：返回一个action(Todo),需要调用执行生成action:dispatch(addTodo(text))才执行，并非自动初始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux基础">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/redux基础/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
+<meta property="og:description" content="一. Basics Actions(纯js对象):从application中发送数据到内存使用store.dispatch(),是信息的payloads，必须有type属性(string常量)，所有Action存储在Array中，建议使用 ActionCreators：返回一个action(Todo),需要调用执行生成action:dispatch(addTodo(text))才执行，并非自动初始">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-29T17:20:24.528Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="会飞@-@鱼">
+<meta name="twitter:title" content="redux基础">
+<meta name="twitter:description" content="一. Basics Actions(纯js对象):从application中发送数据到内存使用store.dispatch(),是信息的payloads，必须有type属性(string常量)，所有Action存储在Array中，建议使用 ActionCreators：返回一个action(Todo),需要调用执行生成action:dispatch(addTodo(text))才执行，并非自动初始">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/page/3/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/30/redux基础/"/>
 
 
 
 
 
-  <title>Archive | 会飞@-@鱼</title>
+  <title>redux基础 | 会飞@-@鱼</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,410 +248,177 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 36 posts in total. Keep on posting.
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/redux基础/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">redux基础</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T00:52:18+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/28/html页面布局/" itemprop="url">
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">html页面布局</span>
+                <span class="post-meta-item-text">In</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redux/" itemprop="url" rel="index">
+                    <span itemprop="name">Redux</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-28T00:08:08+08:00"
-              content="2018-06-28" >
-          06-28
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+          
 
+          
+          
 
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/28/html引用外部CSS文件/" itemprop="url">
-              
-                <span itemprop="name">html引用外部CSS文件</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-28T00:01:26+08:00"
-              content="2018-06-28" >
-          06-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/27/github上传程序代码/" itemprop="url">
-              
-                <span itemprop="name">github上传程序代码</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-27T23:39:05+08:00"
-              content="2018-06-27" >
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="一-Basics"><a href="#一-Basics" class="headerlink" title="一. Basics"></a>一. Basics</h1><ol>
+<li>Actions(纯js对象):从application中发送数据到内存使用store.dispatch(),是信息的payloads，必须有type属性(string常量)，所有Action存储在Array中，建议使用</li>
+<li>ActionCreators：返回一个action(Todo),需要调用<br>执行生成action:dispatch(addTodo(text))才执行，并非自动初始化<br>—&gt; 执行action:(bound action creator)const boundAddTodo = text =&gt; dispatch(addTodo(…))<br>—&gt; bound AddTodo(text):使用React-redux的connect();bindActionCreators():捆绑action creators到dispatch()函数</li>
+<li>SourceCode</li>
+</ol>
+<h1 id="二-Reducers-action未定义state如何改变，用以改变state"><a href="#二-Reducers-action未定义state如何改变，用以改变state" class="headerlink" title="二.Reducers:action未定义state如何改变，用以改变state"></a>二.Reducers:action未定义state如何改变，用以改变state</h1><ol>
+<li>Designing the State Shape<br>所有的state都作为一个单独的对象：(1)the currently selected visibility filter；(2)the actual list of todos<br>状态树：数据和UI状态分开</li>
+<li>Handling Actions<br>（1）(previousState,action) =&gt; newState<br><em>pure function:同样参数值，函数输出相同的结果，结果的求值不会促使任何可语义上的可观察的副作用或输出</em><br>（2）redux会调用reducer，为未定义的initialState，首次不赋值 e.g todo:[]<br>（3）不改变state，创建父本Object.assign()<br>Object.assign({必须为空},state,…)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function todoApp(state = initial(state,action)&#123;</span><br><span class="line">	-&gt; newState</span><br><span class="line">	-&gt; default: 原state</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>（4）使用对象扩展语法的优点在组成复杂对象时会更明显<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">return getAddIds(state.cart.map(id =&gt; (&#123;</span><br><span class="line">	_____,______</span><br><span class="line">	&#125;)))</span><br></pre></td></tr></table></figure></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/27/page加载-微信小程序/" itemprop="url">
-              
-                <span itemprop="name">page加载-微信小程序</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-27T23:22:32+08:00"
-              content="2018-06-27" >
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/27/过渡-动画/" itemprop="url">
-              
-                <span itemprop="name">过渡&动画</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-27T22:21:03+08:00"
-              content="2018-06-27" >
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/27/服务器代码重新部署/" itemprop="url">
-              
-                <span itemprop="name">服务器代码重新部署</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-27T11:07:48+08:00"
-              content="2018-06-27" >
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/26/Vue-js官网/" itemprop="url">
-              
-                <span itemprop="name">Vue.js官网</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-26T23:00:07+08:00"
-              content="2018-06-26" >
-          06-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/24/Node-js-运行在服务器端的js/" itemprop="url">
-              
-                <span itemprop="name">Node.js(运行在服务器端的js)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-24T20:04:51+08:00"
-              content="2018-06-24" >
-          06-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/24/Node-js安装/" itemprop="url">
-              
-                <span itemprop="name">Node.js安装</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-24T15:21:06+08:00"
-              content="2018-06-24" >
-          06-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/23/异步/" itemprop="url">
-              
-                <span itemprop="name">异步</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-23T14:41:43+08:00"
-              content="2018-06-23" >
-          06-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/29/this用法/" rel="next" title="this用法">
+                <i class="fa fa-chevron-left"></i> this用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/30/react-redux基础/" rel="prev" title="react-redux三个基础原则">
+                react-redux三个基础原则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -655,8 +426,15 @@
 
 
           
-      <div id="lv-container" data-id="city" data-uid="yMTAyMC8zNzU3Mi8xNDEwNA=="></div>
 
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="yMTAyMC8zNzU3Mi8xNDEwNA=="></div>
+    </div>
+
+  
+
+  
 
         </div>
         
@@ -677,8 +455,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -738,6 +525,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-Basics"><span class="nav-number">1.</span> <span class="nav-text">一. Basics</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-Reducers-action未定义state如何改变，用以改变state"><span class="nav-number">2.</span> <span class="nav-text">二.Reducers:action未定义state如何改变，用以改变state</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -871,6 +674,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -899,6 +706,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
