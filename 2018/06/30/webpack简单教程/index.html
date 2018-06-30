@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="当前webpack 的最新稳定版本为 3.10.0。 Hello World!当前项目是一个空文件夹，在项目根目录的命令行中执行：yarn add -D webpack，将会生成与 webpack 相关的必要文件。  在项目根目录下新建 src 文件夹用于存放源文件。 新建 src/index.html 1234567891011//src/index.html&amp;lt;!DOCTYPE html&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack简单教程">
 <meta property="og:url" content="http://yoursite.com/2018/06/30/webpack简单教程/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
+<meta property="og:description" content="当前webpack 的最新稳定版本为 3.10.0。 Hello World!当前项目是一个空文件夹，在项目根目录的命令行中执行：yarn add -D webpack，将会生成与 webpack 相关的必要文件。  在项目根目录下新建 src 文件夹用于存放源文件。 新建 src/index.html 1234567891011//src/index.html&amp;lt;!DOCTYPE html&amp;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T18:58:25.757Z">
+<meta property="og:updated_time" content="2018-06-30T03:52:03.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack简单教程">
+<meta name="twitter:description" content="当前webpack 的最新稳定版本为 3.10.0。 Hello World!当前项目是一个空文件夹，在项目根目录的命令行中执行：yarn add -D webpack，将会生成与 webpack 相关的必要文件。  在项目根目录下新建 src 文件夹用于存放源文件。 新建 src/index.html 1234567891011//src/index.html&amp;lt;!DOCTYPE html&amp;">
 
 
 
@@ -348,7 +351,41 @@
       
 
       
-        
+        <p>当前webpack 的最新稳定版本为 3.10.0。</p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><p>当前项目是一个空文件夹，在项目根目录的命令行中执行：yarn add -D webpack，将会生成与 webpack 相关的必要文件。</p>
+<ol>
+<li>在项目根目录下新建 src 文件夹用于存放源文件。</li>
+<li><p>新建 src/index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//src/index.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建 src/index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// src/index.js</span><br><span class="line">console.log(&quot;Hello World!&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建 webpack.config.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// webpack.config.js</span><br><span class="line"></span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &apos;./src/index.js&apos;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: path.resolve(__dirname, &apos;src&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目根目录命令行下执行：webpack，在 src 文件夹下生成 bundle.js 文件，用浏览器打开 src/index.html，可以在浏览器的命令行中看到 Hello World! 输出。</p>
+</li>
+</ol>
+<h1 id="将编译结果移动至-dist-文件夹"><a href="#将编译结果移动至-dist-文件夹" class="headerlink" title="将编译结果移动至 dist 文件夹"></a>将编译结果移动至 dist 文件夹</h1><ol>
+<li>删除之前编译生成的 src/bundle.js。</li>
+<li><p>项目根目录命令行下执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D clean-webpack-plugin</span><br><span class="line">yarn add -D html-webpack-plugin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 webpack.config.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// webpack.config.js</span><br><span class="line"></span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line">const CleanWebpackPlugin = require(&apos;clean-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &apos;./src/index.js&apos;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: path.resolve(__dirname, &apos;dist&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new CleanWebpackPlugin([&apos;dist&apos;]),</span><br><span class="line">        new HtmlWebpackPlugin(&#123;</span><br><span class="line">            filename: &apos;index.html&apos;,</span><br><span class="line">            template: &apos;src/index.html&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除 src/index.html 中 <figure class="highlight plain"><figcaption><span>src</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># webpack-dev-server</span><br><span class="line">1. 在项目根目录的命令行中执行：```yarn add -D webpack-dev-server```。</span><br><span class="line">2. 在项目根目录的命令行中执行：```node_modules/.bin/webpack-dev-server```，可以进入 webpack 的开发者模式。</span><br><span class="line"></span><br><span class="line"># npm 脚本</span><br><span class="line">在 package.json 中添加：</span><br></pre></td></tr></table></figure></p>
+</li>
+</ol>
+<p>{<br>    …<br>    “scripts”: {<br>        “build”: “webpack”,<br>        “start”: “node_modules/.bin/webpack-dev-server”<br>    }<br>    …<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在项目根目录的命令行中可以使用 yarn build 代替 webpack 进行编译；可以使用 yarn start 代替 node_modules/.bin/webpack-dev-server 进入开发者模式。</span><br><span class="line"></span><br><span class="line"># 用 typescript 代替 javascript 进行开发</span><br><span class="line">1. 在项目根目录的命令行中执行：```yarn add -D typescript ts-loader ```安装必要的包。</span><br><span class="line">2. 在项目根目录下新建 tsconfig.json</span><br></pre></td></tr></table></figure></p>
+<p>// tsconfig.json</p>
+<p>{<br>  “compilerOptions”: {<br>    “outDir”: “./dist/“,<br>    “noImplicitAny”: true,<br>    “module”: “es6”,<br>    “target”: “es5”,<br>    “jsx”: “react”,<br>    “allowJs”: true<br>  }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3. 将 src/index.js 修改成 src/index.ts。</span><br><span class="line">4. 修改 webpack.config.js</span><br></pre></td></tr></table></figure></p>
+<p>// webpack.config.js</p>
+<p>const path = require(‘path’);<br>const HtmlWebpackPlugin = require(‘html-webpack-plugin’);<br>const CleanWebpackPlugin = require(‘clean-webpack-plugin’);</p>
+<p>module.exports = {<br>    entry: ‘./src/index.ts’,<br>    output: {<br>        filename: ‘bundle.js’,<br>        path: path.resolve(__dirname, ‘dist’)<br>    },<br>    plugins: [<br>        new CleanWebpackPlugin([‘dist’]),<br>        new HtmlWebpackPlugin({<br>            filename: ‘index.html’,<br>            template: ‘src/index.html’<br>        })<br>    ],<br>    module: {<br>        rules: [<br>            {<br>                test: /.tsx?$/,<br>                use: ‘ts-loader’,<br>                exclude: /node_modules/<br>            }<br>        ]<br>    }<br>};</p>
+<p><code>`</code></p>
+
       
     </div>
     
@@ -381,6 +418,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/30/创建使用typescript开发的reactjs工程/" rel="prev" title="创建使用typescript开发的reactjs工程">
+                创建使用typescript开发的reactjs工程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -437,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,7 +503,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -498,6 +548,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello World!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将编译结果移动至-dist-文件夹"><span class="nav-number">2.</span> <span class="nav-text">将编译结果移动至 dist 文件夹</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
