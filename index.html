@@ -259,6 +259,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/MVC框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/01/MVC框架/" itemprop="url">MVC框架</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T15:22:50+08:00">
+                2018-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.<br>Model:负责管理数据，大部分业务逻辑也应该在Model中<br>View:负责渲染用户界面，应该避免在View业务中设计业务逻辑<br>Controller:负责接受用户输入，根据用户输入调用对应的Model部分逻辑，把产生的数据结果交给View部分，让View渲染出必要的输出</p>
+<ol start="2">
+<li>缺陷<br>实际框架中总是允许View和Model直接通信，所以数据流向会变得复杂</li>
+<li>区别<br>服务器端MVC框架往往就是每个请求只在Controller-Model-View三者之间走一圈，结果返回给浏览器去渲染或者处理，然后销毁请求的生命周期，严格的单向数据流<br>浏览器端MVC框架，存在用户交互处理</li>
+<li>系统提供什么样的服务，通过Controller暴露函数来实现。每增加一个功能，Controller往往就要增加一个函数</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/深入浅出React和Redux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -397,18 +544,22 @@
 <li>React的defaultProps功能：优化isRequired的频繁判断</li>
 <li>组件内部修改this.state，并没有驱动组件进行重新渲染，调用this.setState改变组件状态</li>
 </ol>
-<h2 id="2-3-组件生命周期"><a href="#2-3-组件生命周期" class="headerlink" title="2.3 组件生命周期"></a>2.3 组件生命周期</h2><p>组件第一次渲染：constructor –&gt; getInitialState –&gt; getDefaultProps –&gt; componentWillMount –&gt; render –&gt; componentDidMount</p>
-<ol>
+<h2 id="2-3-组件生命周期"><a href="#2-3-组件生命周期" class="headerlink" title="2.3 组件生命周期"></a>2.3 组件生命周期</h2><h3 id="组件第一次渲染：constructor-–-gt-getInitialState-–-gt-getDefaultProps-–-gt-componentWillMount-–-gt-render-–-gt-componentDidMount"><a href="#组件第一次渲染：constructor-–-gt-getInitialState-–-gt-getDefaultProps-–-gt-componentWillMount-–-gt-render-–-gt-componentDidMount" class="headerlink" title="组件第一次渲染：constructor –&gt; getInitialState –&gt; getDefaultProps –&gt; componentWillMount –&gt; render –&gt; componentDidMount"></a>组件第一次渲染：constructor –&gt; getInitialState –&gt; getDefaultProps –&gt; componentWillMount –&gt; render –&gt; componentDidMount</h3><ol>
 <li>constructor<br>无状态的React组件往往不需要定义构造函数<br>目的：（1）初始化state；（2）绑定成员函数的this环境，this始终指向当前组件实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">类实例this.onClickIncrementButton = this.onClickIncrementButton.bind(this)</span><br><span class="line">``` </span><br><span class="line">2. getInitialState和getDefaultProps</span><br><span class="line">getInitialState：只有在React.createClass方法创造的组件中才能初始化组件的this.state</span><br><span class="line">getDefaultProps: 返回值作为props初始值</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>//ES6 在构造函数中通过this.state赋值完成状态的初始化<br>class Sample extends React.component {</p>
 <p>}<br>Sample.defaultProps = {</p>
-<p>}<br><code>`</code></p>
-<ol start="3">
-<li>render：纯函数（根据this.props和this.state）<br>render并不做实际的渲染动作，只是返回一个JSX描述的结构，最终由React来操作渲染过程</li>
-<li>componentWillMount和componentDidMount<br>调用关系：componentWillMount –&gt; render –&gt; componentDidMount<br>componentWillMount：“将要装载”，没有任何渲染出来的结果，所有可以在componentWillMount中做的事情，都可以提前到constructor中去做</li>
+<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">3. render：纯函数（根据this.props和this.state）</span><br><span class="line">render并不做实际的渲染动作，只是返回一个JSX描述的结构，最终由React来操作渲染过程</span><br><span class="line">4. componentWillMount和componentDidMount</span><br><span class="line">调用关系：componentWillMount --&gt; render --&gt; componentDidMount</span><br><span class="line">componentWillMount：“将要装载”，没有任何渲染出来的结果，所有可以在componentWillMount中做的事情，都可以提前到constructor中去做，可以在服务器端和浏览器端调用</span><br><span class="line"></span><br><span class="line">&gt;服务器端js：Node.js</span><br><span class="line">componentDidMount:render函数调用完之后，componentDidMount函数并不会立即调用，componentDidMount被调用的时候，render函数返回的东西已经引发了渲染，组件已经“装载”到DOM树上，只在浏览器端被调用</span><br><span class="line">5. React和其他UI库的结合</span><br><span class="line">&gt; d3.js已经支持了丰富的绘制图表的功能</span><br><span class="line">&gt; React+jQuery:利用componentDidMount函数，此时React的DOM组件对应的DOM已经存在，所有的事件处理函数已经设置好，可以调用jQuery在已经绘制号的DOM基础上增强新的功能</span><br><span class="line"></span><br><span class="line">### 组件更新过程：componentWillReceiveProps --&gt; shouldComponentUpdate --&gt; componentWillUpdate --&gt; render --&gt; componentDidUpdate</span><br><span class="line">1. componentWillReceiveProps(nextProps)</span><br><span class="line">（1）在render函数里面被渲染的子组件就会经历更新过程，不管父组件传给子组件的props有没有改变，都会触发子组件的componentWillReceiveProps函数</span><br><span class="line"></span><br><span class="line">&gt;this.setState方法不会触发这个过程，因为函数会根据新的props值来计算是不是要更新内部状态state，更新内部状态的方法就是this.setState,若调用就形成死循环</span><br><span class="line">（2）在JSX中直接把匿名函数赋值给onclick，并不提倡，每次渲染都会创造一个新的匿名对象，可能会引发子组件不必要的重新渲染</span><br></pre></td></tr></table></figure></p>
+<p><button onclick="{" ()=""> this.forceUpdate() }&gt;</button><br><code>`</code><br>（3）nextProps代表着一次渲染传入的props的值，this.props代表的是上一次渲染的props值，只有两者有变化时才有必要调用this.setState更新内部状态 </p>
+<ol start="2">
+<li>shouldComponentUpdate(nextProps,nextState)：定制函数<br>决定了一个组件什么时候不需要渲染<br>在组件添加shouldComponentUpdate函数，就沿用所有React组件父类React.Component中的默认实现方式（即简单的返回true）</li>
+<li>componentWillUpdate和componentDidUpdate<br>两个函数将render夹在中间<br>若componentDidMount调用jQuery，则重新渲染时在coomponentDidUpdate函数再次调用jQuery</li>
 </ol>
+<h3 id="卸载过程"><a href="#卸载过程" class="headerlink" title="卸载过程"></a>卸载过程</h3><p>componentWillUnmount： 和componentDidMout有关，把创造的DOM元素清理掉</p>
+<h2 id="组件向外传递数据"><a href="#组件向外传递数据" class="headerlink" title="组件向外传递数据"></a>组件向外传递数据</h2><p>函数是一等功名，函数本身可以被看做一种对象</p>
+<h3 id="React组件state和Prop的局限"><a href="#React组件state和Prop的局限" class="headerlink" title="React组件state和Prop的局限"></a>React组件state和Prop的局限</h3><p>每个Counter组件由自己的状态记录当前计数，而父组件ControlPanel也有一个状态来存储所有Counter计数总和，即数据重复<br>把数据源放在React组件之外形成全局状态，把各个组件保持和全局状态一致</p>
+<h1 id="第三章-从Flux到Redux"><a href="#第三章-从Flux到Redux" class="headerlink" title="第三章 从Flux到Redux"></a>第三章 从Flux到Redux</h1><h2 id="3-1-Flux"><a href="#3-1-Flux" class="headerlink" title="3.1 Flux"></a>3.1 Flux</h2><p><a href="">MVC框架</a></p>
 
           
         
@@ -1813,158 +1964,6 @@ A|B可以匹配A或B
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/redux基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/30/redux基础/" itemprop="url">redux基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T00:52:18+08:00">
-                2018-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redux/" itemprop="url" rel="index">
-                    <span itemprop="name">Redux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一-Basics"><a href="#一-Basics" class="headerlink" title="一. Basics"></a>一. Basics</h1><ol>
-<li>Actions(纯js对象):从application中发送数据到内存使用store.dispatch(),是信息的payloads，必须有type属性(string常量)，所有Action存储在Array中，建议使用</li>
-<li>ActionCreators：返回一个action(Todo),需要调用<br>执行生成action:dispatch(addTodo(text))才执行，并非自动初始化<br>—&gt; 执行action:(bound action creator)const boundAddTodo = text =&gt; dispatch(addTodo(…))<br>—&gt; bound AddTodo(text):使用React-redux的connect();bindActionCreators():捆绑action creators到dispatch()函数</li>
-<li>SourceCode</li>
-</ol>
-<h1 id="二-Reducers-action未定义state如何改变，用以改变state"><a href="#二-Reducers-action未定义state如何改变，用以改变state" class="headerlink" title="二.Reducers:action未定义state如何改变，用以改变state"></a>二.Reducers:action未定义state如何改变，用以改变state</h1><ol>
-<li>Designing the State Shape<br>所有的state都作为一个单独的对象：(1)the currently selected visibility filter；(2)the actual list of todos<br>状态树：数据和UI状态分开</li>
-<li>Handling Actions<br>（1）(previousState,action) =&gt; newState<br><em>pure function:同样参数值，函数输出相同的结果，结果的求值不会促使任何可语义上的可观察的副作用或输出</em><br>（2）redux会调用reducer，为未定义的initialState，首次不赋值 e.g todo:[]<br>（3）不改变state，创建父本Object.assign()<br>Object.assign({必须为空},state,…)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function todoApp(state = initial(state,action)&#123;</span><br><span class="line">	-&gt; newState</span><br><span class="line">	-&gt; default: 原state</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>（4）使用对象扩展语法的优点在组成复杂对象时会更明显<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">return getAddIds(state.cart.map(id =&gt; (&#123;</span><br><span class="line">	_____,______</span><br><span class="line">	&#125;)))</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2017,7 +2016,7 @@ A|B可以匹配A或B
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
