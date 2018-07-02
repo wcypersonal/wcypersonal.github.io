@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Model:负责管理数据，大部分业务逻辑也应该在Model中View:负责渲染用户界面，应该避免在View业务中设计业务逻辑Controller:负责接受用户输入，根据用户输入调用对应的Model部分逻辑，把产生的数据结果交给View部分，让View渲染出必要的输出 缺陷:实际框架中总是允许View和Model直接通信，所以数据流向会变得复杂 区别服务器端MVC框架往往就是每个请求只在Contr">
+<meta name="description" content="第一章 从零开始，完成一次部署 /bin 可执行的二进制文件/lib 代码库模块文件/vendor 第三方代码，例如插件和gem MVC架构模式MVC框架视图  C  web &amp;lt;— 浏览器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MVC框架">
-<meta property="og:url" content="http://yoursite.com/2018/07/01/MVC框架/index.html">
+<meta property="og:title" content="Ruby on Rails教程（第4版）-2017">
+<meta property="og:url" content="http://yoursite.com/2018/07/02/Rails教程（第4版）-2017/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="Model:负责管理数据，大部分业务逻辑也应该在Model中View:负责渲染用户界面，应该避免在View业务中设计业务逻辑Controller:负责接受用户输入，根据用户输入调用对应的Model部分逻辑，把产生的数据结果交给View部分，让View渲染出必要的输出 缺陷:实际框架中总是允许View和Model直接通信，所以数据流向会变得复杂 区别服务器端MVC框架往往就是每个请求只在Contr">
+<meta property="og:description" content="第一章 从零开始，完成一次部署 /bin 可执行的二进制文件/lib 代码库模块文件/vendor 第三方代码，例如插件和gem MVC架构模式MVC框架视图  C  web &amp;lt;— 浏览器">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-01T07:43:44.175Z">
+<meta property="og:updated_time" content="2018-07-02T15:52:00.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MVC框架">
-<meta name="twitter:description" content="Model:负责管理数据，大部分业务逻辑也应该在Model中View:负责渲染用户界面，应该避免在View业务中设计业务逻辑Controller:负责接受用户输入，根据用户输入调用对应的Model部分逻辑，把产生的数据结果交给View部分，让View渲染出必要的输出 缺陷:实际框架中总是允许View和Model直接通信，所以数据流向会变得复杂 区别服务器端MVC框架往往就是每个请求只在Contr">
+<meta name="twitter:title" content="Ruby on Rails教程（第4版）-2017">
+<meta name="twitter:description" content="第一章 从零开始，完成一次部署 /bin 可执行的二进制文件/lib 代码库模块文件/vendor 第三方代码，例如插件和gem MVC架构模式MVC框架视图  C  web &amp;lt;— 浏览器">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/01/MVC框架/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/02/Rails教程（第4版）-2017/"/>
 
 
 
 
 
-  <title>MVC框架 | 会飞@-@鱼</title>
+  <title>Ruby on Rails教程（第4版）-2017 | 会飞@-@鱼</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/MVC框架/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/02/Rails教程（第4版）-2017/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="楚妍">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MVC框架</h1>
+          <h1 class="post-title" itemprop="name headline">Ruby on Rails教程（第4版）-2017</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T15:22:50+08:00">
-                2018-07-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-02T23:26:33+08:00">
+                2018-07-02
               </time>
             
 
@@ -301,28 +301,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -351,11 +329,11 @@
       
 
       
-        <ol>
-<li>Model:负责管理数据，大部分业务逻辑也应该在Model中<br>View:负责渲染用户界面，应该避免在View业务中设计业务逻辑<br>Controller:负责接受用户输入，根据用户输入调用对应的Model部分逻辑，把产生的数据结果交给View部分，让View渲染出必要的输出</li>
-<li>缺陷:实际框架中总是允许View和Model直接通信，所以数据流向会变得复杂</li>
-<li>区别<br>服务器端MVC框架往往就是每个请求只在Controller-Model-View三者之间走一圈，结果返回给浏览器去渲染或者处理，然后销毁请求的生命周期，严格的单向数据流;浏览器端MVC框架，存在用户交互处理</li>
-<li>系统提供什么样的服务，通过Controller暴露函数来实现。每增加一个功能，Controller往往就要增加一个函数</li>
+        <h1 id="第一章-从零开始，完成一次部署"><a href="#第一章-从零开始，完成一次部署" class="headerlink" title="第一章 从零开始，完成一次部署"></a>第一章 从零开始，完成一次部署</h1><ol>
+<li>/bin 可执行的二进制文件<br>/lib 代码库模块文件<br>/vendor 第三方代码，例如插件和gem</li>
+<li><p>MVC架构模式<br><a href="https://wcypersonal.github.io/2018/07/01/MVC框架/" target="_blank" rel="noopener">MVC框架</a><br>视图 <---> C <---> web &lt;— 浏览器</---></---></p>
+</li>
+<li></li>
 </ol>
 
       
@@ -381,8 +359,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/01/深入浅出React和Redux/" rel="next" title="深入浅出React和Redux">
-                <i class="fa fa-chevron-left"></i> 深入浅出React和Redux
+              <a href="/2018/07/01/MVC框架/" rel="next" title="MVC框架">
+                <i class="fa fa-chevron-left"></i> MVC框架
               </a>
             
           </div>
@@ -390,10 +368,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/02/Rails教程（第4版）-2017/" rel="prev" title="Ruby on Rails教程（第4版）-2017">
-                Ruby on Rails教程（第4版）-2017 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -450,8 +424,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -511,6 +494,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-从零开始，完成一次部署"><span class="nav-number">1.</span> <span class="nav-text">第一章 从零开始，完成一次部署</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
