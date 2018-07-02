@@ -681,13 +681,14 @@
 </li>
 <li><p>render：纯函数（根据this.props和this.state）<br>render并不做实际的渲染动作，只是返回一个JSX描述的结构，最终由React来操作渲染过程</p>
 </li>
-<li>componentWillMount和componentDidMount<br>调用关系：componentWillMount –&gt; render –&gt; componentDidMount<br>componentWillMount：“将要装载”，没有任何渲染出来的结果，所有可以在componentWillMount中做的事情，都可以提前到constructor中去做，可以在服务器端和浏览器端调用</li>
+<li>componentWillMount和componentDidMount<br>调用关系：componentWillMount –&gt; render –&gt; componentDidMount<br>componentWillMount：“将要装载”，没有任何渲染出来的结果，所有可以在componentWillMount中做的事情，都可以提前到constructor中去做，可以在服务器端和浏览器端调用<blockquote>
+<p>服务器端js：Node.js<br>componentDidMount:render函数调用完之后，componentDidMount函数并不会立即调用，componentDidMount被调用的时候，render函数返回的东西已经引发了渲染，组件已经“装载”到DOM树上，只在浏览器端被调用</p>
+</blockquote>
+</li>
+<li>React和其他UI库的结合</li>
 </ol>
 <blockquote>
-<p>服务器端js：Node.js<br>componentDidMount:render函数调用完之后，componentDidMount函数并不会立即调用，componentDidMount被调用的时候，render函数返回的东西已经引发了渲染，组件已经“装载”到DOM树上，只在浏览器端被调用</p>
-<ol start="5">
-<li>React和其他UI库的结合<br>d3.js已经支持了丰富的绘制图表的功能<br>React+jQuery:利用componentDidMount函数，此时React的DOM组件对应的DOM已经存在，所有的事件处理函数已经设置好，可以调用jQuery在已经绘制号的DOM基础上增强新的功能</li>
-</ol>
+<p>d3.js已经支持了丰富的绘制图表的功能<br>React+jQuery:利用componentDidMount函数，此时React的DOM组件对应的DOM已经存在，所有的事件处理函数已经设置好，可以调用jQuery在已经绘制号的DOM基础上增强新的功能</p>
 </blockquote>
 <h3 id="组件更新过程：componentWillReceiveProps-–-gt-shouldComponentUpdate-–-gt-componentWillUpdate-–-gt-render-–-gt-componentDidUpdate"><a href="#组件更新过程：componentWillReceiveProps-–-gt-shouldComponentUpdate-–-gt-componentWillUpdate-–-gt-render-–-gt-componentDidUpdate" class="headerlink" title="组件更新过程：componentWillReceiveProps –&gt; shouldComponentUpdate –&gt; componentWillUpdate –&gt; render –&gt; componentDidUpdate"></a>组件更新过程：componentWillReceiveProps –&gt; shouldComponentUpdate –&gt; componentWillUpdate –&gt; render –&gt; componentDidUpdate</h3><ol>
 <li>componentWillReceiveProps(nextProps)<br>（1）在render函数里面被渲染的子组件就会经历更新过程，不管父组件传给子组件的props有没有改变，都会触发子组件的componentWillReceiveProps函数</li>
