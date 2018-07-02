@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="第1章 React新的前端思维方式1.1 初始化react项目 create-react-appReact依赖于一个庞大的技术栈：比如转译Javascript代码需要Babel，模块打包工具需要webpack，定制build过程需要grunt或者gulp，技术栈各自需要配置文件 1.2 组件Component React首要思想是通过组件来开发应用 import是ES6语法中倒入文件模块的方式，E">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-02T16:13:03.107Z">
+<meta property="og:updated_time" content="2018-07-02T16:15:37.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出React和Redux">
 <meta name="twitter:description" content="第1章 React新的前端思维方式1.1 初始化react项目 create-react-appReact依赖于一个庞大的技术栈：比如转译Javascript代码需要Babel，模块打包工具需要webpack，定制build过程需要grunt或者gulp，技术栈各自需要配置文件 1.2 组件Component React首要思想是通过组件来开发应用 import是ES6语法中倒入文件模块的方式，E">
@@ -408,12 +408,14 @@
 </li>
 <li><p>render：纯函数（根据this.props和this.state）<br>render并不做实际的渲染动作，只是返回一个JSX描述的结构，最终由React来操作渲染过程</p>
 </li>
-<li>componentWillMount和componentDidMount<br>调用关系：componentWillMount –&gt; render –&gt; componentDidMount<br>componentWillMount：“将要装载”，没有任何渲染出来的结果，所有可以在componentWillMount中做的事情，都可以提前到constructor中去做，可以在服务器端和浏览器端调用<blockquote>
+<li>componentWillMount和componentDidMount<br>调用关系：componentWillMount –&gt; render –&gt; componentDidMount<br>componentWillMount：“将要装载”，没有任何渲染出来的结果，所有可以在componentWillMount中做的事情，都可以提前到constructor中去做，可以在服务器端和浏览器端调用</li>
+</ol>
+<blockquote>
 <p>服务器端js：Node.js<br>componentDidMount:render函数调用完之后，componentDidMount函数并不会立即调用，componentDidMount被调用的时候，render函数返回的东西已经引发了渲染，组件已经“装载”到DOM树上，只在浏览器端被调用</p>
-</blockquote>
-</li>
+<ol start="5">
 <li>React和其他UI库的结合</li>
 </ol>
+</blockquote>
 <blockquote>
 <p>d3.js已经支持了丰富的绘制图表的功能<br>React+jQuery:利用componentDidMount函数，此时React的DOM组件对应的DOM已经存在，所有的事件处理函数已经设置好，可以调用jQuery在已经绘制号的DOM基础上增强新的功能</p>
 </blockquote>
