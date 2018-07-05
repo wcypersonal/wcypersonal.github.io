@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="一.数字货币介绍比特币的源代码（大约有几万行）  区块链人群分布:币圈+链圈+矿圈区块链是计算机和金融完美结合体 数字货币的产生环境（1）数组货币是计算机密码学+分布式P2P网络+经济学+社会学的产物（2）数字货币是一个去中心化的理论模型，没有中央银行（3）数字货币是为了应对超发货币导致的通货膨胀（4）数字货币解决了信任权证问题 什么成为数字货币法币：国家信用背书数字货币：用技术背书（e.g 比特">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-05T08:33:48.072Z">
+<meta property="og:updated_time" content="2018-07-05T10:42:08.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="人人都懂区块链（笔记）">
 <meta name="twitter:description" content="一.数字货币介绍比特币的源代码（大约有几万行）  区块链人群分布:币圈+链圈+矿圈区块链是计算机和金融完美结合体 数字货币的产生环境（1）数组货币是计算机密码学+分布式P2P网络+经济学+社会学的产物（2）数字货币是一个去中心化的理论模型，没有中央银行（3）数字货币是为了应对超发货币导致的通货膨胀（4）数字货币解决了信任权证问题 什么成为数字货币法币：国家信用背书数字货币：用技术背书（e.g 比特">
@@ -376,7 +376,22 @@
 <li>Wif格式<br>（1）长度为34位<br>（2）以1或者3（多重签名地址：多人验证）开头</li>
 <li>私钥：一个BTC地址对应一个私钥</li>
 <li>比特币地址产生流程<br>私钥 —&gt; 公钥 —&gt; 公钥哈希 <---> 钱包地址</---></li>
-<li></li>
+<li>调试窗口</li>
+<li>比特币地址特点<br>（1）比特币地址有自我校验功能<br>（2）比特币地址完全是离线生成的<br>（3）比特币地址概率上大约200年才会有可能2个地址完全相同<br>（4）有了私钥就有了比特币地址</li>
+<li>长期持有比特币<br>（1）用钱包产生一个BTC地址<br>（2）然后把比特币地址的私钥坝村下来<br>（3）给别人自己的比特币地址<br>（4）在线查询余额（区块链浏览器）</li>
+</ol>
+<h1 id="五-钱包安全"><a href="#五-钱包安全" class="headerlink" title="五. 钱包安全"></a>五. 钱包安全</h1><ol>
+<li>热钱包（交易所）<br>交易所自己控制，不会给用户私钥</li>
+<li>热钱包（钱包App）<br>App团队也可知道私钥<br>手机钱包App需要给用户提供私钥，但是比冷钱包方便，易用</li>
+<li>钱包地址安全</li>
+</ol>
+<h1 id="六-密码学哈希Hash散列算法"><a href="#六-密码学哈希Hash散列算法" class="headerlink" title="六.密码学哈希Hash散列算法"></a>六.密码学哈希Hash散列算法</h1><ol>
+<li>大量使用计算机密码学</li>
+<li>哈希散列算法<br>（1）把一段任意长度的数据变成均匀分布固定长度的数据<br>（2）Hash不可逆<br>（3）在任何电脑，手机，或者笔算Hash值都是一样的—–不依赖于设备<br>（4）y = Hash(x) 已知x可以得到y，反之不可以<br>（5）HASH散列就像一个人的指纹<br>（6）HASH的结果就是均匀分布</li>
+<li>HASH摘要算法<br>(1)MD5<br>(2)安全哈希算法<br>a. SHA1 160位<br>b. SHA256 256位<br>c. SHA512 512位<br>d. RIPEMD-160 160位</li>
+<li>比特币中Hash的用处：进行分组验证<br>（1）Hash公钥有统一的长度<br>（2）Hash和解密一起做验证，签名算法。（https协议中常用）<br>（3）挖矿Hash碰撞算法</li>
+<li>Hash碰撞<br>（1）给定一个元数据，如何填充一段数据，结果是满足一定的嘴个<br>（2）挖矿：给定数据hellobitcoin，后面追加任意数据（碰撞数），满足Hash最前面有5个0；前面的零越多，难度就会越大</li>
+<li>比特币挖矿（Hash碰撞）<br>挖矿就是找出一个值nonce（幸运值），小于一个目标值target</li>
 </ol>
 
       
@@ -547,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-数字货币介绍"><span class="nav-number">1.</span> <span class="nav-text">一.数字货币介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-比特币介绍（一）"><span class="nav-number">2.</span> <span class="nav-text">二.比特币介绍（一）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-比特币钱包-Bitcoin-Core"><span class="nav-number">3.</span> <span class="nav-text">三.比特币钱包(Bitcoin Core)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-比特币地址-账号-机制"><span class="nav-number">4.</span> <span class="nav-text">四.比特币地址(账号)机制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-数字货币介绍"><span class="nav-number">1.</span> <span class="nav-text">一.数字货币介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-比特币介绍（一）"><span class="nav-number">2.</span> <span class="nav-text">二.比特币介绍（一）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-比特币钱包-Bitcoin-Core"><span class="nav-number">3.</span> <span class="nav-text">三.比特币钱包(Bitcoin Core)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-比特币地址-账号-机制"><span class="nav-number">4.</span> <span class="nav-text">四.比特币地址(账号)机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-钱包安全"><span class="nav-number">5.</span> <span class="nav-text">五. 钱包安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-密码学哈希Hash散列算法"><span class="nav-number">6.</span> <span class="nav-text">六.密码学哈希Hash散列算法</span></a></li></ol></div>
             
 
           </div>
