@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="一.三个基础原则 Single source of truth撤销/重做会很容易实现(状态存在同一棵树下) state is read onlyview和network callbacks不会直接写入state按序执行state改变store.dispaich({ type: ‘COMPLETE_TODO’, index:1}) Changes are made with pure functio">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T17:33:14.917Z">
+<meta property="og:updated_time" content="2018-07-09T13:35:37.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-redux三个基础原则">
 <meta name="twitter:description" content="一.三个基础原则 Single source of truth撤销/重做会很容易实现(状态存在同一棵树下) state is read onlyview和network callbacks不会直接写入state按序执行state改变store.dispaich({ type: ‘COMPLETE_TODO’, index:1}) Changes are made with pure functio">
@@ -360,6 +360,7 @@
 <blockquote>
 <p>store对象有3种方法：store.dispatch(),store.subscribe,store.getState()</p>
 </blockquote>
+<p>connect函数具体工作:把Store上的状态转化为内层傻瓜函数的prop(mapStateToProps);把内层傻瓜组件中的用户动作转化为派送给Store的动作(mapDispatchToProps)<br>Provider:store必须包含三个函数的object，即subscribe、dispatch、getState</p>
 
       
     </div>
@@ -478,7 +479,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -489,7 +490,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
