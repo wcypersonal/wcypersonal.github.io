@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="一.网络安全问题概述 通信面临的两大类威胁：主动攻击（流量分析）和被动攻击（截获） 主动攻击：篡改、恶意程序、拒绝服务DoS篡改：篡改网络上传送的报文恶意程序：（1）计算机病毒（2）计算机蠕虫：将自身从一个节点发送到另一个节点并自动运行的程序（3）特洛伊木马：（4）逻辑炸弹：当本地运行满足某种特定条件时，执行其他特殊功能（5）后门入侵：（6）流氓软件：未经过用户允许就安装并损害用户利益的软件拒绝服">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-11T11:34:00.348Z">
+<meta property="og:updated_time" content="2018-07-11T11:38:35.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络安全（计算机网络第七版）">
 <meta name="twitter:description" content="一.网络安全问题概述 通信面临的两大类威胁：主动攻击（流量分析）和被动攻击（截获） 主动攻击：篡改、恶意程序、拒绝服务DoS篡改：篡改网络上传送的报文恶意程序：（1）计算机病毒（2）计算机蠕虫：将自身从一个节点发送到另一个节点并自动运行的程序（3）特洛伊木马：（4）逻辑炸弹：当本地运行满足某种特定条件时，执行其他特殊功能（5）后门入侵：（6）流氓软件：未经过用户允许就安装并损害用户利益的软件拒绝服">
@@ -359,13 +359,10 @@
 </ol>
 <h1 id="二-两类密码体制"><a href="#二-两类密码体制" class="headerlink" title="二. 两类密码体制"></a>二. 两类密码体制</h1><ol>
 <li>对称密钥密码体制<br>（1）加密密钥和解密密钥使用相同的密码体制<br>（2）数据加密标准DES:DES是一组分组密码；DES的保密性在于对密钥的保存，但是算法是公开的；密钥有56位</li>
-<li>公钥密钥密码体制<br>（1）使用不用的加密密钥和解密密钥<br>（2）提出背景：解决相同密钥在接发双发存储的问题，对数字签名的需求<br>（3）RSA体制<br>（4）加密密钥（公钥）PK公开，解密密钥（私钥）SK需要保密<br>（5）密钥体制的加密解密过程：<br><code>flow
-st=&gt;start: 密钥对产生器产生出接收者B的一对密钥，发送者A的PK就是接受者B的公钥，B的SK即为私钥保密 
-secret=&gt;operation: A用B的公钥PKB，通过E运算对明文X加密，得到密文Y
-discrete=&gt;operation: B用自己的私钥，通过D运算进行解密，恢复出明文X
-st-&gt;secret
-secret-&gt;discrete</code><br>PKB到SKB是“计算上不可能的”<br>公钥可用来加密，但是不可以用来解密<br>先加密后解密，后者先解密后加密的结果相同<br>（6）任何加密方法的安全性取决于密钥的长度，以及攻破密文所需的计算量</li>
+<li>公钥密钥密码体制<br>（1）使用不用的加密密钥和解密密钥<br>（2）提出背景：解决相同密钥在接发双发存储的问题，对数字签名的需求<br>（3）RSA体制<br>（4）加密密钥（公钥）PK公开，解密密钥（私钥）SK需要保密<br>（5）密钥体制的加密解密过程：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 密钥对产生器产生出接收者B的一对密钥，发送者A的PK就是接受者B的公钥，B的SK即为私钥保密 </span><br><span class="line">secret=&gt;operation: A用B的公钥PKB，通过E运算对明文X加密，得到密文Y</span><br><span class="line">discrete=&gt;operation: B用自己的私钥，通过D运算进行解密，恢复出明文X</span><br><span class="line">e=&gt;end</span><br><span class="line">st-&gt;secret-&gt;discrete-&gt;e</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<p>PKB到SKB是“计算上不可能的”<br>公钥可用来加密，但是不可以用来解密<br>先加密后解密，后者先解密后加密的结果相同<br>（6）任何加密方法的安全性取决于密钥的长度，以及攻破密文所需的计算量</p>
 <h1 id="三-数字签名"><a href="#三-数字签名" class="headerlink" title="三. 数字签名"></a>三. 数字签名</h1>
       
     </div>
