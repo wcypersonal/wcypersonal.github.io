@@ -87,7 +87,7 @@
 <meta property="og:description" content="一.网络安全问题概述 通信面临的两大类威胁：主动攻击（流量分析）和被动攻击（截获） 主动攻击：篡改、恶意程序、拒绝服务DoS篡改：篡改网络上传送的报文恶意程序：（1）计算机病毒（2）计算机蠕虫：将自身从一个节点发送到另一个节点并自动运行的程序（3）特洛伊木马：（4）逻辑炸弹：当本地运行满足某种特定条件时，执行其他特殊功能（5）后门入侵：（6）流氓软件：未经过用户允许就安装并损害用户利益的软件拒绝服">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/07/picture/secret.png">
-<meta property="og:updated_time" content="2018-07-11T13:11:22.565Z">
+<meta property="og:updated_time" content="2018-07-11T14:03:05.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络安全（计算机网络第七版）">
 <meta name="twitter:description" content="一.网络安全问题概述 通信面临的两大类威胁：主动攻击（流量分析）和被动攻击（截获） 主动攻击：篡改、恶意程序、拒绝服务DoS篡改：篡改网络上传送的报文恶意程序：（1）计算机病毒（2）计算机蠕虫：将自身从一个节点发送到另一个节点并自动运行的程序（3）特洛伊木马：（4）逻辑炸弹：当本地运行满足某种特定条件时，执行其他特殊功能（5）后门入侵：（6）流氓软件：未经过用户允许就安装并损害用户利益的软件拒绝服">
@@ -374,8 +374,12 @@
 <li>鉴别是要验证通信的双方的确是自己所要通信的对象，而不是其他的冒充者，并且传送的报文是完整的，没有被他人篡改过 </li>
 <li>鉴别和授权<br>（1）授权涉及所进行的过程是否被允许<br>（2）鉴别可分为报文鉴别（端点鉴别和报文完整性的鉴别）和实体鉴别（仅鉴别发送报文的实体，可以是一个人，也可以是一个进程，即端点鉴别）</li>
 <li>报文鉴别<br>（1）密码散列函数（相对简单的方式）<br>密码散列函数实际上是单向函数<br>（2）实用的密码散列函数MD5（报文摘要）和SHA-1（安全散列算法）<br>密钥的产生、分配、注入、验证和使用<br>（3）报文鉴别码</li>
-<li>给出一个<em>错误的</em>流程<br>(1)用户A根据自己的明文X计算出散列H(X)<br>(2)用户A把H拼接在明文X后面，生成拓展的报文（X，H），发送给B<br>(3)B收到（X，H）,根据散列的长度为已知的固定值，可以把X和H区分开<br>(4)B根据散列函数的运算，计算出收到的明文X的散列H(X)<br>攻击者容易仿制</li>
+<li>给出一个<strong>错误的</strong>流程<br>(1)用户A根据自己的明文X计算出散列H(X)<br>(2)用户A把H拼接在明文X后面，生成拓展的报文（X，H），发送给B<br>(3)B收到（X，H）,根据散列的长度为已知的固定值，可以把X和H区分开<br>(4)B根据散列函数的运算，计算出收到的明文X的散列H(X)<br>攻击者容易仿制</li>
 <li>防范攻击：对散列进行一次加密<br><img src="../../picture/secret.png" alt="avatar"></li>
+<li>实体鉴别：报文鉴别对每一个收到的报文都要鉴别报文的发送者，实体鉴别只需在系统接入的全部持续时间内对和自己通信的对方实体只需验证一次<br>“一次一数”：避免重放攻击</li>
+</ol>
+<h1 id="五-密钥分配（密钥的产生、分配、注入、注册和使用）"><a href="#五-密钥分配（密钥的产生、分配、注入、注册和使用）" class="headerlink" title="五.密钥分配（密钥的产生、分配、注入、注册和使用）"></a>五.密钥分配（密钥的产生、分配、注入、注册和使用）</h1><ol>
+<li>对称密钥的分配</li>
 </ol>
 
       
@@ -546,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-网络安全问题概述"><span class="nav-number">1.</span> <span class="nav-text">一.网络安全问题概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-两类密码体制"><span class="nav-number">2.</span> <span class="nav-text">二. 两类密码体制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-数字签名"><span class="nav-number">3.</span> <span class="nav-text">三. 数字签名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-鉴别"><span class="nav-number">4.</span> <span class="nav-text">四. 鉴别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-网络安全问题概述"><span class="nav-number">1.</span> <span class="nav-text">一.网络安全问题概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-两类密码体制"><span class="nav-number">2.</span> <span class="nav-text">二. 两类密码体制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-数字签名"><span class="nav-number">3.</span> <span class="nav-text">三. 数字签名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-鉴别"><span class="nav-number">4.</span> <span class="nav-text">四. 鉴别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-密钥分配（密钥的产生、分配、注入、注册和使用）"><span class="nav-number">5.</span> <span class="nav-text">五.密钥分配（密钥的产生、分配、注入、注册和使用）</span></a></li></ol></div>
             
 
           </div>
