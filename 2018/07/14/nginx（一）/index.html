@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="一.基础准备内容 简要来说nginx功能：反向代理和负载均衡 轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者 特点：性能较高，相应静态页面的速度很快分阶段资源分配技术：CPU和内存占用率很低热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-14T11:58:08.324Z">
+<meta property="og:updated_time" content="2018-07-14T11:59:29.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx（一）基础内容">
 <meta name="twitter:description" content="一.基础准备内容 简要来说nginx功能：反向代理和负载均衡 轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者 特点：性能较高，相应静态页面的速度很快分阶段资源分配技术：CPU和内存占用率很低热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对">
@@ -399,9 +399,24 @@
 <td>process_header</td>
 <td>处理后端服务器返回的信息头部。所谓头部是与 upstreamserver 通信的协议规定的，比如 HTTP 协议的 header 部分，或者 memcached 协议的响应状态部分。</td>
 </tr>
+<tr>
+<td>abort_request</td>
+<td>在客户端放弃请求时被调用。不需要在函数中实现关闭后端服务器连接的功能，系统会自动完成关闭连接的步骤，所以一般此函数不会进行任何具体工作。</td>
+</tr>
+<tr>
+<td>finalize_request</td>
+<td>正常完成与后端服务器的请求后调用该函数，与 abort_request 相同，一般也不会进行任何具体工作。</td>
+</tr>
+<tr>
+<td>input_filter</td>
+<td>处理后端服务器返回的响应正文。Nginx 默认的 input_filter 会将收到的内容封装成为缓冲区链 ngx_chain。该链由 upstream 的 out_bufs 指针域定位，所以开发人员可以在模块以外通过该指针 得到后端服务器返回的正文数据。memcached 模块实现了自己的 input_filter，在后面会具体分析这个模块。</td>
+</tr>
+<tr>
+<td>input_filter_init</td>
+<td>初始化 input filter 的上下文。Nginx 默认的 input_filter_init 直接返回。</td>
+</tr>
 </tbody>
 </table>
-<p>abort_request   在客户端放弃请求时被调用。不需要在函数中实现关闭后端服务器连接的功能，系统会自动完成关闭连接的步骤，所以一般此函数不会进行任何具体工作。|<br>|finalize_request  |  正常完成与后端服务器的请求后调用该函数，与 abort_request 相同，一般也不会进行任何具体工作。|<br>|input_filter  |  处理后端服务器返回的响应正文。Nginx 默认的 input_filter 会将收到的内容封装成为缓冲区链 ngx_chain。该链由 upstream 的 out_bufs 指针域定位，所以开发人员可以在模块以外通过该指针 得到后端服务器返回的正文数据。memcached 模块实现了自己的 input_filter，在后面会具体分析这个模块。|<br>|input_filter_init |  初始化 input filter 的上下文。Nginx 默认的 input_filter_init 直接返回。|</p>
 <ol start="4">
 <li></li>
 <li></li>

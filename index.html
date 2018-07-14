@@ -551,9 +551,24 @@
 <td>process_header</td>
 <td>处理后端服务器返回的信息头部。所谓头部是与 upstreamserver 通信的协议规定的，比如 HTTP 协议的 header 部分，或者 memcached 协议的响应状态部分。</td>
 </tr>
+<tr>
+<td>abort_request</td>
+<td>在客户端放弃请求时被调用。不需要在函数中实现关闭后端服务器连接的功能，系统会自动完成关闭连接的步骤，所以一般此函数不会进行任何具体工作。</td>
+</tr>
+<tr>
+<td>finalize_request</td>
+<td>正常完成与后端服务器的请求后调用该函数，与 abort_request 相同，一般也不会进行任何具体工作。</td>
+</tr>
+<tr>
+<td>input_filter</td>
+<td>处理后端服务器返回的响应正文。Nginx 默认的 input_filter 会将收到的内容封装成为缓冲区链 ngx_chain。该链由 upstream 的 out_bufs 指针域定位，所以开发人员可以在模块以外通过该指针 得到后端服务器返回的正文数据。memcached 模块实现了自己的 input_filter，在后面会具体分析这个模块。</td>
+</tr>
+<tr>
+<td>input_filter_init</td>
+<td>初始化 input filter 的上下文。Nginx 默认的 input_filter_init 直接返回。</td>
+</tr>
 </tbody>
 </table>
-<p>abort_request   在客户端放弃请求时被调用。不需要在函数中实现关闭后端服务器连接的功能，系统会自动完成关闭连接的步骤，所以一般此函数不会进行任何具体工作。|<br>|finalize_request  |  正常完成与后端服务器的请求后调用该函数，与 abort_request 相同，一般也不会进行任何具体工作。|<br>|input_filter  |  处理后端服务器返回的响应正文。Nginx 默认的 input_filter 会将收到的内容封装成为缓冲区链 ngx_chain。该链由 upstream 的 out_bufs 指针域定位，所以开发人员可以在模块以外通过该指针 得到后端服务器返回的正文数据。memcached 模块实现了自己的 input_filter，在后面会具体分析这个模块。|<br>|input_filter_init |  初始化 input filter 的上下文。Nginx 默认的 input_filter_init 直接返回。|</p>
 <ol start="4">
 <li></li>
 <li></li>
