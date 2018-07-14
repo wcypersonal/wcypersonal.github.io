@@ -524,8 +524,45 @@
 </ol>
 <p><strong>处理完整请求</strong><br>（3）pipe<br>（4）lingering_close<br>（5）</p>
 <ol start="8">
-<li><h1 id="三-handler模块"><a href="#三-handler模块" class="headerlink" title="三.handler模块"></a>三.handler模块</h1><h1 id="四-过滤模块"><a href="#四-过滤模块" class="headerlink" title="四.过滤模块"></a>四.过滤模块</h1><h1 id="五-upstream模块"><a href="#五-upstream模块" class="headerlink" title="五.upstream模块"></a>五.upstream模块</h1><h1 id="六-其他模块"><a href="#六-其他模块" class="headerlink" title="六.其他模块"></a>六.其他模块</h1><p>nginx: 运行方式，异步非阻塞<br>nginx配置url中有api的进行反向代理</p>
-</li>
+<li><h3 id="Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发"><a href="#Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发" class="headerlink" title="Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发"></a>Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发</h3></li>
+</ol>
+<h1 id="三-handler模块"><a href="#三-handler模块" class="headerlink" title="三.handler模块"></a>三.handler模块</h1><h1 id="四-过滤模块"><a href="#四-过滤模块" class="headerlink" title="四.过滤模块"></a>四.过滤模块</h1><h1 id="五-upstream模块"><a href="#五-upstream模块" class="headerlink" title="五.upstream模块"></a>五.upstream模块</h1><ol>
+<li>数据转发功能：具备网路应用级别的拆分、封装和整合的战略功能，是nginx有能力构建一个网络应用的关键组件</li>
+<li>upstream严格属于handler，不产生自己的内容，而是通过请求后端服务器得到内容。请求并取得响应的过程被封装到Nginx内部</li>
+<li>upstream模块接口</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>SN</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create_request</td>
+<td>生成发送到后端服务器的请求缓冲（缓冲链），在初始化 upstream 时使用。</td>
+</tr>
+<tr>
+<td>reinit_request</td>
+<td>在某台后端服务器出错的情况，Nginx会尝试另一台后端服务器。Nginx 选定新的服务器以后，会先调用此函数，以重新初始化 upstream 模块的工作状态，然后再次进行 upstream 连接。</td>
+</tr>
+<tr>
+<td>process_header</td>
+<td>处理后端服务器返回的信息头部。所谓头部是与 upstreamserver 通信的协议规定的，比如 HTTP 协议的 header 部分，或者 memcached 协议的响应状态部分。</td>
+</tr>
+</tbody>
+</table>
+<p>abort_request   在客户端放弃请求时被调用。不需要在函数中实现关闭后端服务器连接的功能，系统会自动完成关闭连接的步骤，所以一般此函数不会进行任何具体工作。|<br>|finalize_request  |  正常完成与后端服务器的请求后调用该函数，与 abort_request 相同，一般也不会进行任何具体工作。|<br>|input_filter  |  处理后端服务器返回的响应正文。Nginx 默认的 input_filter 会将收到的内容封装成为缓冲区链 ngx_chain。该链由 upstream 的 out_bufs 指针域定位，所以开发人员可以在模块以外通过该指针 得到后端服务器返回的正文数据。memcached 模块实现了自己的 input_filter，在后面会具体分析这个模块。|<br>|input_filter_init |  初始化 input filter 的上下文。Nginx 默认的 input_filter_init 直接返回。|</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<h1 id="六-其他模块"><a href="#六-其他模块" class="headerlink" title="六.其他模块"></a>六.其他模块</h1><ol>
+<li>core模块：Nginx的启动模块</li>
+<li>event模块：监听后建立的连接<br>accept锁：80端口是个进程所共享的，避免多个进程同时调用accept<br>nginx事件处理是根据触发顺序在一个大的循环里依次处理的<br>nginx对个进程的请求处理的均衡性做了优化，负载高时，进程抢到的锁过多，会导致这个进程被禁止接受访问一段时间<br>定时器：需要用到超时时用到定时器机制，使用红黑树（有序的二叉平衡树，比较理想的二叉树）来构造定时器，二叉树的值是超时时间，每次查找最小值，过期则删除节点直至所有超时节点都被删除</li>
+<li></li>
+<li>nginx: 运行方式，异步非阻塞<br>nginx配置url中有api的进行反向代理</li>
 </ol>
 
           
