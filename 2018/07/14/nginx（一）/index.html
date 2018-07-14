@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="一.基础准备内容 简要来说nginx功能：反向代理和负载均衡 轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者 特点：性能较高，相应静态页面的速度很快分阶段资源分配技术：CPU和内存占用率很低热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-14T09:15:44.178Z">
+<meta property="og:updated_time" content="2018-07-14T11:16:42.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx（一）基础内容">
 <meta name="twitter:description" content="一.基础准备内容 简要来说nginx功能：反向代理和负载均衡 轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者 特点：性能较高，相应静态页面的速度很快分阶段资源分配技术：CPU和内存占用率很低热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对">
@@ -361,14 +361,20 @@
 <h1 id="二-架构"><a href="#二-架构" class="headerlink" title="二.架构"></a>二.架构</h1><ol>
 <li>nginx启动后<br>unix系统通过daemon（守护进程）方式在后台运行，也可以在生产模式中手动关闭master进程让nginx在前台运行，以多进程模式运行</li>
 <li>进程<br>以多进程的模式运行，一个master进程管理多个workder进程，master进程会接受来自外界发的信号，控制nginx，可以通过kill向master进程发送信号（老版本），不同worker进程独立且平等</li>
-<li>nginx处理请求的过程<br>每一个进程都是fork自master进程<br>（1）80端口的http服务时，一个连接请求过来<br>（2）在master进程中先建立好需要listen的socket（listenfd），再fork出多个worker进程<br>（3）所有worker进程的listenfd会在新连接到来时变得可读，（保证只有一个进程处理连接）所有worker进程在注册listenfd读事件前抢accept_mutex<br>（4）抢到互斥锁的进程注册listenfd，在读事件里调用accept接受该连接<br>（5）worker进程在accept连接之后，开始读取请求、解析请求、处理请求</li>
+<li>nginx处理请求的过程<blockquote>
+<p>每一个进程都是fork自master进程<br>（1）80端口的http服务时，一个连接请求过来<br>（2）在master进程中先建立好需要listen的socket（listenfd），再fork出多个worker进程<br>（3）所有worker进程的listenfd会在新连接到来时变得可读，（保证只有一个进程处理连接）所有worker进程在注册listenfd读事件前抢accept_mutex<br>（4）抢到互斥锁的进程注册listenfd，在读事件里调用accept接受该连接<br>（5）worker进程在accept连接之后，开始读取请求、解析请求、处理请求</p>
+</blockquote>
+</li>
 <li>并发处理<br>每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了<br>同时监测多个事件，调用他们是阻塞的，但可以设置超时时间<br>在24G内存的机器上，处理的并发请求数达到过200万<br><strong>推荐使用cpu的核数为worker的个数</strong></li>
 <li>一个基本的web服务器来说，事件通常有三种类型，网络事件、信号、定时器</li>
 <li>在处理网络事件的回调函数时，通过做的第一个事情就是判断超时，然后再去处理网络事件</li>
-<li>基本概念<br>（1）connection<br>（2）keeplive<br>（3）pipe<br>（4）lingering_close<br>（5）</li>
-<li></li>
+<li>基本概念<br>（1）connection<br>connection为对tcp连接的封装，包括连接的socket，读事件，写事件。nginx的http请求是建立在connection之上的<br><strong>tcp连接的生命周期</strong><br>启动nginx，解析配置文件，得到需要监听的端口和ip地址；在master进程中，初始化好监控的socket；fork进程后竞争客户端可以向nginx发起连接；客户端和服务器通过三次握手建立好一个连接，某个进程会accept成功,得到建立好连接的socket，创建nginx对连接的封装，即ngx_connection_t结构体；设置读写事件吹函数并添加读写事件来与客户端进行数据交换；nginx或者客户端来关掉连接<br><strong>nginx连接数:worker_connections*worker_processes</strong><br>nginx反向代理时，需要/2，会并发建立与客户端和后端服务的连接<br>每个socket连接会占掉一个fd，nginx通过worker_connections设置每个进程支持的最大连接数。nginx通过连接池来管理，每个worker进程都有一个独立的连接池，连接池的大小为worker_connections,保存时实际为ngx_connection_t结构的数组，通过链表free_connections来保存所有空闲的ngx_connection_t<br>（2）keeplive<br>nginx中指的是http请求，具体的数据结构是nginx_http_request_t,是对http请求的封装，包括请求行、请求头、请求体、响应行、响应头、响应体<br><strong>webserver请求方式</strong></li>
 </ol>
-<p>nginx: 运行方式，异步非阻塞<br>nginx配置url中有api的进行反向代理</p>
+<p><strong>处理完整请求</strong><br>（3）pipe<br>（4）lingering_close<br>（5）</p>
+<ol start="8">
+<li><h1 id="三-handler模块"><a href="#三-handler模块" class="headerlink" title="三.handler模块"></a>三.handler模块</h1><h1 id="四-过滤模块"><a href="#四-过滤模块" class="headerlink" title="四.过滤模块"></a>四.过滤模块</h1><h1 id="五-upstream模块"><a href="#五-upstream模块" class="headerlink" title="五.upstream模块"></a>五.upstream模块</h1><h1 id="六-其他模块"><a href="#六-其他模块" class="headerlink" title="六.其他模块"></a>六.其他模块</h1><p>nginx: 运行方式，异步非阻塞<br>nginx配置url中有api的进行反向代理</p>
+</li>
+</ol>
 
       
     </div>
@@ -548,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-基础准备内容"><span class="nav-number">1.</span> <span class="nav-text">一.基础准备内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-架构"><span class="nav-number">2.</span> <span class="nav-text">二.架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-基础准备内容"><span class="nav-number">1.</span> <span class="nav-text">一.基础准备内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-架构"><span class="nav-number">2.</span> <span class="nav-text">二.架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-handler模块"><span class="nav-number">3.</span> <span class="nav-text">三.handler模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-过滤模块"><span class="nav-number">4.</span> <span class="nav-text">四.过滤模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-upstream模块"><span class="nav-number">5.</span> <span class="nav-text">五.upstream模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-其他模块"><span class="nav-number">6.</span> <span class="nav-text">六.其他模块</span></a></li></ol></div>
             
 
           </div>
