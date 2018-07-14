@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="一. 添加分支 通过github客户端，添加分支后，进行同步 通过terminal（1）git branch //查看当前git的分支情况（2）git branch 分支名  //新建分支（3）git checkout 分支名 //切换到新建分支（4）git branch //重新查看分支（5）git push -u orogin 分支名 //同步到github  二. 删除分支 terminal">
+<meta name="description" content="一.本级搭建nginx nginx安装  nginx启动  nginx重启  查看nginx的运行情况">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github添加或者删除分支">
-<meta property="og:url" content="http://yoursite.com/2018/07/09/github添加或者删除分支/index.html">
+<meta property="og:title" content="nginx（二）">
+<meta property="og:url" content="http://yoursite.com/2018/07/14/nginx（二）/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="一. 添加分支 通过github客户端，添加分支后，进行同步 通过terminal（1）git branch //查看当前git的分支情况（2）git branch 分支名  //新建分支（3）git checkout 分支名 //切换到新建分支（4）git branch //重新查看分支（5）git push -u orogin 分支名 //同步到github  二. 删除分支 terminal">
+<meta property="og:description" content="一.本级搭建nginx nginx安装  nginx启动  nginx重启  查看nginx的运行情况">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T13:39:03.744Z">
+<meta property="og:updated_time" content="2018-07-14T08:35:01.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="github添加或者删除分支">
-<meta name="twitter:description" content="一. 添加分支 通过github客户端，添加分支后，进行同步 通过terminal（1）git branch //查看当前git的分支情况（2）git branch 分支名  //新建分支（3）git checkout 分支名 //切换到新建分支（4）git branch //重新查看分支（5）git push -u orogin 分支名 //同步到github  二. 删除分支 terminal">
+<meta name="twitter:title" content="nginx（二）">
+<meta name="twitter:description" content="一.本级搭建nginx nginx安装  nginx启动  nginx重启  查看nginx的运行情况">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/09/github添加或者删除分支/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/14/nginx（二）/"/>
 
 
 
 
 
-  <title>github添加或者删除分支 | 会飞@-@鱼</title>
+  <title>nginx（二） | 会飞@-@鱼</title>
   
 
 
@@ -262,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/github添加或者删除分支/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/nginx（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="楚妍">
@@ -279,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">github添加或者删除分支</h1>
+          <h1 class="post-title" itemprop="name headline">nginx（二）</h1>
         
 
         <div class="post-meta">
@@ -291,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T21:38:33+08:00">
-                2018-07-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T16:34:05+08:00">
+                2018-07-14
               </time>
             
 
@@ -314,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
                   </a>
                 </span>
 
@@ -351,12 +352,16 @@
       
 
       
-        <h1 id="一-添加分支"><a href="#一-添加分支" class="headerlink" title="一. 添加分支"></a>一. 添加分支</h1><ol>
-<li>通过github客户端，添加分支后，进行同步</li>
-<li>通过terminal<br>（1）git branch //查看当前git的分支情况<br>（2）git branch 分支名  //新建分支<br>（3）git checkout 分支名 //切换到新建分支<br>（4）git branch //重新查看分支<br>（5）git push -u orogin 分支名 //同步到github</li>
-</ol>
-<h1 id="二-删除分支"><a href="#二-删除分支" class="headerlink" title="二. 删除分支"></a>二. 删除分支</h1><ol>
-<li>terminal<br>git push origin :分支名</li>
+        <h1 id="一-本级搭建nginx"><a href="#一-本级搭建nginx" class="headerlink" title="一.本级搭建nginx"></a>一.本级搭建nginx</h1><ol>
+<li><p>nginx安装</p>
+</li>
+<li><p>nginx启动</p>
+</li>
+<li><p>nginx重启</p>
+</li>
+<li><p>查看nginx的运行情况</p>
+</li>
+<li></li>
 </ol>
 
       
@@ -373,6 +378,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
+      
 
       
       
@@ -382,8 +393,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/09/AssetPipeline/" rel="next" title="AssetPipeline">
-                <i class="fa fa-chevron-left"></i> AssetPipeline
+              <a href="/2018/07/14/nginx（一）/" rel="next" title="nginx（一）基础内容">
+                <i class="fa fa-chevron-left"></i> nginx（一）基础内容
               </a>
             
           </div>
@@ -391,10 +402,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/10/网络安全（计算机网络第七版）/" rel="prev" title="网络安全（计算机网络第七版）">
-                网络安全（计算机网络第七版） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -531,7 +538,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-添加分支"><span class="nav-number">1.</span> <span class="nav-text">一. 添加分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-删除分支"><span class="nav-number">2.</span> <span class="nav-text">二. 删除分支</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-本级搭建nginx"><span class="nav-number">1.</span> <span class="nav-text">一.本级搭建nginx</span></a></li></ol></div>
             
 
           </div>

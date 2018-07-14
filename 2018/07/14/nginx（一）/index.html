@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="一. 添加分支 通过github客户端，添加分支后，进行同步 通过terminal（1）git branch //查看当前git的分支情况（2）git branch 分支名  //新建分支（3）git checkout 分支名 //切换到新建分支（4）git branch //重新查看分支（5）git push -u orogin 分支名 //同步到github  二. 删除分支 terminal">
+<meta name="description" content="一.基础准备内容 简要来说nginx功能：反向代理和负载均衡 轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者 特点：性能较高，相应静态页面的速度很快分阶段资源分配技术：CPU和内存占用率很低热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github添加或者删除分支">
-<meta property="og:url" content="http://yoursite.com/2018/07/09/github添加或者删除分支/index.html">
+<meta property="og:title" content="nginx（一）基础内容">
+<meta property="og:url" content="http://yoursite.com/2018/07/14/nginx（一）/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="一. 添加分支 通过github客户端，添加分支后，进行同步 通过terminal（1）git branch //查看当前git的分支情况（2）git branch 分支名  //新建分支（3）git checkout 分支名 //切换到新建分支（4）git branch //重新查看分支（5）git push -u orogin 分支名 //同步到github  二. 删除分支 terminal">
+<meta property="og:description" content="一.基础准备内容 简要来说nginx功能：反向代理和负载均衡 轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者 特点：性能较高，相应静态页面的速度很快分阶段资源分配技术：CPU和内存占用率很低热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T13:39:03.744Z">
+<meta property="og:updated_time" content="2018-07-14T09:15:44.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="github添加或者删除分支">
-<meta name="twitter:description" content="一. 添加分支 通过github客户端，添加分支后，进行同步 通过terminal（1）git branch //查看当前git的分支情况（2）git branch 分支名  //新建分支（3）git checkout 分支名 //切换到新建分支（4）git branch //重新查看分支（5）git push -u orogin 分支名 //同步到github  二. 删除分支 terminal">
+<meta name="twitter:title" content="nginx（一）基础内容">
+<meta name="twitter:description" content="一.基础准备内容 简要来说nginx功能：反向代理和负载均衡 轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者 特点：性能较高，相应静态页面的速度很快分阶段资源分配技术：CPU和内存占用率很低热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/09/github添加或者删除分支/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/14/nginx（一）/"/>
 
 
 
 
 
-  <title>github添加或者删除分支 | 会飞@-@鱼</title>
+  <title>nginx（一）基础内容 | 会飞@-@鱼</title>
   
 
 
@@ -262,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/github添加或者删除分支/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/nginx（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="楚妍">
@@ -279,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">github添加或者删除分支</h1>
+          <h1 class="post-title" itemprop="name headline">nginx（一）基础内容</h1>
         
 
         <div class="post-meta">
@@ -291,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T21:38:33+08:00">
-                2018-07-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T15:09:19+08:00">
+                2018-07-14
               </time>
             
 
@@ -314,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
                   </a>
                 </span>
 
@@ -351,13 +352,23 @@
       
 
       
-        <h1 id="一-添加分支"><a href="#一-添加分支" class="headerlink" title="一. 添加分支"></a>一. 添加分支</h1><ol>
-<li>通过github客户端，添加分支后，进行同步</li>
-<li>通过terminal<br>（1）git branch //查看当前git的分支情况<br>（2）git branch 分支名  //新建分支<br>（3）git checkout 分支名 //切换到新建分支<br>（4）git branch //重新查看分支<br>（5）git push -u orogin 分支名 //同步到github</li>
+        <h1 id="一-基础准备内容"><a href="#一-基础准备内容" class="headerlink" title="一.基础准备内容"></a>一.基础准备内容</h1><ol>
+<li>简要来说nginx功能：反向代理和负载均衡</li>
+<li>轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者</li>
+<li>特点：性能较高，相应静态页面的速度很快<br>分阶段资源分配技术：CPU和内存占用率很低<br>热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对软件版本进行升级</li>
+<li>nginx:<br>(1)HTTP和反向代理服务器<br>（2）邮件代理服务器<br>（3）TCP/UDP代理服务器</li>
 </ol>
-<h1 id="二-删除分支"><a href="#二-删除分支" class="headerlink" title="二. 删除分支"></a>二. 删除分支</h1><ol>
-<li>terminal<br>git push origin :分支名</li>
+<h1 id="二-架构"><a href="#二-架构" class="headerlink" title="二.架构"></a>二.架构</h1><ol>
+<li>nginx启动后<br>unix系统通过daemon（守护进程）方式在后台运行，也可以在生产模式中手动关闭master进程让nginx在前台运行，以多进程模式运行</li>
+<li>进程<br>以多进程的模式运行，一个master进程管理多个workder进程，master进程会接受来自外界发的信号，控制nginx，可以通过kill向master进程发送信号（老版本），不同worker进程独立且平等</li>
+<li>nginx处理请求的过程<br>每一个进程都是fork自master进程<br>（1）80端口的http服务时，一个连接请求过来<br>（2）在master进程中先建立好需要listen的socket（listenfd），再fork出多个worker进程<br>（3）所有worker进程的listenfd会在新连接到来时变得可读，（保证只有一个进程处理连接）所有worker进程在注册listenfd读事件前抢accept_mutex<br>（4）抢到互斥锁的进程注册listenfd，在读事件里调用accept接受该连接<br>（5）worker进程在accept连接之后，开始读取请求、解析请求、处理请求</li>
+<li>并发处理<br>每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了<br>同时监测多个事件，调用他们是阻塞的，但可以设置超时时间<br>在24G内存的机器上，处理的并发请求数达到过200万<br><strong>推荐使用cpu的核数为worker的个数</strong></li>
+<li>一个基本的web服务器来说，事件通常有三种类型，网络事件、信号、定时器</li>
+<li>在处理网络事件的回调函数时，通过做的第一个事情就是判断超时，然后再去处理网络事件</li>
+<li>基本概念<br>（1）connection<br>（2）keeplive<br>（3）pipe<br>（4）lingering_close<br>（5）</li>
+<li></li>
 </ol>
+<p>nginx: 运行方式，异步非阻塞<br>nginx配置url中有api的进行反向代理</p>
 
       
     </div>
@@ -373,6 +384,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
+      
 
       
       
@@ -382,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/09/AssetPipeline/" rel="next" title="AssetPipeline">
-                <i class="fa fa-chevron-left"></i> AssetPipeline
+              <a href="/2018/07/12/https加密体系/" rel="next" title="https加密体系">
+                <i class="fa fa-chevron-left"></i> https加密体系
               </a>
             
           </div>
@@ -392,8 +409,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/10/网络安全（计算机网络第七版）/" rel="prev" title="网络安全（计算机网络第七版）">
-                网络安全（计算机网络第七版） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/14/nginx（二）/" rel="prev" title="nginx（二）">
+                nginx（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -531,7 +548,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-添加分支"><span class="nav-number">1.</span> <span class="nav-text">一. 添加分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-删除分支"><span class="nav-number">2.</span> <span class="nav-text">二. 删除分支</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-基础准备内容"><span class="nav-number">1.</span> <span class="nav-text">一.基础准备内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-架构"><span class="nav-number">2.</span> <span class="nav-text">二.架构</span></a></li></ol></div>
             
 
           </div>

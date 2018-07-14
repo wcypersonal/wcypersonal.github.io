@@ -259,6 +259,316 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/nginx（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/14/nginx（二）/" itemprop="url">nginx（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T16:34:05+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-本级搭建nginx"><a href="#一-本级搭建nginx" class="headerlink" title="一.本级搭建nginx"></a>一.本级搭建nginx</h1><ol>
+<li><p>nginx安装</p>
+</li>
+<li><p>nginx启动</p>
+</li>
+<li><p>nginx重启</p>
+</li>
+<li><p>查看nginx的运行情况</p>
+</li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/nginx（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/14/nginx（一）/" itemprop="url">nginx（一）基础内容</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T15:09:19+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-基础准备内容"><a href="#一-基础准备内容" class="headerlink" title="一.基础准备内容"></a>一.基础准备内容</h1><ol>
+<li>简要来说nginx功能：反向代理和负载均衡</li>
+<li>轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者</li>
+<li>特点：性能较高，相应静态页面的速度很快<br>分阶段资源分配技术：CPU和内存占用率很低<br>热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对软件版本进行升级</li>
+<li>nginx:<br>(1)HTTP和反向代理服务器<br>（2）邮件代理服务器<br>（3）TCP/UDP代理服务器</li>
+</ol>
+<h1 id="二-架构"><a href="#二-架构" class="headerlink" title="二.架构"></a>二.架构</h1><ol>
+<li>nginx启动后<br>unix系统通过daemon（守护进程）方式在后台运行，也可以在生产模式中手动关闭master进程让nginx在前台运行，以多进程模式运行</li>
+<li>进程<br>以多进程的模式运行，一个master进程管理多个workder进程，master进程会接受来自外界发的信号，控制nginx，可以通过kill向master进程发送信号（老版本），不同worker进程独立且平等</li>
+<li>nginx处理请求的过程<br>每一个进程都是fork自master进程<br>（1）80端口的http服务时，一个连接请求过来<br>（2）在master进程中先建立好需要listen的socket（listenfd），再fork出多个worker进程<br>（3）所有worker进程的listenfd会在新连接到来时变得可读，（保证只有一个进程处理连接）所有worker进程在注册listenfd读事件前抢accept_mutex<br>（4）抢到互斥锁的进程注册listenfd，在读事件里调用accept接受该连接<br>（5）worker进程在accept连接之后，开始读取请求、解析请求、处理请求</li>
+<li>并发处理<br>每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了<br>同时监测多个事件，调用他们是阻塞的，但可以设置超时时间<br>在24G内存的机器上，处理的并发请求数达到过200万<br><strong>推荐使用cpu的核数为worker的个数</strong></li>
+<li>一个基本的web服务器来说，事件通常有三种类型，网络事件、信号、定时器</li>
+<li>在处理网络事件的回调函数时，通过做的第一个事情就是判断超时，然后再去处理网络事件</li>
+<li>基本概念<br>（1）connection<br>（2）keeplive<br>（3）pipe<br>（4）lingering_close<br>（5）</li>
+<li></li>
+</ol>
+<p>nginx: 运行方式，异步非阻塞<br>nginx配置url中有api的进行反向代理</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/https加密体系/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1559,300 +1869,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/检查域名过期/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/04/检查域名过期/" itemprop="url">检查域名过期</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T21:11:57+08:00">
-                2018-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/服务器/" itemprop="url" rel="index">
-                    <span itemprop="name">服务器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>检查nginx<br>nginx -t<br>ps -ef | grep nginx</li>
-<li>找到原来使用的域名<br>在crontab里面有个可执行程序用于数据处理的，在这个可执行程序的统计目录下面有其源代码，这个源代码里面是有使用的域名</li>
-<li>用一个新的域名去替换掉过期的域名，重新进行域名解析。</li>
-<li>修改nginx配置文件中对应条目的域名，保存并重启nginx<br>将crontab里面有个可执行程序同级目录下面的源码中的域名替换成新的域名，然后需要重新编译一下</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/input组件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/04/input组件/" itemprop="url">input组件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T21:09:48+08:00">
-                2018-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">微信小程序</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当前微信小程序运行框架为mpvue1.0.12版本</p>
-<ol>
-<li>添加button组件后@click可以使用，bindtap不可以使用<br>报错信息：command根本无法跳转<br><img src="../picture/input.png" alt="avatar"><br>原因：(1)mpvue框架问题，不支持使用bindchange、bindinput,需要修改为@chang、@input<br>(2)这种错误，也有可能是第三方框架编译后生成的dist/app.json中pages顺序与第三方框架中定义的pages顺序不同，需要调整</li>
-<li>需要数据绑定 v-model<br>问题：去掉就会无法正常获取input数据<br>讲解：(1)v-model:双向数据绑定（表单控件）&lt; input&gt; &lt; textarea&gt; &lt; select&gt;<br>(2)v-bind:绑定数据和属性 e.g v-bind:class=  –&gt; :class</li>
-<li>event绑定在mpvue中也不同 e.detail.value</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1905,7 +1921,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
