@@ -259,6 +259,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/typescript官网/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/30/typescript官网/" itemprop="url">typescript官网</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T15:26:38+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">Typescript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>ts的配置文件tsconfig.json,包含输入文件列表和编译选项</strong><br><a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tutorials/React.html" target="_blank" rel="noopener">教程地址</a></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>TypeScript具有类型系统，且是JavaScript的超集。 它可以编译成普通的JavaScript代码。 TypeScript支持任意浏览器，任意环境，任意系统并且是开源的。</p>
+<h1 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h1><h2 id="了解typescript"><a href="#了解typescript" class="headerlink" title="了解typescript"></a>了解typescript</h2><ol>
+<li>编译代码 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//greeter.ts</span><br><span class="line">function greeter(person) &#123;</span><br><span class="line">	return &quot;Hello,&quot; + person</span><br><span class="line">&#125;</span><br><span class="line">let user = &quot;Jane User&quot;</span><br><span class="line">document.body.innerHTML = greeter(user)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>编辑器运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc greeter.ts</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>类型注解<br>typescript提供静态的代码分析，分析代码结构和提供的类型注解，e.g:person:string<br>代码错误仍可以执行</li>
+<li><p>接口 interface</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">	firstName: string;</span><br><span class="line">	lastName: string;</span><br><span class="line">&#125;</span><br><span class="line">// person:Person</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类：支持基于类的面向对象编程，可定义一个构造函数和一些公共字段</p>
+</li>
+</ol>
+<blockquote>
+<p>构造函数的参数上使用public等同于创建了同名的成员变量<br>类和接口可以一起共同作用</p>
+<ol start="5">
+<li>运行Typescript应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//greeter.html</span><br><span class="line">&lt;script src=&quot;greeter.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="ASP-NET-Core"><a href="#ASP-NET-Core" class="headerlink" title="ASP.NET Core"></a>ASP.NET Core</h2><blockquote>
+<p>Augular 应用</p>
+</blockquote>
+<h2 id="ASP-NET-4"><a href="#ASP-NET-4" class="headerlink" title="ASP.NET 4"></a>ASP.NET 4</h2><h2 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h2><h3 id="Gulp工程，Typescript文件放在src文件夹下，经ts编译生成的目标文件放在dist目录下"><a href="#Gulp工程，Typescript文件放在src文件夹下，经ts编译生成的目标文件放在dist目录下" class="headerlink" title="Gulp工程，Typescript文件放在src文件夹下，经ts编译生成的目标文件放在dist目录下"></a>Gulp工程，Typescript文件放在src文件夹下，经ts编译生成的目标文件放在dist目录下</h3><ol>
+<li>初始化工程 <figure class="highlight plain"><figcaption><span>init```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">入口文件为/dist/main.js</span><br><span class="line">2. 安装依赖: typescript gulp gulp-typescript</span><br><span class="line">gulp-typescript为一个插件，能够访问Typescript编译器</span><br><span class="line">3. src下创建main.ts</span><br><span class="line">4. 根目录下新建tsconfig.json：添加compilerOptions</span><br><span class="line">5. 创建gulpfile.js</span><br><span class="line">6. 测试</span><br><span class="line">更改代码后</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>gulp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![avatar](&quot;../picture/gulp1.png&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>node dist/main.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">返回运行结果</span><br><span class="line"></span><br><span class="line">### 向代码里添加模块</span><br><span class="line">导入模块：构建代码后再添加一些混入的模块</span><br><span class="line">1. 在tsconfig.json中file添加模块src/greet.ts</span><br><span class="line">2. 导入模块</span><br></pre></td></tr></table></figure></p>
+<p>import { sayHello } from “./greet”;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Browserify：把所有的模块捆绑成一个Javascript文件</span><br><span class="line">~支持Node.js的CommonJS模块~</span><br><span class="line">1. 安装Browserify，tsify和vinyl-source-stream</span><br><span class="line">tsify为Browserify的一个插件,访问Typescript编译器；vinyl-source-stream将Browserify的输出文件适配成gulp能够解析的格式</span><br></pre></td></tr></table></figure></p>
+<p>//gulpfile.js<br>gulp.task(“default”, [“copy-html”], function () { //默认先调用copy-html，作为default的依赖项<br>    return browserify({<br>        basedir: ‘.’,<br>        debug: true,<br>        entries: [‘src/main.ts’],<br>        cache: {},<br>        packageCache: {}<br>    })<br>    .plugin(tsify） //使用tsify插件调用Browserify<br>    .bundle()<br>    .pipe(source(‘bundle.js’))  //source为vinyl-source-stream别名，输出文件为bundle.js<br>    .pipe(gulp.dest(“dist”));  //文件生成在dist文件夹中<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2. 调试 gulp</span><br><span class="line"></span><br><span class="line">### Watchify，Babel，Uglify</span><br><span class="line">Watchify：；Babel：；Uglify：；</span><br><span class="line">1. Watchify：启动Gulp并保持运行状态，自动编译</span><br><span class="line">执行gulp</span><br><span class="line">2. Babel为编译器，将ES2015及以上的版本转换为ES5和ES3</span><br><span class="line">类似于Uglify，Babelify也会混淆代码，所以需要vinyl-buffer和gulp-sourcemap，需要将.ts添加到Babelify选项</span><br><span class="line">更改tsconfig.json中compilerOptions-target为ES2015，compilerOptions-target定义的为Typescript生成的格式，Babel会将Typescript生成的ES2015编译为es5</span><br><span class="line">3. Uglify压缩代码</span><br><span class="line">Uglify用以混淆代码，安装vinyl-buffer和gulp-sourcemaps来支持sourcemaps</span><br></pre></td></tr></table></figure></p>
+<p>gulp.task(“default”, [“copy-html”], function () {<br>    return browserify({<br>        basedir: ‘.’,<br>        debug: true,<br>        entries: [‘src/main.ts’],<br>        cache: {},<br>        packageCache: {}<br>    })<br>    .plugin(tsify)<br>    .bundle()<br>    .pipe(source(‘bundle.js’))<br>    .pipe(buffer())  //调用自身buffer<br>    .pipe(sourcemaps.init({loadMaps: true}))<br>    .pipe(uglify())<br>    .pipe(sourcemaps.write(‘./‘))<br>    .pipe(gulp.dest(“dist”));<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">gulp //检查bundle.js是否被压缩</span><br><span class="line">cat dist/bundle.js   ////# sourceMappingURL=bundle.js.map</span><br></pre></td></tr></table></figure></p>
+<h2 id="React和webpack"><a href="#React和webpack" class="headerlink" title="React和webpack"></a>React和webpack</h2><h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><p>ts文件放在src文件夹下，通过ts编译器变异，经webpack处理，生成bundle.js文件放在dist目录</p>
+<h3 id="安装依赖-安装typescript为一个开发依赖"><a href="#安装依赖-安装typescript为一个开发依赖" class="headerlink" title="安装依赖 安装typescript为一个开发依赖"></a>安装依赖 安装typescript为一个开发依赖</h3><p>webpack将所有代码和可选择地将依赖捆绑为一个单独的.js文件</p>
+<blockquote>
+<p>react<br>react-dom<br>@types/react<br>@types/react-dom<br>后两个为前两个的声明文件，并非所有的包都包含了声明文件，所以ts会检查<br>awesome-typescript-loader<br>source-map-loader<br>第一个让webpack使用(ts的标准配置文件)tsconfig.json编译ts代码<br>第二个使用ts输出的sourcemap文件来告诉webpack什么时候生成自己的sourcemaps </p>
+</blockquote>
+<h3 id="添加代码"><a href="#添加代码" class="headerlink" title="添加代码"></a>添加代码</h3><p>import组件使用相对路径，否则ts只会在node_modules中寻找</p>
+<h3 id="添加webpack配置文件"><a href="#添加webpack配置文件" class="headerlink" title="添加webpack配置文件"></a>添加webpack配置文件</h3><p>创建webpack.config.js</p>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="create-react-app"><a href="#create-react-app" class="headerlink" title="create-react-app"></a>create-react-app</h3><blockquote>
+<p>create-react-app my-app –scripts-version=react-scripts-ts</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/创建使用typescript开发的reactjs工程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1672,154 +1856,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Docker-compile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/Docker-compile/" itemprop="url">Docker-compile</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T23:15:18+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>Dockerfile 记录单个镜像的构建过程， docker-compse.yml 记录一个项目(project, 一般是多个镜像)的构建过程。 </li>
-<li>更常见的是, nginx, mysql, smtp 都分别是个镜像，然后这些镜像合作，共同服务一个项目。<br>docker-compose 就是解决这个问题的。你的项目需要哪些镜像，每个镜像怎么配置，要挂载哪些 volume, 等等信息都包含在 docker-compose.yml 里。</li>
-<li>Dockerfile 记录单个镜像的构建过程， docker-compse.yml 记录一个项目(project, 一般是多个镜像)的构建过程。 </li>
-<li>docker-compose.yml - 为 docker-compose 准备的脚本，可以同时管理多个 container ，包括他们之间的关系、用官方 image 还是自己 build 、各种网络端口定义、储存空间定义等</li>
-<li>dockerfile是自己定义自己的镜像作用。 docker-compose是指定镜像的启动文件，挂载目录，环境变量等等。</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1872,7 +1908,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1894,7 +1930,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
