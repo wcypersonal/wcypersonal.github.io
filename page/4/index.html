@@ -259,6 +259,309 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/react-redux基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/30/react-redux基础/" itemprop="url">react-redux三个基础原则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T01:20:49+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-三个基础原则"><a href="#一-三个基础原则" class="headerlink" title="一.三个基础原则"></a>一.三个基础原则</h1><ol>
+<li>Single source of truth<br>撤销/重做会很容易实现(状态存在同一棵树下)</li>
+<li>state is read only<br>view和network callbacks不会直接写入state<br>按序执行state改变<br>store.dispaich({<br> type: ‘COMPLETE_TODO’,<br> index:1<br>})</li>
+<li>Changes are made with pure function<br>pure function:可设置顺序，传输额外数据，reducer可复用(编页码)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import &#123;combineReducers,createStore&#125; from &apos;redux&apos;</span><br><span class="line">//createStore:通过传入reducer形成一个全局唯一的store</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>store对象有3种方法：store.dispatch(),store.subscribe,store.getState()</p>
+</blockquote>
+<p>connect函数具体工作:把Store上的状态转化为内层傻瓜函数的prop(mapStateToProps);把内层傻瓜组件中的用户动作转化为派送给Store的动作(mapDispatchToProps)<br>Provider:store必须包含三个函数的object，即subscribe、dispatch、getState</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/redux基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/30/redux基础/" itemprop="url">redux基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T00:52:18+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-Basics"><a href="#一-Basics" class="headerlink" title="一. Basics"></a>一. Basics</h1><ol>
+<li>Actions(纯js对象):从application中发送数据到内存使用store.dispatch(),是信息的payloads，必须有type属性(string常量)，所有Action存储在Array中，建议使用</li>
+<li>ActionCreators：返回一个action(Todo),需要调用<br>执行生成action:dispatch(addTodo(text))才执行，并非自动初始化<br>—&gt; 执行action:(bound action creator)const boundAddTodo = text =&gt; dispatch(addTodo(…))<br>—&gt; bound AddTodo(text):使用React-redux的connect();bindActionCreators():捆绑action creators到dispatch()函数</li>
+<li>SourceCode</li>
+</ol>
+<h1 id="二-Reducers-action未定义state如何改变，用以改变state"><a href="#二-Reducers-action未定义state如何改变，用以改变state" class="headerlink" title="二.Reducers:action未定义state如何改变，用以改变state"></a>二.Reducers:action未定义state如何改变，用以改变state</h1><ol>
+<li>Designing the State Shape<br>所有的state都作为一个单独的对象：(1)the currently selected visibility filter；(2)the actual list of todos<br>状态树：数据和UI状态分开</li>
+<li>Handling Actions<br>（1）(previousState,action) =&gt; newState<br><em>pure function:同样参数值，函数输出相同的结果，结果的求值不会促使任何可语义上的可观察的副作用或输出</em><br>（2）redux会调用reducer，为未定义的initialState，首次不赋值 e.g todo:[]<br>（3）不改变state，创建父本Object.assign()<br>Object.assign({必须为空},state,…)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function todoApp(state = initial(state,action)&#123;</span><br><span class="line">	-&gt; newState</span><br><span class="line">	-&gt; default: 原state</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>（4）使用对象扩展语法的优点在组成复杂对象时会更明显<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">return getAddIds(state.cart.map(id =&gt; (&#123;</span><br><span class="line">	_____,______</span><br><span class="line">	&#125;)))</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/this用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1515,294 +1818,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/React-js和ReactNative/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/React-js和ReactNative/" itemprop="url">React.js和ReactNative</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T21:22:34+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="React-js-驱动html-DOM渲染"><a href="#React-js-驱动html-DOM渲染" class="headerlink" title="React.js:驱动html DOM渲染"></a>React.js:驱动html DOM渲染</h1><h1 id="React-Native-用CSS定义，驱动Android-IOS原声组件渲染"><a href="#React-Native-用CSS定义，驱动Android-IOS原声组件渲染" class="headerlink" title="React Native:用CSS定义，驱动Android/IOS原声组件渲染"></a>React Native:用CSS定义，驱动Android/IOS原声组件渲染</h1><hr>
-<p>HTML创建DOM，构建整个网页的布局和结构<br>CSS控制DOM样式，比如字体，色号，颜色，居中<br>Javascript接受用户事件，动态操控DOM<br>component：相关HTML标签，也就是app内UI控件</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/forEach和for循环/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/forEach和for循环/" itemprop="url">forEach和for循环</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T19:48:55+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/异步/" itemprop="url" rel="index">
-                    <span itemprop="name">异步</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,[[2,3],4],[5,6]]</span><br><span class="line">var flat = function* (a)&#123;</span><br><span class="line">	a.forEach(function (item) &#123;</span><br><span class="line">		if (typeof item !== &apos;number&apos;) &#123;</span><br><span class="line">			yield* flat(item)</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			yield item</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line">for (var f of flat(arr)) &#123;</span><br><span class="line">	console.log(f)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>forEach函数不可异步调用</p>
-<h4 id="成功-forEach函数改为for循环"><a href="#成功-forEach函数改为for循环" class="headerlink" title="成功:forEach函数改为for循环"></a>成功:forEach函数改为for循环</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (var i = 0;i&lt;length;i++) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>console.log(‘Hello’ + yield)<br>console.log(‘hello’ + (yield))<br>yield作为函数/赋值表达式的右侧<br>（1）foo(yield ‘a’,yield ‘b’)<br>（2）let input = yield</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1855,7 +1870,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

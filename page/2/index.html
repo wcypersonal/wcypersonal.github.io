@@ -259,6 +259,323 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/10/网络安全（计算机网络第七版）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/10/网络安全（计算机网络第七版）/" itemprop="url">网络安全（计算机网络第七版）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-10T19:21:11+08:00">
+                2018-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/加密/" itemprop="url" rel="index">
+                    <span itemprop="name">加密</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-网络安全问题概述"><a href="#一-网络安全问题概述" class="headerlink" title="一.网络安全问题概述"></a>一.网络安全问题概述</h1><ol>
+<li>通信面临的两大类威胁：主动攻击（流量分析）和被动攻击（截获）</li>
+<li>主动攻击：篡改、恶意程序、拒绝服务DoS<br>篡改：篡改网络上传送的报文<br>恶意程序：（1）计算机病毒<br>（2）计算机蠕虫：将自身从一个节点发送到另一个节点并自动运行的程序<br>（3）特洛伊木马：<br>（4）逻辑炸弹：当本地运行满足某种特定条件时，执行其他特殊功能<br>（5）后门入侵：<br>（6）流氓软件：未经过用户允许就安装并损害用户利益的软件<br>拒绝服务DoS：攻击者向互联网上的某个服务器不停的发送分组，导致服务器无法正常提供服务（分布式拒绝服务：从互联网上成千上万个网址集中攻击一个网站）</li>
+<li>安全的计算机网络<br>（1）保密性<br>（2）端点鉴别<br>（3）信息的完整性<br>（4）运行的安全性：访问控制</li>
+<li>数据加密模型<br>（1）一般的加密模型：用户A向B发送明文X，通过加密算法E运算后，得出密文Y。Y=Ek(X)<br>接受端通过解密算法和解密密钥解出明文<br>（2）密码编码学+密码分析学=密码学</li>
+</ol>
+<h1 id="二-两类密码体制"><a href="#二-两类密码体制" class="headerlink" title="二. 两类密码体制"></a>二. 两类密码体制</h1><ol>
+<li>对称密钥密码体制<br>（1）加密密钥和解密密钥使用相同的密码体制<br>（2）数据加密标准DES:DES是一组分组密码；DES的保密性在于对密钥的保存，但是算法是公开的；密钥有56位</li>
+<li>公钥密钥密码体制<br>（1）使用不用的加密密钥和解密密钥<br>（2）提出背景：解决相同密钥在接发双发存储的问题，对数字签名的需求<br>（3）RSA体制<br>（4）加密密钥（公钥）PK公开，解密密钥（私钥）SK需要保密<br>（5）密钥体制的加密解密过程：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">密钥对产生器产生出接收者B的一对密钥，发送者A的PK就是接受者B的公钥，B的SK即为私钥保密 </span><br><span class="line">----&gt; A用B的公钥PKB，通过E运算对明文X加密，得到密文Y</span><br><span class="line">----&gt; B用自己的私钥，通过D运算进行解密，恢复出明文X</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>PKB到SKB是“计算上不可能的”<br>公钥可用来加密，但是不可以用来解密<br>先加密后解密，后者先解密后加密的结果相同<br>（6）任何加密方法的安全性取决于密钥的长度，以及攻破密文所需的计算量</p>
+<h1 id="三-数字签名"><a href="#三-数字签名" class="headerlink" title="三. 数字签名"></a>三. 数字签名</h1><ol>
+<li>以下的三种功能：<br>（1）接受者可以进行报文鉴别<br>（2）报文的完整性<br>（3）不可否认</li>
+<li>签名过程：对报文签名并不对报名加密<br>（1）A用其私钥对报文X进行D运算<br>（2）A把经过D运算得到的秘文传给B<br>（3）B为了核实签名，用A的公钥进行E运算，还原出明文</li>
+</ol>
+<h1 id="四-鉴别"><a href="#四-鉴别" class="headerlink" title="四. 鉴别"></a>四. 鉴别</h1><ol>
+<li>鉴别是要验证通信的双方的确是自己所要通信的对象，而不是其他的冒充者，并且传送的报文是完整的，没有被他人篡改过 </li>
+<li>鉴别和授权<br>（1）授权涉及所进行的过程是否被允许<br>（2）鉴别可分为报文鉴别（端点鉴别和报文完整性的鉴别）和实体鉴别（仅鉴别发送报文的实体，可以是一个人，也可以是一个进程，即端点鉴别）</li>
+<li>报文鉴别<br>（1）密码散列函数（相对简单的方式）<br>密码散列函数实际上是单向函数<br>（2）实用的密码散列函数MD5（报文摘要）和SHA-1（安全散列算法）<br>密钥的产生、分配、注入、验证和使用<br>（3）报文鉴别码</li>
+<li>给出一个<strong>错误的</strong>流程<br>(1)用户A根据自己的明文X计算出散列H(X)<br>(2)用户A把H拼接在明文X后面，生成拓展的报文（X，H），发送给B<br>(3)B收到（X，H）,根据散列的长度为已知的固定值，可以把X和H区分开<br>(4)B根据散列函数的运算，计算出收到的明文X的散列H(X)<br>攻击者容易仿制</li>
+<li>防范攻击：对散列进行一次加密<br><img src="../../picture/secret.png" alt="avatar"></li>
+<li>实体鉴别：报文鉴别对每一个收到的报文都要鉴别报文的发送者，实体鉴别只需在系统接入的全部持续时间内对和自己通信的对方实体只需验证一次<br>“一次一数”：避免重放攻击</li>
+</ol>
+<h1 id="五-密钥分配（密钥的产生、分配、注入、注册和使用）"><a href="#五-密钥分配（密钥的产生、分配、注入、注册和使用）" class="headerlink" title="五.密钥分配（密钥的产生、分配、注入、注册和使用）"></a>五.密钥分配（密钥的产生、分配、注入、注册和使用）</h1><ol>
+<li>对称密钥的分配<br>A.所需的密钥数量过大：n^2问题；同时存在如何安全的分配共享的密钥的问题<br>B.目前常见的密钥分配方式：设立密钥分配中心KDC，给需要进行秘密通信的用户临时分配一个会话密钥<br>密钥分配过程：（1）用户A向KDC发送明文，说明想和A通信，明文中包含A和B在KDC中登记的身份<br>（2）KDC用随机数产生“一次一密”KAB,向A发送报文，报文包含会话使用的密钥KAB和请A转给B的一个票据（ticket），票据用B的密钥KB加密过，包含A和B在KDC登记的身份<br>（3）B收到A转来的票据并使用自己的KB解密，就可知道要和A通信，并获得KAB<br>C.密钥分配协议KerberosV5</li>
+<li>公钥的分配<br>A.不可随意公布公钥<br>B.认证中心CA   </li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/github添加或者删除分支/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/09/github添加或者删除分支/" itemprop="url">github添加或者删除分支</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T21:38:33+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/github/" itemprop="url" rel="index">
+                    <span itemprop="name">github</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-添加分支"><a href="#一-添加分支" class="headerlink" title="一. 添加分支"></a>一. 添加分支</h1><ol>
+<li>通过github客户端，添加分支后，进行同步</li>
+<li>通过terminal<br>（1）git branch //查看当前git的分支情况<br>（2）git branch 分支名  //新建分支<br>（3）git checkout 分支名 //切换到新建分支<br>（4）git branch //重新查看分支<br>（5）git push -u orogin 分支名 //同步到github</li>
+</ol>
+<h1 id="二-删除分支"><a href="#二-删除分支" class="headerlink" title="二. 删除分支"></a>二. 删除分支</h1><ol>
+<li>terminal<br>git push origin :分支名</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/AssetPipeline/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1531,278 +1848,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/02/Rails教程（第4版）-2017/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/02/Rails教程（第4版）-2017/" itemprop="url">Ruby on Rails教程（第4版）-2017</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-02T23:26:33+08:00">
-                2018-07-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第一章-从零开始，完成一次部署"><a href="#第一章-从零开始，完成一次部署" class="headerlink" title="第一章 从零开始，完成一次部署"></a>第一章 从零开始，完成一次部署</h1><ol>
-<li>/bin 可执行的二进制文件<br>/lib 代码库模块文件<br>/vendor 第三方代码，例如插件和gem</li>
-<li><p>MVC架构模式<br><a href="https://wcypersonal.github.io/2018/07/01/MVC框架/" target="_blank" rel="noopener">MVC框架</a><br>视图 <---> C <---> web &lt;— 浏览器</---></---></p>
-</li>
-<li></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/MVC框架/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/01/MVC框架/" itemprop="url">MVC框架</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T15:22:50+08:00">
-                2018-07-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>Model:负责管理数据，大部分业务逻辑也应该在Model中<br>View:负责渲染用户界面，应该避免在View业务中设计业务逻辑<br>Controller:负责接受用户输入，根据用户输入调用对应的Model部分逻辑，把产生的数据结果交给View部分，让View渲染出必要的输出</li>
-<li>缺陷:实际框架中总是允许View和Model直接通信，所以数据流向会变得复杂</li>
-<li>区别<br>服务器端MVC框架往往就是每个请求只在Controller-Model-View三者之间走一圈，结果返回给浏览器去渲染或者处理，然后销毁请求的生命周期，严格的单向数据流;浏览器端MVC框架，存在用户交互处理</li>
-<li>系统提供什么样的服务，通过Controller暴露函数来实现。每增加一个功能，Controller往往就要增加一个函数</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1855,7 +1900,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
