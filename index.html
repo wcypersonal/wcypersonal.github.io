@@ -259,6 +259,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/Rails-ActiveRecord/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/24/Rails-ActiveRecord/" itemprop="url">Rails-ActiveRecord</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-24T20:00:38+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>(中文地址)[<a href="https://ruby-china.github.io/rails-guides/active_record_basics.html]" target="_blank" rel="noopener">https://ruby-china.github.io/rails-guides/active_record_basics.html]</a><br>M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统</p>
+<h1 id="一-基础"><a href="#一-基础" class="headerlink" title="一. 基础"></a>一. 基础</h1><ol>
+<li>模式约定<br>外键：命名规则 e.g item_id<br>主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段<br>其他可选字段：</li>
+<li><p>创建模型-&gt;创建Product模型，对应于products表，表中字段映射到模型属性中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//继承ApplicationRecord</span><br><span class="line">class Product &lt; ApplicationRecord</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命名覆盖<br>覆盖表名：生成的默认表名为products<br>(1)可在models中指定表名self.table_name = “my_products”<br>(2)models中手动指定固件 fixtures :my_products<br>覆盖表的主键：<br>self.primary_key = “product_id”</p>
+</li>
+<li>CRUD<br>(1)C<br>create创建并保存；new只创建不保存，调用save保存<br>(2)R<br>User.all   User.first  User.find_by   User.where().order<br>(3)D<br>user.destroy</li>
+</ol>
+<h1 id="二-迁移：按照时间顺序管理数据库模型"><a href="#二-迁移：按照时间顺序管理数据库模型" class="headerlink" title="二.迁移：按照时间顺序管理数据库模型"></a>二.迁移：按照时间顺序管理数据库模型</h1><ol>
+<li>使用Ruby DSL，同时更新db/schema.rb<br>在迁移中完成Active Record无法完成的撤销：在迁移中使用reversible方法；在迁移文件中用up和down代替change</li>
+<li><p>创建迁移<br>(1)创建独立的迁移文件 bin/rails generate migration AddPartNumberToProducts<br>根据时间戳来确定要运行的迁移和迁移运行的顺序<br>(2)迁移文件名称<br>AddXXXToYYY 或 RemoveXXXFromYYY会创建相应的change</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//$ bin/rails generate migration AddPartNumberToProducts part_number:string </span><br><span class="line">def change</span><br><span class="line">    add_column :products, :part_number, :string</span><br><span class="line">end</span><br><span class="line">//$ bin/rails generate migration AddPartNumberToProducts part_number:string:index</span><br><span class="line">def change</span><br><span class="line">    add_column :products, :part_number, :string</span><br><span class="line">    add_index :products, :part_number</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<p>CreateXXX</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// $ bin/rails generate migration CreateProducts name:string part_number:string</span><br><span class="line">def change</span><br><span class="line">   create_table :products do |t|</span><br><span class="line">     t.string :name</span><br><span class="line">     t.string :part_number</span><br><span class="line">   end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>(3)创建联结数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ bin/rails g migration CreateJoinTableCustomerProduct customer product</span><br><span class="line">def change</span><br><span class="line">    create_join_table :customers, :products do |t|</span><br><span class="line">      # t.index [:customer_id, :product_id]</span><br><span class="line">      # t.index [:product_id, :customer_id]</span><br><span class="line">    end</span><br><span class="line">  end</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>模型生成器<br>$ bin/rails generate model Product name:string description:text</li>
+<li>编写迁移文件<br>(1)主键<br>默认情况下，create_table 方法会创建 id 主键。可以用 :primary_key<br>选项来修改主键名称，还可以传入 id: false 选项以禁用主键。<br>(2)创建联结数据表<br>create_join_table :products, :categories, table_name: :categorization<br>(3)修改数据表<br>t.rempve t.rename t.string t.index<br>(4)修改字段 change_column无法撤销<br>change_column :products, :part_number, :text<br>//TO DO</li>
+<li>运行迁移 bin/rails任务<br>(1)rails db:migrate VERSION=20080906120000<br>调用所有未运行的迁移中的change或者up方法；自动执行db:schema:dump任务<br>运行VERSION之前的迁移文件，VERSION为迁移文件名的数字前缀<br>(2)bin/rails db:rollback (STEP=3)：回滚最后一个(三个)迁移<br>bin/rails db:migrate:redo STEP=3：重复执行最后三个迁移<br>(3)rails db:setup</li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/加密算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -352,7 +496,23 @@
       
         
           
-            
+            <p>(javascript加密库)[<a href="https://mp.weixin.qq.com/s?__biz=MzI0ODU5Mzg0NA%3D%3D&amp;mid=2247483722&amp;idx=1&amp;sn=7f0677471519b75eb0c20b6e5e955020&amp;chksm=e99f2d91dee8a4876811dda2ac7598c880305dbdc4a111f288e9627865053a559dba23561fae]" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzI0ODU5Mzg0NA%3D%3D&amp;mid=2247483722&amp;idx=1&amp;sn=7f0677471519b75eb0c20b6e5e955020&amp;chksm=e99f2d91dee8a4876811dda2ac7598c880305dbdc4a111f288e9627865053a559dba23561fae]</a></p>
+<h1 id="一-对称算法"><a href="#一-对称算法" class="headerlink" title="一.对称算法"></a>一.对称算法</h1><p>AES</p>
+<ol>
+<li><p>块加密</p>
+</li>
+<li><p>流加密</p>
+</li>
+</ol>
+<h1 id="二-非对称算法"><a href="#二-非对称算法" class="headerlink" title="二.非对称算法"></a>二.非对称算法</h1><ol>
+<li>RSA</li>
+<li></li>
+</ol>
+<h1 id="三-Hash算法"><a href="#三-Hash算法" class="headerlink" title="三.Hash算法"></a>三.Hash算法</h1><ol>
+<li>SHA<br>require ‘digest/sha1’<br>puts Digest::SHA1.hexdigest(‘admin’)</li>
+<li>不要把密钥存储在本地计算机上，应该使用密钥存储器</li>
+</ol>
+
           
         
       
@@ -1654,166 +1814,6 @@ NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PH
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/https加密体系/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/12/https加密体系/" itemprop="url">https加密体系</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T13:40:33+08:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>三轮加密过程：（1）RSA （2）HMAC （3）一轮加密<br>HTTPS = HTTP+加密+认证+完整性保护<br>HTTPS：HTTP通信接口部分用SSL（安全套接字层）和TLS（安全传输层协议）</p>
-<h1 id="一-连接建立的过程：非对称加密算法"><a href="#一-连接建立的过程：非对称加密算法" class="headerlink" title="一.连接建立的过程：非对称加密算法"></a>一.连接建立的过程：非对称加密算法</h1><table>
-<thead>
-<tr>
-<th>对象</th>
-<th>过程说明</th>
-<th>对象</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>客户端浏览器</td>
-<td>过程说明</td>
-<td>服务器</td>
-<td>备注</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1866,7 +1866,7 @@ NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PH
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
