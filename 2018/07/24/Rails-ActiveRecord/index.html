@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="(中文地址)[https://ruby-china.github.io/rails-guides/active_record_basics.html]M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统 一. 基础 模式约定外键：命名规则 e.g item_id主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段其他可选字">
+<meta name="description" content="中文地址M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统 一. 基础 模式约定外键：命名规则 e.g item_id主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段其他可选字段： 创建模型-&amp;gt;创建Product模型，对应于products表，表中字段映射到模型属性中 123//继承ApplicationRec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rails-ActiveRecord">
 <meta property="og:url" content="http://yoursite.com/2018/07/24/Rails-ActiveRecord/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="(中文地址)[https://ruby-china.github.io/rails-guides/active_record_basics.html]M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统 一. 基础 模式约定外键：命名规则 e.g item_id主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段其他可选字">
+<meta property="og:description" content="中文地址M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统 一. 基础 模式约定外键：命名规则 e.g item_id主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段其他可选字段： 创建模型-&amp;gt;创建Product模型，对应于products表，表中字段映射到模型属性中 123//继承ApplicationRec">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-24T14:05:44.202Z">
+<meta property="og:updated_time" content="2018-07-24T14:54:55.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rails-ActiveRecord">
-<meta name="twitter:description" content="(中文地址)[https://ruby-china.github.io/rails-guides/active_record_basics.html]M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统 一. 基础 模式约定外键：命名规则 e.g item_id主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段其他可选字">
+<meta name="twitter:description" content="中文地址M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统 一. 基础 模式约定外键：命名规则 e.g item_id主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段其他可选字段： 创建模型-&amp;gt;创建Product模型，对应于products表，表中字段映射到模型属性中 123//继承ApplicationRec">
 
 
 
@@ -329,7 +329,7 @@
       
 
       
-        <p>(中文地址)[<a href="https://ruby-china.github.io/rails-guides/active_record_basics.html]" target="_blank" rel="noopener">https://ruby-china.github.io/rails-guides/active_record_basics.html]</a><br>M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统</p>
+        <p><a href="https://ruby-china.github.io/rails-guides/active_record_basics.html" target="_blank" rel="noopener">中文地址</a><br>M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统</p>
 <h1 id="一-基础"><a href="#一-基础" class="headerlink" title="一. 基础"></a>一. 基础</h1><ol>
 <li>模式约定<br>外键：命名规则 e.g item_id<br>主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段<br>其他可选字段：</li>
 <li><p>创建模型-&gt;创建Product模型，对应于products表，表中字段映射到模型属性中</p>
@@ -345,14 +345,25 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//$ bin/rails generate migration AddPartNumberToProducts part_number:string </span><br><span class="line">def change</span><br><span class="line">    add_column :products, :part_number, :string</span><br><span class="line">end</span><br><span class="line">//$ bin/rails generate migration AddPartNumberToProducts part_number:string:index</span><br><span class="line">def change</span><br><span class="line">    add_column :products, :part_number, :string</span><br><span class="line">    add_index :products, :part_number</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
 <p>CreateXXX</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// $ bin/rails generate migration CreateProducts name:string part_number:string</span><br><span class="line">def change</span><br><span class="line">   create_table :products do |t|</span><br><span class="line">     t.string :name</span><br><span class="line">     t.string :part_number</span><br><span class="line">   end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+<p>(3)创建联结数据表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ bin/rails g migration CreateJoinTableCustomerProduct customer product</span><br><span class="line">def change</span><br><span class="line">    create_join_table :customers, :products do |t|</span><br><span class="line">      # t.index [:customer_id, :product_id]</span><br><span class="line">      # t.index [:product_id, :customer_id]</span><br><span class="line">    end</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模型生成器<br>$ bin/rails generate model Product name:string description:text</p>
+</li>
+<li>编写迁移文件<br>(1)主键<br>默认情况下，create_table 方法会创建 id 主键。可以用 :primary_key<br>选项来修改主键名称，还可以传入 id: false 选项以禁用主键。<br>(2)创建联结数据表<br>create_join_table :products, :categories, table_name: :categorization<br>(3)修改数据表<br>t.rempve t.rename t.string t.index<br>(4)修改字段 change_column无法撤销<br>change_column :products, :part_number, :text<br>//TO DO</li>
+<li>运行迁移 bin/rails任务(默认为开发环境)<br>(1)rails db:migrate VERSION=20080906120000<br>调用所有未运行的迁移中的change或者up方法；自动执行db:schema:dump任务<br>运行VERSION之前的迁移文件，VERSION为迁移文件名的数字前缀<br>(2)bin/rails db:rollback (STEP=3)：回滚最后一个(三个)迁移<br>bin/rails db:migrate:redo STEP=3：重复执行最后三个迁移<br>(3)rails db:setup 创建数据库<br>(4)rails db:reset 删除并重新创建数据库<br>(5)rails db:migrate:up 和 rails db:migrate:down VERSION=20080906120000<br>(6)rails db:migrate RAILS_ENV=test 修改运行环境</li>
+<li>修改现有迁移<br>必须先回滚 bin/rails db:rollback，再执行rails db:migrate<br>//To Do</li>
+</ol>
+<h1 id="三-数据验证"><a href="#三-数据验证" class="headerlink" title="三.数据验证"></a>三.数据验证</h1><ol>
+<li>何时验证：保存时验证<br>失败则不会存入：create,create!,save,save!,update,update!</li>
+<li>存在验证<br>validates :name</li>
+<li>长度验证<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">validates :name, length: &#123; minimum: 2 &#125;</span><br><span class="line">validates :bio, length: &#123; maximum: 500 &#125;</span><br><span class="line">validates :password, length: &#123; in: 6..20 &#125;</span><br><span class="line">validates :registration_number, length: &#123; is: 6 &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>(3)创建联结数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ bin/rails g migration CreateJoinTableCustomerProduct customer product</span><br><span class="line">def change</span><br><span class="line">    create_join_table :customers, :products do |t|</span><br><span class="line">      # t.index [:customer_id, :product_id]</span><br><span class="line">      # t.index [:product_id, :customer_id]</span><br><span class="line">    end</span><br><span class="line">  end</span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li>模型生成器<br>$ bin/rails generate model Product name:string description:text</li>
-<li>编写迁移文件<br>(1)主键<br>默认情况下，create_table 方法会创建 id 主键。可以用 :primary_key<br>选项来修改主键名称，还可以传入 id: false 选项以禁用主键。<br>(2)创建联结数据表<br>create_join_table :products, :categories, table_name: :categorization<br>(3)修改数据表<br>t.rempve t.rename t.string t.index<br>(4)修改字段 change_column无法撤销<br>change_column :products, :part_number, :text<br>//TO DO</li>
-<li>运行迁移 bin/rails任务<br>(1)rails db:migrate VERSION=20080906120000<br>调用所有未运行的迁移中的change或者up方法；自动执行db:schema:dump任务<br>运行VERSION之前的迁移文件，VERSION为迁移文件名的数字前缀<br>(2)bin/rails db:rollback (STEP=3)：回滚最后一个(三个)迁移<br>bin/rails db:migrate:redo STEP=3：重复执行最后三个迁移<br>(3)rails db:setup</li>
-<li></li>
+<p>定制信息：:wrong_length、:too_long 和 :too_short 选项，%{count} 表示长度限制的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">validates :bio, length: &#123; maximum: 1000,</span><br><span class="line">    too_long: &quot;%&#123;count&#125; characters is the maximum allowed&quot; &#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>检查空值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validates :name, :login, :email, presence: true</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 
       
@@ -523,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-基础"><span class="nav-number">1.</span> <span class="nav-text">一. 基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-迁移：按照时间顺序管理数据库模型"><span class="nav-number">2.</span> <span class="nav-text">二.迁移：按照时间顺序管理数据库模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-基础"><span class="nav-number">1.</span> <span class="nav-text">一. 基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-迁移：按照时间顺序管理数据库模型"><span class="nav-number">2.</span> <span class="nav-text">二.迁移：按照时间顺序管理数据库模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-数据验证"><span class="nav-number">3.</span> <span class="nav-text">三.数据验证</span></a></li></ol></div>
             
 
           </div>
