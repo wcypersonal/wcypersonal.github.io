@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="javascript加密库  AES和RSA的应用:混合密码系统通过比较，我们知道：RSA 比 AES 更难破解，因为它不需要担心密钥在传递过程中有泄露，只存在暴力破解一种可能；AES的优势是以分组为轮，加解密速度非常快，一般而言，AES 速度上数百倍于 RSA所以在实际应用中，我们会混合应用AES和RSA，比如 需要加密一个尺寸不小的文件，可能会这么干：生成一个一次性随机密钥，算法上采用 AE">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-25T15:06:15.506Z">
+<meta property="og:updated_time" content="2018-07-28T11:51:47.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密算法">
 <meta name="twitter:description" content="javascript加密库  AES和RSA的应用:混合密码系统通过比较，我们知道：RSA 比 AES 更难破解，因为它不需要担心密钥在传递过程中有泄露，只存在暴力破解一种可能；AES的优势是以分组为轮，加解密速度非常快，一般而言，AES 速度上数百倍于 RSA所以在实际应用中，我们会混合应用AES和RSA，比如 需要加密一个尺寸不小的文件，可能会这么干：生成一个一次性随机密钥，算法上采用 AE">
@@ -360,10 +360,13 @@
 </ol>
 <p>(2) 使用openssl aes 加密 filename代表的文件：<br>openssl enc -aes-256-cbc -kfile aesPassword -in filename -out filename.out<br>(3) 使用open rsa 加密密钥<br>openssl enc rsautl -encrypt -pubin -inkey id_rsa.pub -in aespassword -out aespassword.out<br>将 filename.out 和 aespassword.out 一并发给对方即可，接收方使用openssl 进行一次逆操作即可实现解密。</p>
 <ol start="3">
-<li>选用AES算法，3DES需要三个密钥，且加密时间较长<br>AES算法密钥配置128长度即可<br>rails实现：（1）gem 安装aes <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a>：还是选用ase，github上的<br>（2）gem 安装aescrypt <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a><br>（3）<a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL/Cipher.html" target="_blank" rel="noopener">Open::SSL::Cipher</a></li>
-<li>加密算法</li>
-</ol>
+<li>选用AES算法，3DES需要三个密钥，且加密时间较长<br>AES算法密钥配置128长度即可<br>rails实现：（1）gem 安装aes <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a>：还是选用ase，github上的<br>（2）gem 安装aescrypt <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a><br>（3）<a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL/Cipher.html" target="_blank" rel="noopener">Open::SSL::Cipher</a><br>OPENSSL::PKey::RSA</li>
+<li><p>加密算法</p>
+</li>
+<li><p>自行加解密自己来搞加解密，核心在于密钥的生成与管理，密钥管理方式有多种，主要有这么三种：<br>（1）固定密钥<br>服务端和客户端约定好一个密钥，同时约定好一个加密算法（eg：AES ），每次客户端im在发送前，就用约定好的算法，以及约定好的密钥加密再传输，服务端收到报文后，用约定好的算法，约定好的密钥再解密。这种方式，密钥和算法对程序员都是透明的。<br>（2）一人一密钥<br>简单说来就是每个人的密钥是固定的，但是每个人之间又不同，其实就是在固定密钥的算法中包含用户的某一特殊属性，比如用户uid、手机号、qq号等。<br>（3）动态密钥（一session一密钥）<br>动态密钥，一Session一密钥的安全性更高，每次会话前协商密钥。密钥协商的过程要经过2次非对称密钥的随机生成，1次对称加密密钥的随机生成，参考固态秘钥，用于加密的秘钥由客户端通过公钥加密发送给服务端，服务端使用私钥解密拿到后续通讯时使用改秘钥对信息进行加密<br>我尽量简单一些说，如果是大虾，就不用看了。注意，和具体的情况会有些不同，因为为了说明原理，简化了。</p>
 <h1 id="一-对称算法"><a href="#一-对称算法" class="headerlink" title="一.对称算法"></a>一.对称算法</h1><p>AES<br>块加密和流加密</p>
+</li>
+</ol>
 <h1 id="二-非对称算法"><a href="#二-非对称算法" class="headerlink" title="二.非对称算法"></a>二.非对称算法</h1><ol>
 <li>RSA</li>
 <li></li>
@@ -372,6 +375,8 @@
 <li>SHA<br>require ‘digest/sha1’<br>puts Digest::SHA1.hexdigest(‘admin’)</li>
 <li>不要把密钥存储在本地计算机上，应该使用密钥存储器</li>
 </ol>
+<p>问题：”\x16\xFAO\xA99=vu\xD6&lt;\xE9%\xA9q\a\xCCU\”\xE7\r\xA1\xDB\\x02_k’0\xA8;\x12\xB4\x9D6\x96\xC7\xD5\xF7\xD7\xF9nQ.p}\xB1I\x0E?4H\x8B}\x85\x82\xEC<em>8\x8A6\x82\xD6~\x9A\xE8&amp;\xC6V)&gt;\xE5\x0E?\xC6\x863\xC3\xFA\xC7Vz1\xC3\xAD\xB3 \t\x8B\xBD3p\v\x98b\xAFL2\xE8\xC7r\xABKD\xF8\xFF\xB6\xFCw\x89\x8F\xC1\xBFl\xA5u\xE6\x96\xBC\xA7;\xA0\x81\xB9\x00\xA0\x7F\x85\xDC\xBB\x98\x14a$\x94\e\xE1\xA5@\x1C\xAE\x19\xD0dX wT\xDFJ\x00\xE4\x89GZ\xBAx\x8B\xD5\x01\xF1\xD2\xD3/o\xB6\x90\xAB\xEB\xC6\x90\xC3</em>\x1E\xFBh\xAF\xFFLG\t\xB7\xE3\xCE\xED\xF1gpI\xB0@\x9F\xCF&amp;\xC6(\xF5\xAC\x8FSO\xF1\xBA =\xEF\xE8\eil\xA6\xC8\xCC%\xC7\xFE%<code>\x80\xF01|\x88H\xF5\x81\xBE\x9C\&quot;N\x14\xBB\x92kQ\n\xC0\x89\t\xFF\xC8</code>7g\t \x11\x0F\xB2\x91c\xD98\xA0\xD9m\x19”<br>Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)</p>
+<p>Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8):<br>解决：asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)</p>
 
       
     </div>
@@ -490,7 +495,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -501,7 +506,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
