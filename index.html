@@ -259,6 +259,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/吴恩达-目录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/30/吴恩达-目录/" itemprop="url">吴恩达-目录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T21:43:44+08:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://wcypersonal.github.io/2018/07/30/第一章-吴恩达/" target="_blank" rel="noopener">Why Machine Learning Strategy</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/第五章-吴恩达/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -516,7 +636,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/30/第三章-吴恩达/" itemprop="url">第三章-吴恩达</a></h1>
+                <a class="post-title-link" href="/2018/07/30/第三章-吴恩达/" itemprop="url">3 Prerequisites and Notation</a></h1>
         
 
         <div class="post-meta">
@@ -568,7 +688,9 @@
       
         
           
-            
+            <h1 id="3-预备知识和符号约定"><a href="#3-预备知识和符号约定" class="headerlink" title="3 预备知识和符号约定"></a>3 预备知识和符号约定</h1><p>如果你曾经学习过机器学习的课程（如我在coursera上的machine learning MOOC）<br>或有应用监督式学习的经验，你将能够理解下面这段文字。<br>我假设你熟悉监督学习：使用标记训练样本(x,y)学习一个从x映射到y的函数。监督学习包括线性回归，逻辑回归和神经网络。机器学习形式有很多种，但是大多数机器学习的实际应用都是监督学习。<br>我会频繁提到神经网络（也称为深度学习）。你只需要对他们有一个基本的理解。<br>如果你不熟悉这里提到的概念，可以看一下Coursera上的前三周的机器学习课程<a href="http://ml-class.org" target="_blank" rel="noopener">课程地址</a><br><img src="../../picture/ML-3.jpg" alt="avatar"></p>
+<h1 id="4-规模促进了机器学习的发展"><a href="#4-规模促进了机器学习的发展" class="headerlink" title="4 规模促进了机器学习的发展"></a>4 规模促进了机器学习的发展</h1><p>深度学习（神经网络）中的很多想法已经存了几十年了。为什么这些想法突然火了呢？<br>促使近年来进步的最大的驱动因素有两个：<br>● 大量可用的数据。如今人们在数字设备（笔记本电脑，移动设备等）上花费比以前多得多的时间。这些活动产生了大量的数据，我们可以使用这些数据来训练我们的学习算法。<br>● 计算能力的提升。仅仅在几年前我们才能够训练足够大的神经网络，以利用我们现在所拥有的巨大的数据量。<br>具体来说，如果你使用传统的学习算法（如logistic regression）,即使你现在拥有更大的数据量，也会出现“高原效应（plateaus）”。也就是说即使你给它更多的数据，它的学习曲线也会变平坦（flattens out），算法效果不再有提升：<br><img src="../../picture/ML-4-1.png" alt="avatar"><br>就好像这些传统算法并不知道该如何处理我们所拥有的全部数据。<br>如果你在同一个监督学习任务上训练一个小型的神经网络（NN），你可能会获得略微好些的性能：<br><img src="../../picture/ML-4-2.png" alt="avatar"><br>这里，“小型神经网络（small NN）”是指仅具有少量隐层神经元/层/参数 的神经网络。最后，如果你训练一个更大的神经网络，你能获得甚至更好的性能：<br><img src="../../picture/ML-4-3.png" alt="avatar"><br>因此，如果你想要获得最好的性能表现，你需要（i）训练一个非常大的神经网络，使其在上面的绿色曲线上；（ii）拥有大量的数据。<br>有许多其他的细节（如神经网络的架构）也非常重要，这些方面也有很多创新。但是提高算法性能最可靠的方法仍然是（i）训练更大的神经 和（ii）获得更多的数据。</p>
+<h2 id="如何完成（i）和（ii）是极其复杂的。这本书将会详尽地讨论这些细节。我们将从对传统学习算法和神经网络都有用的一般策略开始，并建立对构建深度学习系统的最先进的策略。"><a href="#如何完成（i）和（ii）是极其复杂的。这本书将会详尽地讨论这些细节。我们将从对传统学习算法和神经网络都有用的一般策略开始，并建立对构建深度学习系统的最先进的策略。" class="headerlink" title="如何完成（i）和（ii）是极其复杂的。这本书将会详尽地讨论这些细节。我们将从对传统学习算法和神经网络都有用的一般策略开始，并建立对构建深度学习系统的最先进的策略。"></a>如何完成（i）和（ii）是极其复杂的。这本书将会详尽地讨论这些细节。我们将从对传统学习算法和神经网络都有用的一般策略开始，并建立对构建深度学习系统的最先进的策略。</h2><h2 id="这个图表展示了NN在小数据集下也会做的更好（横轴前半部分）。这和NN在大数据集中表现优秀并不具有一致性。在小数据集中，传统算法可能做得更好，也可能不会做得更好，这依赖于手工设计的特征。例如，如果你只有20个训练样本，那么你使用logistic-regression-或使用neural-network可能没有多大区别；手工设计的特征将会比算法的选择产生更大的影响。但是如果你拥有一百万的数据量，我更倾向于使用神经网络。"><a href="#这个图表展示了NN在小数据集下也会做的更好（横轴前半部分）。这和NN在大数据集中表现优秀并不具有一致性。在小数据集中，传统算法可能做得更好，也可能不会做得更好，这依赖于手工设计的特征。例如，如果你只有20个训练样本，那么你使用logistic-regression-或使用neural-network可能没有多大区别；手工设计的特征将会比算法的选择产生更大的影响。但是如果你拥有一百万的数据量，我更倾向于使用神经网络。" class="headerlink" title="这个图表展示了NN在小数据集下也会做的更好（横轴前半部分）。这和NN在大数据集中表现优秀并不具有一致性。在小数据集中，传统算法可能做得更好，也可能不会做得更好，这依赖于手工设计的特征。例如，如果你只有20个训练样本，那么你使用logistic regression 或使用neural network可能没有多大区别；手工设计的特征将会比算法的选择产生更大的影响。但是如果你拥有一百万的数据量，我更倾向于使用神经网络。"></a>这个图表展示了NN在小数据集下也会做的更好（横轴前半部分）。这和NN在大数据集中表现优秀并不具有一致性。在小数据集中，传统算法可能做得更好，也可能不会做得更好，这依赖于手工设计的特征。例如，如果你只有20个训练样本，那么你使用logistic regression 或使用neural network可能没有多大区别；手工设计的特征将会比算法的选择产生更大的影响。但是如果你拥有一百万的数据量，我更倾向于使用神经网络。</h2>
           
         
       
@@ -635,7 +757,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/30/第二章-吴恩达/" itemprop="url">第二章-吴恩达</a></h1>
+                <a class="post-title-link" href="/2018/07/30/第二章-吴恩达/" itemprop="url">2 How to use this book to help your team</a></h1>
         
 
         <div class="post-meta">
@@ -657,6 +779,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/吴恩达/" itemprop="url" rel="index">
+                    <span itemprop="name">吴恩达</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -687,7 +831,8 @@
       
         
           
-            
+            <h1 id="2-如何使用这本书来帮助你的团队"><a href="#2-如何使用这本书来帮助你的团队" class="headerlink" title="2 如何使用这本书来帮助你的团队"></a>2 如何使用这本书来帮助你的团队</h1><p>在读完这本书后，你将对如何设置机器学习项目中的技术方向有一个深入的了解。<br>但是你的队友可能无法理解你为什么建议一个特定的方向。可能你希望你的队伍定义一个单一数字的评估指标，但是他们并不信服。你如何说服他们？<br>这就是为什么我将章节设置的这么短：这样你可以将他们打印出来并且让你的队友只阅读你需要他们知道的那1～2页。<br>在有限次序上的一些调整可能对你的团队生产力有巨大的影响。通过帮助你的队伍进行一些改变，我希望你可以成为你团队的超级英雄。<br><img src="../../picture/ML-2.png" alt="avatar"></p>
+
           
         
       
@@ -1480,167 +1625,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/Rails路由/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/20/Rails路由/" itemprop="url">Rails路由</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-20T19:33:07+08:00">
-                2018-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ruby/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://ruby-china.github.io/rails-guides/routing.html" target="_blank" rel="noopener">Rails中文官网地址</a><br><a href="http://guides.rubyonrails.org/routing.html" target="_blank" rel="noopener">Rails官网地址</a></p>
-<ol>
-<li>Rails收到请求：<em>GET /patients/17</em><br>查询路由，找到controller的action： <em>get ‘/patient/:id’,to: ‘patients#show’</em></li>
-<li>生成路径和URL地址<br>route.rb :<em>get ‘/patient/:id’,to: ‘patients#show’,as: ‘patient1’</em><br>model: <em>Patient</em><br>Controller(patient_controller.rb): <em>@patient1=Patient.find(params[:id])</em><br>View(patient/show.html.erb): <em>&lt;%= link_to ‘Patient Record’,Patient_path(@patient1)%&gt;</em><br>(patient_path: Patient-model)</li>
-<li>资源路由resource：Rails的默认风格,声明所有常用动作 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">e.g :photos(复数资源)</span><br><span class="line">生成路径和URL的辅助方法：</span><br><span class="line">（1）photos_path 返回/photos</span><br><span class="line">（2）new_photo_path 返回/photos/new</span><br><span class="line">（3）edit_photo_path(:id) 返回/photos/:id/edit </span><br><span class="line">（4）photo_path(:id) 返回/photos/:id</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">e.g :geocoder（单数资源）映射到Geocoders控制器动作上</span><br><span class="line">生成路径和URL的辅助方法：</span><br><span class="line">（1）geocoder_path 返回/geocoder</span><br><span class="line">（2）new_geocoder_path 返回/geocoder/new</span><br><span class="line">（3）edit_geocoder_path 返回/geocoder/edit</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>指定action和controller<br>get ‘profile’,to: ‘users#show’<br>get ‘profile’,to: :show, controller: ‘users’</li>
-<li>指定命名空间controller/admin/articles_controller.rb指定命名空间为Admin<br>Controller: <em>class Admin::ArticlesController</em><br>route.rb :(1) /admin/articles/new<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace :admin do</span><br><span class="line">   resourcs :articles</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>(2)/articles映射到Admin::Articles<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scope module: &apos;admin&apos; do</span><br><span class="line">  resources :articles</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>(3)/admin/articles映射到Articles<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scope &apos;/admin&apos; do</span><br><span class="line">  resources :articles</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<ol start="6">
-<li><p>嵌套资源</p>
-</li>
-<li></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1693,7 +1677,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
