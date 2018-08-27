@@ -259,6 +259,328 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/Rails-ActiveRecord/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/24/Rails-ActiveRecord/" itemprop="url">Rails-ActiveRecord</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-24T20:00:38+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://ruby-china.github.io/rails-guides/active_record_basics.html" target="_blank" rel="noopener">中文地址</a><br>M: Actice Record负责创建和使用需要持久存入数据库的数据，对象关系映射（ORM）系统</p>
+<h1 id="一-基础"><a href="#一-基础" class="headerlink" title="一. 基础"></a>一. 基础</h1><ol>
+<li>模式约定<br>外键：命名规则 e.g item_id<br>主键：默认整数字段id为主键，使用ActiveRecord迁移数据库时自动创建字段<br>其他可选字段：</li>
+<li><p>创建模型-&gt;创建Product模型，对应于products表，表中字段映射到模型属性中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//继承ApplicationRecord</span><br><span class="line">class Product &lt; ApplicationRecord</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命名覆盖<br>覆盖表名：生成的默认表名为products<br>(1)可在models中指定表名self.table_name = “my_products”<br>(2)models中手动指定固件 fixtures :my_products<br>覆盖表的主键：<br>self.primary_key = “product_id”</p>
+</li>
+<li>CRUD<br>(1)C<br>create创建并保存；new只创建不保存，调用save保存<br>(2)R<br>User.all   User.first  User.find_by   User.where().order<br>(3)D<br>user.destroy</li>
+</ol>
+<h1 id="二-迁移：按照时间顺序管理数据库模型"><a href="#二-迁移：按照时间顺序管理数据库模型" class="headerlink" title="二.迁移：按照时间顺序管理数据库模型"></a>二.迁移：按照时间顺序管理数据库模型</h1><ol>
+<li>使用Ruby DSL，同时更新db/schema.rb<br>在迁移中完成Active Record无法完成的撤销：在迁移中使用reversible方法；在迁移文件中用up和down代替change</li>
+<li><p>创建迁移<br>(1)创建独立的迁移文件 bin/rails generate migration AddPartNumberToProducts<br>根据时间戳来确定要运行的迁移和迁移运行的顺序<br>(2)迁移文件名称<br>AddXXXToYYY 或 RemoveXXXFromYYY会创建相应的change</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//$ bin/rails generate migration AddPartNumberToProducts part_number:string </span><br><span class="line">def change</span><br><span class="line">    add_column :products, :part_number, :string</span><br><span class="line">end</span><br><span class="line">//$ bin/rails generate migration AddPartNumberToProducts part_number:string:index</span><br><span class="line">def change</span><br><span class="line">    add_column :products, :part_number, :string</span><br><span class="line">    add_index :products, :part_number</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<p>CreateXXX</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// $ bin/rails generate migration CreateProducts name:string part_number:string</span><br><span class="line">def change</span><br><span class="line">   create_table :products do |t|</span><br><span class="line">     t.string :name</span><br><span class="line">     t.string :part_number</span><br><span class="line">   end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+<p>(3)创建联结数据表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ bin/rails g migration CreateJoinTableCustomerProduct customer product</span><br><span class="line">def change</span><br><span class="line">    create_join_table :customers, :products do |t|</span><br><span class="line">      # t.index [:customer_id, :product_id]</span><br><span class="line">      # t.index [:product_id, :customer_id]</span><br><span class="line">    end</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模型生成器<br>$ bin/rails generate model Product name:string description:text</p>
+</li>
+<li>编写迁移文件<br>(1)主键<br>默认情况下，create_table 方法会创建 id 主键。可以用 :primary_key<br>选项来修改主键名称，还可以传入 id: false 选项以禁用主键。<br>(2)创建联结数据表<br>create_join_table :products, :categories, table_name: :categorization<br>(3)修改数据表<br>t.remove t.rename t.string t.index<br>(4)修改字段 change_column无法撤销<br>change_column :products, :part_number, :text<br>//TO DO</li>
+<li>运行迁移 bin/rails任务(默认为开发环境)<br>(1)rails db:migrate VERSION=20080906120000<br>调用所有未运行的迁移中的change或者up方法；自动执行db:schema:dump任务<br>运行VERSION之前的迁移文件，VERSION为迁移文件名的数字前缀<br>(2)bin/rails db:rollback (STEP=3)：回滚最后一个(三个)迁移<br>bin/rails db:migrate:redo STEP=3：重复执行最后三个迁移<br>(3)rails db:setup 创建数据库<br>(4)rails db:reset 删除并重新创建数据库<br>(5)rails db:migrate:up 和 rails db:migrate:down VERSION=20080906120000<br>(6)rails db:migrate RAILS_ENV=test 修改运行环境<br>(7)rails db:drop:all 撤销所有migrate操作</li>
+<li>修改现有迁移<br>必须先回滚 bin/rails db:rollback，再执行rails db:migrate<br>//To Do</li>
+</ol>
+<h1 id="三-数据验证"><a href="#三-数据验证" class="headerlink" title="三.数据验证"></a>三.数据验证</h1><ol>
+<li>何时验证：保存时验证<br>失败则不会存入：create,create!,save,save!,update,update!</li>
+<li>存在验证<br>validates :name</li>
+<li>长度验证<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">validates :name, length: &#123; minimum: 2 &#125;</span><br><span class="line">validates :bio, length: &#123; maximum: 500 &#125;</span><br><span class="line">validates :password, length: &#123; in: 6..20 &#125;</span><br><span class="line">validates :registration_number, length: &#123; is: 6 &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>定制信息：:wrong_length、:too_long 和 :too_short 选项，%{count} 表示长度限制的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">validates :bio, length: &#123; maximum: 1000,</span><br><span class="line">    too_long: &quot;%&#123;count&#125; characters is the maximum allowed&quot; &#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>检查空值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validates :name, :login, :email, presence: true</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/加密算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/23/加密算法/" itemprop="url">加密算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T20:34:54+08:00">
+                2018-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/加密/" itemprop="url" rel="index">
+                    <span itemprop="name">加密</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzI0ODU5Mzg0NA%3D%3D&amp;mid=2247483722&amp;idx=1&amp;sn=7f0677471519b75eb0c20b6e5e955020&amp;chksm=e99f2d91dee8a4876811dda2ac7598c880305dbdc4a111f288e9627865053a559dba23561fae" target="_blank" rel="noopener">javascript加密库</a></p>
+</li>
+<li><p>AES和RSA的应用:混合密码系统<br>通过比较，我们知道：<br>RSA 比 AES 更难破解，因为它不需要担心密钥在传递过程中有泄露，只存在暴力破解一种可能；<br>AES的优势是以分组为轮，加解密速度非常快，一般而言，AES 速度上数百倍于 RSA<br>所以在实际应用中，我们会混合应用AES和RSA，比如 需要加密一个尺寸不小的文件，可能会这么干：<br>生成一个一次性随机密钥，算法上采用 AES 的CBC模式  aes-256-cbc（加密分组为256比特）对文件进行加密<br>加密完成后，为了安全的传递这个一次性随机密钥，我们使用 接收方的RSA公钥 对其进行加密，随加密后的文件一起发送<br>接收方使用私钥进行解密，得到AES密钥原文，并用其解密文件<br>例子<br>以上场景的应用，比如在 Node.js 中，可以这么实现：<br>(1) 生成 AES 随机密钥：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var passwdLength = 256;  // 初始化随机向量长度</span><br><span class="line">var aesPassword = require(&apos;crypto&apos;).randomBytes(passwdLength);</span><br><span class="line">require(&apos;fs&apos;).writeFileSync(&apos;aesPassword&apos;, aesPassword); // 写入文件供openssl使用</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>(2) 使用openssl aes 加密 filename代表的文件：<br>openssl enc -aes-256-cbc -kfile aesPassword -in filename -out filename.out<br>(3) 使用open rsa 加密密钥<br>openssl enc rsautl -encrypt -pubin -inkey id_rsa.pub -in aespassword -out aespassword.out<br>将 filename.out 和 aespassword.out 一并发给对方即可，接收方使用openssl 进行一次逆操作即可实现解密。</p>
+<ol start="3">
+<li>选用AES算法，3DES需要三个密钥，且加密时间较长<br>AES算法密钥配置128长度即可<br>rails实现：（1）gem 安装aes <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a>：还是选用ase，github上的<br>（2）gem 安装aescrypt <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a><br>（3）<a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL/Cipher.html" target="_blank" rel="noopener">Open::SSL::Cipher</a><br>OPENSSL::PKey::RSA</li>
+<li><p>加密算法</p>
+</li>
+<li><p>自行加解密自己来搞加解密，核心在于密钥的生成与管理，密钥管理方式有多种，主要有这么三种：<br>（1）固定密钥<br>服务端和客户端约定好一个密钥，同时约定好一个加密算法（eg：AES ），每次客户端im在发送前，就用约定好的算法，以及约定好的密钥加密再传输，服务端收到报文后，用约定好的算法，约定好的密钥再解密。这种方式，密钥和算法对程序员都是透明的。<br>（2）一人一密钥<br>简单说来就是每个人的密钥是固定的，但是每个人之间又不同，其实就是在固定密钥的算法中包含用户的某一特殊属性，比如用户uid、手机号、qq号等。<br>（3）动态密钥（一session一密钥）<br>动态密钥，一Session一密钥的安全性更高，每次会话前协商密钥。密钥协商的过程要经过2次非对称密钥的随机生成，1次对称加密密钥的随机生成，参考固态秘钥，用于加密的秘钥由客户端通过公钥加密发送给服务端，服务端使用私钥解密拿到后续通讯时使用改秘钥对信息进行加密<br>我尽量简单一些说，如果是大虾，就不用看了。注意，和具体的情况会有些不同，因为为了说明原理，简化了。</p>
+<h1 id="一-对称算法"><a href="#一-对称算法" class="headerlink" title="一.对称算法"></a>一.对称算法</h1><p>AES<br>块加密和流加密</p>
+</li>
+</ol>
+<h1 id="二-非对称算法"><a href="#二-非对称算法" class="headerlink" title="二.非对称算法"></a>二.非对称算法</h1><ol>
+<li>RSA</li>
+<li></li>
+</ol>
+<h1 id="三-Hash算法"><a href="#三-Hash算法" class="headerlink" title="三.Hash算法"></a>三.Hash算法</h1><ol>
+<li>SHA<br>require ‘digest/sha1’<br>puts Digest::SHA1.hexdigest(‘admin’)</li>
+<li>不要把密钥存储在本地计算机上，应该使用密钥存储器</li>
+</ol>
+<p>问题：”\x16\xFAO\xA99=vu\xD6&lt;\xE9%\xA9q\a\xCCU\”\xE7\r\xA1\xDB\\x02_k’0\xA8;\x12\xB4\x9D6\x96\xC7\xD5\xF7\xD7\xF9nQ.p}\xB1I\x0E?4H\x8B}\x85\x82\xEC<em>8\x8A6\x82\xD6~\x9A\xE8&amp;\xC6V)&gt;\xE5\x0E?\xC6\x863\xC3\xFA\xC7Vz1\xC3\xAD\xB3 \t\x8B\xBD3p\v\x98b\xAFL2\xE8\xC7r\xABKD\xF8\xFF\xB6\xFCw\x89\x8F\xC1\xBFl\xA5u\xE6\x96\xBC\xA7;\xA0\x81\xB9\x00\xA0\x7F\x85\xDC\xBB\x98\x14a$\x94\e\xE1\xA5@\x1C\xAE\x19\xD0dX wT\xDFJ\x00\xE4\x89GZ\xBAx\x8B\xD5\x01\xF1\xD2\xD3/o\xB6\x90\xAB\xEB\xC6\x90\xC3</em>\x1E\xFBh\xAF\xFFLG\t\xB7\xE3\xCE\xED\xF1gpI\xB0@\x9F\xCF&amp;\xC6(\xF5\xAC\x8FSO\xF1\xBA =\xEF\xE8\eil\xA6\xC8\xCC%\xC7\xFE%<code>\x80\xF01|\x88H\xF5\x81\xBE\x9C\&quot;N\x14\xBB\x92kQ\n\xC0\x89\t\xFF\xC8</code>7g\t \x11\x0F\xB2\x91c\xD98\xA0\xD9m\x19”<br>Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)</p>
+<p>Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8):<br>解决：asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/function/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1513,335 +1835,6 @@ NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PH
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/https加密体系/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/12/https加密体系/" itemprop="url">https加密体系</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T13:40:33+08:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>三轮加密过程：（1）RSA （2）HMAC （3）一轮加密<br>HTTPS = HTTP+加密+认证+完整性保护<br>HTTPS：HTTP通信接口部分用SSL（安全套接字层）和TLS（安全传输层协议）</p>
-<h1 id="一-连接建立的过程：非对称加密算法"><a href="#一-连接建立的过程：非对称加密算法" class="headerlink" title="一.连接建立的过程：非对称加密算法"></a>一.连接建立的过程：非对称加密算法</h1><table>
-<thead>
-<tr>
-<th>对象</th>
-<th>过程说明</th>
-<th>对象</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>客户端浏览器</td>
-<td>过程说明</td>
-<td>服务器</td>
-<td>备注</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/10/网络安全（计算机网络第七版）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/10/网络安全（计算机网络第七版）/" itemprop="url">网络安全（计算机网络第七版）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-10T19:21:11+08:00">
-                2018-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一-网络安全问题概述"><a href="#一-网络安全问题概述" class="headerlink" title="一.网络安全问题概述"></a>一.网络安全问题概述</h1><ol>
-<li>通信面临的两大类威胁：主动攻击（流量分析）和被动攻击（截获）</li>
-<li>主动攻击：篡改、恶意程序、拒绝服务DoS<br>篡改：篡改网络上传送的报文<br>恶意程序：（1）计算机病毒<br>（2）计算机蠕虫：将自身从一个节点发送到另一个节点并自动运行的程序<br>（3）特洛伊木马：<br>（4）逻辑炸弹：当本地运行满足某种特定条件时，执行其他特殊功能<br>（5）后门入侵：<br>（6）流氓软件：未经过用户允许就安装并损害用户利益的软件<br>拒绝服务DoS：攻击者向互联网上的某个服务器不停的发送分组，导致服务器无法正常提供服务（分布式拒绝服务：从互联网上成千上万个网址集中攻击一个网站）</li>
-<li>安全的计算机网络<br>（1）保密性<br>（2）端点鉴别<br>（3）信息的完整性<br>（4）运行的安全性：访问控制</li>
-<li>数据加密模型<br>（1）一般的加密模型：用户A向B发送明文X，通过加密算法E运算后，得出密文Y。Y=Ek(X)<br>接受端通过解密算法和解密密钥解出明文<br>（2）密码编码学+密码分析学=密码学</li>
-</ol>
-<h1 id="二-两类密码体制"><a href="#二-两类密码体制" class="headerlink" title="二. 两类密码体制"></a>二. 两类密码体制</h1><ol>
-<li>对称密钥密码体制<br>（1）加密密钥和解密密钥使用相同的密码体制<br>（2）数据加密标准DES:DES是一组分组密码；DES的保密性在于对密钥的保存，但是算法是公开的；密钥有56位</li>
-<li>公钥密钥密码体制<br>（1）使用不用的加密密钥和解密密钥<br>（2）提出背景：解决相同密钥在接发双发存储的问题，对数字签名的需求<br>（3）RSA体制<br>（4）加密密钥（公钥）PK公开，解密密钥（私钥）SK需要保密<br>（5）密钥体制的加密解密过程：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">密钥对产生器产生出接收者B的一对密钥，发送者A的PK就是接受者B的公钥，B的SK即为私钥保密 </span><br><span class="line">----&gt; A用B的公钥PKB，通过E运算对明文X加密，得到密文Y</span><br><span class="line">----&gt; B用自己的私钥，通过D运算进行解密，恢复出明文X</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>PKB到SKB是“计算上不可能的”<br>公钥可用来加密，但是不可以用来解密<br>先加密后解密，后者先解密后加密的结果相同<br>（6）任何加密方法的安全性取决于密钥的长度，以及攻破密文所需的计算量</p>
-<h1 id="三-数字签名"><a href="#三-数字签名" class="headerlink" title="三. 数字签名"></a>三. 数字签名</h1><ol>
-<li>以下的三种功能：<br>（1）接受者可以进行报文鉴别<br>（2）报文的完整性<br>（3）不可否认</li>
-<li>签名过程：对报文签名并不对报名加密<br>（1）A用其私钥对报文X进行D运算<br>（2）A把经过D运算得到的秘文传给B<br>（3）B为了核实签名，用A的公钥进行E运算，还原出明文</li>
-</ol>
-<h1 id="四-鉴别"><a href="#四-鉴别" class="headerlink" title="四. 鉴别"></a>四. 鉴别</h1><ol>
-<li>鉴别是要验证通信的双方的确是自己所要通信的对象，而不是其他的冒充者，并且传送的报文是完整的，没有被他人篡改过 </li>
-<li>鉴别和授权<br>（1）授权涉及所进行的过程是否被允许<br>（2）鉴别可分为报文鉴别（端点鉴别和报文完整性的鉴别）和实体鉴别（仅鉴别发送报文的实体，可以是一个人，也可以是一个进程，即端点鉴别）</li>
-<li>报文鉴别<br>（1）密码散列函数（相对简单的方式）<br>密码散列函数实际上是单向函数<br>（2）实用的密码散列函数MD5（报文摘要）和SHA-1（安全散列算法）<br>密钥的产生、分配、注入、验证和使用<br>（3）报文鉴别码</li>
-<li>给出一个<strong>错误的</strong>流程<br>(1)用户A根据自己的明文X计算出散列H(X)<br>(2)用户A把H拼接在明文X后面，生成拓展的报文（X，H），发送给B<br>(3)B收到（X，H）,根据散列的长度为已知的固定值，可以把X和H区分开<br>(4)B根据散列函数的运算，计算出收到的明文X的散列H(X)<br>攻击者容易仿制</li>
-<li>防范攻击：对散列进行一次加密<br><img src="../../picture/secret.png" alt="avatar"></li>
-<li>实体鉴别：报文鉴别对每一个收到的报文都要鉴别报文的发送者，实体鉴别只需在系统接入的全部持续时间内对和自己通信的对方实体只需验证一次<br>“一次一数”：避免重放攻击</li>
-</ol>
-<h1 id="五-密钥分配（密钥的产生、分配、注入、注册和使用）"><a href="#五-密钥分配（密钥的产生、分配、注入、注册和使用）" class="headerlink" title="五.密钥分配（密钥的产生、分配、注入、注册和使用）"></a>五.密钥分配（密钥的产生、分配、注入、注册和使用）</h1><ol>
-<li>对称密钥的分配<br>A.所需的密钥数量过大：n^2问题；同时存在如何安全的分配共享的密钥的问题<br>B.目前常见的密钥分配方式：设立密钥分配中心KDC，给需要进行秘密通信的用户临时分配一个会话密钥<br>密钥分配过程：（1）用户A向KDC发送明文，说明想和A通信，明文中包含A和B在KDC中登记的身份<br>（2）KDC用随机数产生“一次一密”KAB,向A发送报文，报文包含会话使用的密钥KAB和请A转给B的一个票据（ticket），票据用B的密钥KB加密过，包含A和B在KDC登记的身份<br>（3）B收到A转来的票据并使用自己的KB解密，就可知道要和A通信，并获得KAB<br>C.密钥分配协议KerberosV5</li>
-<li>公钥的分配<br>A.不可随意公布公钥<br>B.认证中心CA   </li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1894,7 +1887,7 @@ NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PH
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
