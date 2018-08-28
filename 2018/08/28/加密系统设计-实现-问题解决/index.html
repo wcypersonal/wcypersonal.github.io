@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;-(对称密钥)-  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessage加密存储  二.">
+<meta name="description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;----(对称密钥,iv发送)----  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessa">
 <meta name="keywords" content="微信小程序 Ruby">
 <meta property="og:type" content="article">
 <meta property="og:title" content="加密系统设计-实现-问题解决">
 <meta property="og:url" content="http://yoursite.com/2018/08/28/加密系统设计-实现-问题解决/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;-(对称密钥)-  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessage加密存储  二.">
+<meta property="og:description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;----(对称密钥,iv发送)----  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessa">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-28T12:51:24.658Z">
+<meta property="og:updated_time" content="2018-08-28T12:54:50.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密系统设计-实现-问题解决">
-<meta name="twitter:description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;-(对称密钥)-  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessage加密存储  二.">
+<meta name="twitter:description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;----(对称密钥,iv发送)----  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessa">
 
 
 
@@ -354,7 +354,7 @@
       
         <h1 id="一-加密系统设计流程"><a href="#一-加密系统设计流程" class="headerlink" title="一. 加密系统设计流程"></a>一. 加密系统设计流程</h1><ol>
 <li>使用微信小程序rdSession方式进行加密系统</li>
-<li>wx.getUserInfo-(rdSession,rawData,signature)-&gt;rdSession存在，签名正确<pre><code>&lt;-(对称密钥)-
+<li>wx.getUserInfo-(rdSession,rawData,signature)-&gt;rdSession存在，签名正确<pre><code>&lt;----(对称密钥,iv发送)----
 </code></pre></li>
 <li>scanMessage –(rdSession,rawData,signature)–&gt;rdSession存在，签名正确,scanMessage加密存储</li>
 </ol>
