@@ -352,16 +352,7 @@
       
         
           
-            <hr>
-<p>title: 加密系统数据格式<br>date: 2018-08-25 19:21:12<br>tags:</p>
-<h2 id="categories-微信小程序"><a href="#categories-微信小程序" class="headerlink" title="categories: 微信小程序"></a>categories: 微信小程序</h2><p>一</p>
-<ol>
-<li>base64: 在字节长度为3的倍数时，生成的加密数据结尾没有=；其他情况下有=</li>
-<li>aes-128-cbc加密时，小于16位则加密结果为空。。。。。</li>
-</ol>
-<hr>
-<p>title: 加密算法<br>date: 2018-07-23 20:34:54<br>tags:</p>
-<h2 id="categories-加密"><a href="#categories-加密" class="headerlink" title="categories: 加密"></a>categories: 加密</h2><ol>
+            <ol>
 <li><p><a href="https://mp.weixin.qq.com/s?__biz=MzI0ODU5Mzg0NA%3D%3D&amp;mid=2247483722&amp;idx=1&amp;sn=7f0677471519b75eb0c20b6e5e955020&amp;chksm=e99f2d91dee8a4876811dda2ac7598c880305dbdc4a111f288e9627865053a559dba23561fae" target="_blank" rel="noopener">javascript加密库</a></p>
 </li>
 <li><p>AES和RSA的应用:混合密码系统<br>通过比较，我们知道：<br>RSA 比 AES 更难破解，因为它不需要担心密钥在传递过程中有泄露，只存在暴力破解一种可能；<br>AES的优势是以分组为轮，加解密速度非常快，一般而言，AES 速度上数百倍于 RSA<br>所以在实际应用中，我们会混合应用AES和RSA，比如 需要加密一个尺寸不小的文件，可能会这么干：<br>生成一个一次性随机密钥，算法上采用 AES 的CBC模式  aes-256-cbc（加密分组为256比特）对文件进行加密<br>加密完成后，为了安全的传递这个一次性随机密钥，我们使用 接收方的RSA公钥 对其进行加密，随加密后的文件一起发送<br>接收方使用私钥进行解密，得到AES密钥原文，并用其解密文件<br>例子<br>以上场景的应用，比如在 Node.js 中，可以这么实现：<br>(1) 生成 AES 随机密钥：</p>
@@ -376,6 +367,7 @@
 <li><p>自行加解密自己来搞加解密，核心在于密钥的生成与管理，密钥管理方式有多种，主要有这么三种：<br>（1）固定密钥<br>服务端和客户端约定好一个密钥，同时约定好一个加密算法（eg：AES ），每次客户端im在发送前，就用约定好的算法，以及约定好的密钥加密再传输，服务端收到报文后，用约定好的算法，约定好的密钥再解密。这种方式，密钥和算法对程序员都是透明的。<br>（2）一人一密钥<br>简单说来就是每个人的密钥是固定的，但是每个人之间又不同，其实就是在固定密钥的算法中包含用户的某一特殊属性，比如用户uid、手机号、qq号等。<br>（3）动态密钥（一session一密钥）<br>动态密钥，一Session一密钥的安全性更高，每次会话前协商密钥。密钥协商的过程要经过2次非对称密钥的随机生成，1次对称加密密钥的随机生成，参考固态秘钥，用于加密的秘钥由客户端通过公钥加密发送给服务端，服务端使用私钥解密拿到后续通讯时使用改秘钥对信息进行加密<br>我尽量简单一些说，如果是大虾，就不用看了。注意，和具体的情况会有些不同，因为为了说明原理，简化了。</p>
 </li>
 </ol>
+<hr>
 <h1 id="一-对称算法"><a href="#一-对称算法" class="headerlink" title="一.对称算法"></a>一.对称算法</h1><p>AES<br>块加密和流加密</p>
 <h1 id="二-非对称算法"><a href="#二-非对称算法" class="headerlink" title="二.非对称算法"></a>二.非对称算法</h1><ol>
 <li>RSA</li>
@@ -533,7 +525,11 @@
 <li>scanMessage –(rdSession,rawData,signature)–&gt;rdSession存在，签名正确,scanMessage加密存储</li>
 </ol>
 <h1 id="二-数字签名和加解密"><a href="#二-数字签名和加解密" class="headerlink" title="二. 数字签名和加解密"></a>二. 数字签名和加解密</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h5 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</h5><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)<br>\xB1I\x0E?4H\x8B}\x85\x82\xEC*8\x8A6\x82\xD6~\x9A\xE8&amp;\xC6V)&gt;\xE5\x0E?\xC6\x863\xC3\xFA\xC7Vz1\xC3\xAD\xB3 \t\x8B\xBD3p…..<br>Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)</p>
-<p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,(字节数组:类型为string，每一位为一个十六进制字符)，但是在params传播需要UTF-8类型，所以报错。<br>解决1: asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)会导致丢失字符<br>解决2: unpack(‘H<em>‘) pack(‘H</em>‘) unpack(‘C*’) 转化为16进制的字符串<br>解决3: 转化为Base64格式进行传送<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require ‘base64’ </span><br><span class="line">Base64.encode64()</span><br><span class="line">Base64.decode64()</span><br></pre></td></tr></table></figure></p>
+<p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,(字节数组:类型为string，每一位为一个十六进制字符)，但是在params传播需要UTF-8类型，所以报错。<br>解决1: asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)会导致丢失字符<br>解决2: unpack(‘H<em>‘) pack(‘H</em>‘) unpack(‘C*’) 转化为16进制的字符串<br>解决3: 转化为Base64格式进行传送;base64:在字节长度为3的倍数时，生成的加密数据结尾没有=；其他情况下有=</p>
+<ol start="2">
+<li>aes-128-cbc加密时，小于16位则加密结果为空。。。。。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require ‘base64’ </span><br><span class="line">Base64.encode64()</span><br><span class="line">Base64.decode64()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <p>(2) key,iv,final<br>AES-128-CBC中key和iv必须为16bytes，random_key,random_iv生成key和iv，在+cipher.final格式中生成的key和iv，再次使用该密钥加密或者解密时必须+Cipher.final<br>(3) 无论encrypt或者decrypt,先new再定义加(解)密格式<br>sym = OPENSSL::Cipher.new(“aes-128-cbc”)<br>sym.encrypt //加(解)密格式</p>
 <h5 id="2-前端微信小程序通过crypto-js-crypto-js实现"><a href="#2-前端微信小程序通过crypto-js-crypto-js实现" class="headerlink" title="2. 前端微信小程序通过crypto-js/crypto-js实现"></a>2. 前端微信小程序通过crypto-js/crypto-js实现</h5><p>前端和后端调用不用的库进行AES-128-CBC加密和解密，但是结果不同<br>Crypto.enc.Base64<br>Crypto.enc.Utf8 更改编码格式</p>
 <h5 id="3-后端AES加密可以调用gem：AES"><a href="#3-后端AES加密可以调用gem：AES" class="headerlink" title="3. 后端AES加密可以调用gem：AES"></a>3. 后端AES加密可以调用gem：AES</h5>

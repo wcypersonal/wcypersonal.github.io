@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="会飞@-@鱼">
 <meta property="og:description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;----(对称密钥,iv发送)----  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessa">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-28T12:54:50.877Z">
+<meta property="og:updated_time" content="2018-08-28T13:11:29.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密系统设计-实现-问题解决">
 <meta name="twitter:description" content="一. 加密系统设计流程 使用微信小程序rdSession方式进行加密系统 wx.getUserInfo-(rdSession,rawData,signature)-&amp;gt;rdSession存在，签名正确&amp;lt;----(对称密钥,iv发送)----  scanMessage –(rdSession,rawData,signature)–&amp;gt;rdSession存在，签名正确,scanMessa">
@@ -359,7 +359,11 @@
 <li>scanMessage –(rdSession,rawData,signature)–&gt;rdSession存在，签名正确,scanMessage加密存储</li>
 </ol>
 <h1 id="二-数字签名和加解密"><a href="#二-数字签名和加解密" class="headerlink" title="二. 数字签名和加解密"></a>二. 数字签名和加解密</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h5 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</h5><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)<br>\xB1I\x0E?4H\x8B}\x85\x82\xEC*8\x8A6\x82\xD6~\x9A\xE8&amp;\xC6V)&gt;\xE5\x0E?\xC6\x863\xC3\xFA\xC7Vz1\xC3\xAD\xB3 \t\x8B\xBD3p…..<br>Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)</p>
-<p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,(字节数组:类型为string，每一位为一个十六进制字符)，但是在params传播需要UTF-8类型，所以报错。<br>解决1: asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)会导致丢失字符<br>解决2: unpack(‘H<em>‘) pack(‘H</em>‘) unpack(‘C*’) 转化为16进制的字符串<br>解决3: 转化为Base64格式进行传送<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require ‘base64’ </span><br><span class="line">Base64.encode64()</span><br><span class="line">Base64.decode64()</span><br></pre></td></tr></table></figure></p>
+<p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,(字节数组:类型为string，每一位为一个十六进制字符)，但是在params传播需要UTF-8类型，所以报错。<br>解决1: asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)会导致丢失字符<br>解决2: unpack(‘H<em>‘) pack(‘H</em>‘) unpack(‘C*’) 转化为16进制的字符串<br>解决3: 转化为Base64格式进行传送;base64:在字节长度为3的倍数时，生成的加密数据结尾没有=；其他情况下有=</p>
+<ol start="2">
+<li>aes-128-cbc加密时，小于16位则加密结果为空。。。。。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require ‘base64’ </span><br><span class="line">Base64.encode64()</span><br><span class="line">Base64.decode64()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <p>(2) key,iv,final<br>AES-128-CBC中key和iv必须为16bytes，random_key,random_iv生成key和iv，在+cipher.final格式中生成的key和iv，再次使用该密钥加密或者解密时必须+Cipher.final<br>(3) 无论encrypt或者decrypt,先new再定义加(解)密格式<br>sym = OPENSSL::Cipher.new(“aes-128-cbc”)<br>sym.encrypt //加(解)密格式</p>
 <h5 id="2-前端微信小程序通过crypto-js-crypto-js实现"><a href="#2-前端微信小程序通过crypto-js-crypto-js实现" class="headerlink" title="2. 前端微信小程序通过crypto-js/crypto-js实现"></a>2. 前端微信小程序通过crypto-js/crypto-js实现</h5><p>前端和后端调用不用的库进行AES-128-CBC加密和解密，但是结果不同<br>Crypto.enc.Base64<br>Crypto.enc.Utf8 更改编码格式</p>
 <h5 id="3-后端AES加密可以调用gem：AES"><a href="#3-后端AES加密可以调用gem：AES" class="headerlink" title="3. 后端AES加密可以调用gem：AES"></a>3. 后端AES加密可以调用gem：AES</h5>
