@@ -352,7 +352,7 @@
       
         
           
-            <h1 id="一-加密系统设计流程"><a href="#一-加密系统设计流程" class="headerlink" title="一. 加密系统设计流程"></a>一. 加密系统设计流程</h1><h1 id="二"><a href="#二" class="headerlink" title="二."></a>二.</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h2 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher(OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher(OPENSSL::Cipher::Cipher)实现</h2><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)</p>
+            <h1 id="一-加密系统设计流程"><a href="#一-加密系统设计流程" class="headerlink" title="一. 加密系统设计流程"></a>一. 加密系统设计流程</h1><h1 id="二"><a href="#二" class="headerlink" title="二."></a>二.</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h2 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</h2><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)</p>
 <pre><code>\x16\xFAO\xA99=vu\xD6&lt;\xE9%\xA9q\a\xCCU\\xE7\r\xA1\xDB\\\x02_k0\xA8;\x12\xB4.....
 Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)
 </code></pre><p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,但是在params传播需要UTF-8类型，所以报错</p>
