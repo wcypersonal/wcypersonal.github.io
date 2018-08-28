@@ -352,11 +352,10 @@
       
         
           
-            <h1 id="一-加密系统设计流程"><a href="#一-加密系统设计流程" class="headerlink" title="一. 加密系统设计流程"></a>一. 加密系统设计流程</h1><h1 id="二"><a href="#二" class="headerlink" title="二."></a>二.</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h2 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</h2><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)</p>
-<pre><code>\x16\xFAO\xA99=vu\xD6&lt;\xE9%\xA9q\a\xCCU\\xE7\r\xA1\xDB\\\x02_k0\xA8;\x12\xB4.....
-Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)
-</code></pre><p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,但是在params传播需要UTF-8类型，所以报错</p>
-
+            <h1 id="一-加密系统设计流程"><a href="#一-加密系统设计流程" class="headerlink" title="一. 加密系统设计流程"></a>一. 加密系统设计流程</h1><h1 id="二"><a href="#二" class="headerlink" title="二."></a>二.</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h2 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</h2><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)<br>\xB1I\x0E?4H\x8B}\x85\x82\xEC*8\x8A6\x82\xD6~\x9A\xE8&amp;\xC6V)&gt;\xE5\x0E?\xC6\x863\xC3\xFA\xC7Vz1\xC3\xAD\xB3 \t\x8B\xBD3p…..<br>Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)</p>
+<p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,但是在params传播需要UTF-8类型，所以报错<br>解决1: asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)会导致丢失字符<br>解决2: 转化为Base64格式进行传送<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require ‘base64’ </span><br><span class="line">Base64.encode64()</span><br><span class="line">Base64.decode64()</span><br></pre></td></tr></table></figure></p>
+<p>(2) </p>
+<h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2>
           
         
       

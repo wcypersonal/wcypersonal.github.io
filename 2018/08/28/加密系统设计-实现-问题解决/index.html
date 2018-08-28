@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一. 加密系统设计流程二.三. 问题解决1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8) \x16\xFAO\xA99=vu\xD6&amp;lt;\xE9%\xA9q\a\xCCU\\x">
+<meta name="description" content="一. 加密系统设计流程二.三. 问题解决1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)\xB1I\x0E?4H\x8B}\x85\x82\xEC*8\x8A6\x82\xD6~\">
 <meta name="keywords" content="微信小程序 Ruby">
 <meta property="og:type" content="article">
 <meta property="og:title" content="加密系统设计-实现-问题解决">
 <meta property="og:url" content="http://yoursite.com/2018/08/28/加密系统设计-实现-问题解决/index.html">
 <meta property="og:site_name" content="会飞@-@鱼">
-<meta property="og:description" content="一. 加密系统设计流程二.三. 问题解决1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8) \x16\xFAO\xA99=vu\xD6&amp;lt;\xE9%\xA9q\a\xCCU\\x">
+<meta property="og:description" content="一. 加密系统设计流程二.三. 问题解决1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)\xB1I\x0E?4H\x8B}\x85\x82\xEC*8\x8A6\x82\xD6~\">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-28T11:18:30.028Z">
+<meta property="og:updated_time" content="2018-08-28T11:25:44.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密系统设计-实现-问题解决">
-<meta name="twitter:description" content="一. 加密系统设计流程二.三. 问题解决1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8) \x16\xFAO\xA99=vu\xD6&amp;lt;\xE9%\xA9q\a\xCCU\\x">
+<meta name="twitter:description" content="一. 加密系统设计流程二.三. 问题解决1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)\xB1I\x0E?4H\x8B}\x85\x82\xEC*8\x8A6\x82\xD6~\">
 
 
 
@@ -352,11 +352,10 @@
       
 
       
-        <h1 id="一-加密系统设计流程"><a href="#一-加密系统设计流程" class="headerlink" title="一. 加密系统设计流程"></a>一. 加密系统设计流程</h1><h1 id="二"><a href="#二" class="headerlink" title="二."></a>二.</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h2 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</h2><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)</p>
-<pre><code>\x16\xFAO\xA99=vu\xD6&lt;\xE9%\xA9q\a\xCCU\\xE7\r\xA1\xDB\\\x02_k0\xA8;\x12\xB4.....
-Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)
-</code></pre><p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,但是在params传播需要UTF-8类型，所以报错</p>
-
+        <h1 id="一-加密系统设计流程"><a href="#一-加密系统设计流程" class="headerlink" title="一. 加密系统设计流程"></a>一. 加密系统设计流程</h1><h1 id="二"><a href="#二" class="headerlink" title="二."></a>二.</h1><h1 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三. 问题解决"></a>三. 问题解决</h1><h2 id="1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><a href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现" class="headerlink" title="1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现"></a>1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</h2><p>（1）Encoding::UndefinedConversionError (“\xFA” from ASCII-8BIT to UTF-8)<br>\xB1I\x0E?4H\x8B}\x85\x82\xEC*8\x8A6\x82\xD6~\x9A\xE8&amp;\xC6V)&gt;\xE5\x0E?\xC6\x863\xC3\xFA\xC7Vz1\xC3\xAD\xB3 \t\x8B\xBD3p…..<br>Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)</p>
+<p>实际上自动将能够转化为ASCII-8bit的十六进制字符\x转化了,但是在params传播需要UTF-8类型，所以报错<br>解决1: asy_key.encode(‘UTF-8’,invalid: :replace,undef: :replace)会导致丢失字符<br>解决2: 转化为Base64格式进行传送<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require ‘base64’ </span><br><span class="line">Base64.encode64()</span><br><span class="line">Base64.decode64()</span><br></pre></td></tr></table></figure></p>
+<p>(2) </p>
+<h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2>
       
     </div>
     
@@ -531,7 +530,7 @@ Completed 500 Internal Server Error in 366ms (ActiveRecord: 0.3ms)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-加密系统设计流程"><span class="nav-number">1.</span> <span class="nav-text">一. 加密系统设计流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-问题解决"><span class="nav-number">3.</span> <span class="nav-text">三. 问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><span class="nav-number">3.1.</span> <span class="nav-text">1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-加密系统设计流程"><span class="nav-number">1.</span> <span class="nav-text">一. 加密系统设计流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-问题解决"><span class="nav-number">3.</span> <span class="nav-text">三. 问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-后端Ruby-on-Rails通过OPENSSL-Cipher-OPENSSL-Cipher-Cipher-实现"><span class="nav-number">3.1.</span> <span class="nav-text">1. 后端Ruby on Rails通过OPENSSL::Cipher (OPENSSL::Cipher::Cipher)实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">3.2.</span> <span class="nav-text">2.</span></a></li></ol></li></ol></div>
             
 
           </div>
