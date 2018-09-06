@@ -259,6 +259,236 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/nginx（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="楚妍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞@-@鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/14/nginx（一）/" itemprop="url">nginx（一）基础内容</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T15:09:19+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-基础准备内容"><a href="#一-基础准备内容" class="headerlink" title="一.基础准备内容"></a>一.基础准备内容</h1><ol>
+<li>简要来说nginx功能：反向代理和负载均衡</li>
+<li>轻量级的web服务器/反向代理服务器和电子邮件（IMAP/POP3）代理服务器，占用内存少，并发能力强，业界认为作为Apache2.2+mod_proxy_balancer的轻量级代替者</li>
+<li>特点：性能较高，相应静态页面的速度很快<br>分阶段资源分配技术：CPU和内存占用率很低<br>热部署：nginx支持热部署，启动非常容易，可在不间断服务的情况下，对软件版本进行升级</li>
+<li>nginx:<br>(1)HTTP和反向代理服务器<br>（2）邮件代理服务器<br>（3）TCP/UDP代理服务器</li>
+</ol>
+<h1 id="二-架构"><a href="#二-架构" class="headerlink" title="二.架构"></a>二.架构</h1><ol>
+<li>nginx启动后<br>unix系统通过daemon（守护进程）方式在后台运行，也可以在生产模式中手动关闭master进程让nginx在前台运行，以多进程模式运行</li>
+<li>进程<br>以多进程的模式运行，一个master进程管理多个workder进程，master进程会接受来自外界发的信号，控制nginx，可以通过kill向master进程发送信号（老版本），不同worker进程独立且平等</li>
+<li>nginx处理请求的过程<blockquote>
+<p>每一个进程都是fork自master进程<br>（1）80端口的http服务时，一个连接请求过来<br>（2）在master进程中先建立好需要listen的socket（listenfd），再fork出多个worker进程<br>（3）所有worker进程的listenfd会在新连接到来时变得可读，（保证只有一个进程处理连接）所有worker进程在注册listenfd读事件前抢accept_mutex<br>（4）抢到互斥锁的进程注册listenfd，在读事件里调用accept接受该连接<br>（5）worker进程在accept连接之后，开始读取请求、解析请求、处理请求</p>
+</blockquote>
+</li>
+<li>并发处理<br>每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了<br>同时监测多个事件，调用他们是阻塞的，但可以设置超时时间<br>在24G内存的机器上，处理的并发请求数达到过200万<br><strong>推荐使用cpu的核数为worker的个数</strong></li>
+<li>一个基本的web服务器来说，事件通常有三种类型，网络事件、信号、定时器</li>
+<li>在处理网络事件的回调函数时，通过做的第一个事情就是判断超时，然后再去处理网络事件</li>
+<li>基本概念<br>（1）connection<br>connection为对tcp连接的封装，包括连接的socket，读事件，写事件。nginx的http请求是建立在connection之上的<br><strong>tcp连接的生命周期</strong><br>启动nginx，解析配置文件，得到需要监听的端口和ip地址；在master进程中，初始化好监控的socket；fork进程后竞争客户端可以向nginx发起连接；客户端和服务器通过三次握手建立好一个连接，某个进程会accept成功,得到建立好连接的socket，创建nginx对连接的封装，即ngx_connection_t结构体；设置读写事件吹函数并添加读写事件来与客户端进行数据交换；nginx或者客户端来关掉连接<br><strong>nginx连接数:worker_connections*worker_processes</strong><br>nginx反向代理时，需要/2，会并发建立与客户端和后端服务的连接<br>每个socket连接会占掉一个fd，nginx通过worker_connections设置每个进程支持的最大连接数。nginx通过连接池来管理，每个worker进程都有一个独立的连接池，连接池的大小为worker_connections,保存时实际为ngx_connection_t结构的数组，通过链表free_connections来保存所有空闲的ngx_connection_t<br>（2）request<br>nginx中指的是http请求，具体的数据结构是nginx_http_request_t,是对http请求的封装，包括请求行、请求头、请求体、响应行、响应头、响应体<br>（3）keeplive<br>（4）pipe<br>（5）lingering_close</li>
+</ol>
+<h3 id="Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发"><a href="#Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发" class="headerlink" title="Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发"></a>Ngixn基本上分为三个模块：handler、filter和upstram；handler和filter可以完成单机工作，upstram用来完成网络数据的接收、处理和转发</h3><h1 id="三-handler模块：接受来自客户端的请求并产生输出的模块"><a href="#三-handler模块：接受来自客户端的请求并产生输出的模块" class="headerlink" title="三.handler模块：接受来自客户端的请求并产生输出的模块"></a>三.handler模块：接受来自客户端的请求并产生输出的模块</h1><ol>
+<li>Nginx启动时，每个handler模块都有一次机会把自己关联到对应的location上，多个同时关联一个location,那么只有一个handler会真正起作用</li>
+<li>handler模块处理的结果：处理成功、处理失败、拒绝处理</li>
+<li>handler中每一个模块都会提供一些配置指令，配置信息需要定义该模块的配置结构来进行存储，Nginx的配置信息分成了几个作用于（main、server、location）</li>
+<li>handler模块的挂载<br>handler真正的处理函数通过两种方式挂载到过程中，按处理阶段挂载，按需挂载<br>（1）按处理阶段挂载:11个阶段<br>自定义的模块大多挂载在NGX_HTTP_CONTENT_PHASE阶段，挂载动作一般在模块上下文调用的postconfiguration函数中<blockquote>
+</blockquote>
+NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PHASE: Server 请求地址重写阶段<br>NGX_HTTP_FIND_CONFIG_PHASE: 配置查找阶段:<br>NGX_HTTP_REWRITE_PHASE: Location 请求地址重写阶段<br>NGX_HTTP_POST_REWRITE_PHASE: 请求地址重写提交阶段<br>NGX_HTTP_PREACCESS_PHASE: 访问权限检查准备阶段<br>NGX_HTTP_ACCESS_PHASE: 访问权限检查阶段<br>NGX_HTTP_POST_ACCESS_PHASE: 访问权限检查提交阶段<br>NGX_HTTP_TRY_FILES_PHASE: 配置项 try_files 处理阶段<br>NGX_HTTP_CONTENT_PHASE: 内容产生阶段<br>NGX_HTTP_LOG_PHASE: 日志模块处理阶段<blockquote>
+</blockquote>
+</li>
+</ol>
+<p>（2）按需挂载content handler<br>必须在NGX_HTTP_CONTENT_PHASE阶段执行<br>用处：某个模块对某个locaiton进行了处理后，发现符合处理的逻辑，而且也没有必要再调用NGX_HTTP_CONTENT_PHASE阶段的其他handler进行处理，就动态挂载上这个handler</p>
+<ol start="5">
+<li>handler模块的编译和使用，需要在nginx的源码目录中，通过configure指令的参数进行编译</li>
+</ol>
+<h1 id="四-过滤模块filter"><a href="#四-过滤模块filter" class="headerlink" title="四.过滤模块filter"></a>四.过滤模块filter</h1><ol>
+<li>过滤模块<br>过滤模块是过滤响应头和内容的模块，可以对回复的头和内容进行处理。处理时间在获取回复内容之后，向用户发送响应之前。<br><strong>处理过程</strong><br>分为两个阶段：过滤HTTP回复的头部和主体，分别对头部和主体进行修改</li>
+<li>nginx_chain_t结构体为单向链表，应和Nginx流式的输出模式</li>
+<li>发出子请求，就是在过滤响应内容的时候，可以发送新的请求，Nginx会根据你调用的先后顺序，将多个回复的内容拼接成正常的响应主体<br><strong>保证父请求和子请求的顺序</strong><br>Nginx发出子请求的时候，调用ngx_http_subrequest函数，将子请求插入父请求的r -&gt; postponed链表。子请求会在主请求执行完毕时依次调用。子请求同样会有一个请求所有的生存期和处理过程，也会进入filter模块流程</li>
+</ol>
+<h1 id="五-upstream模块"><a href="#五-upstream模块" class="headerlink" title="五.upstream模块"></a>五.upstream模块</h1><ol>
+<li>数据转发功能：具备网路应用级别的拆分、封装和整合的战略功能，是nginx有能力构建一个网络应用的关键组件</li>
+<li>upstream严格属于handler，不产生自己的内容，而是通过请求后端服务器得到内容。请求并取得响应的过程被封装到Nginx内部</li>
+<li>upstream模块接口</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>SN</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create_request</td>
+<td>生成发送到后端服务器的请求缓冲（缓冲链），在初始化 upstream 时使用。</td>
+</tr>
+<tr>
+<td>reinit_request</td>
+<td>在某台后端服务器出错的情况，Nginx会尝试另一台后端服务器。Nginx 选定新的服务器以后，会先调用此函数，以重新初始化 upstream 模块的工作状态，然后再次进行 upstream 连接。</td>
+</tr>
+<tr>
+<td>process_header</td>
+<td>处理后端服务器返回的信息头部。所谓头部是与 upstreamserver 通信的协议规定的，比如 HTTP 协议的 header 部分，或者 memcached 协议的响应状态部分。</td>
+</tr>
+<tr>
+<td>abort_request</td>
+<td>在客户端放弃请求时被调用。不需要在函数中实现关闭后端服务器连接的功能，系统会自动完成关闭连接的步骤，所以一般此函数不会进行任何具体工作。</td>
+</tr>
+<tr>
+<td>finalize_request</td>
+<td>正常完成与后端服务器的请求后调用该函数，与 abort_request 相同，一般也不会进行任何具体工作。</td>
+</tr>
+<tr>
+<td>input_filter</td>
+<td>处理后端服务器返回的响应正文。Nginx 默认的 input_filter 会将收到的内容封装成为缓冲区链 ngx_chain。该链由 upstream 的 out_bufs 指针域定位，所以开发人员可以在模块以外通过该指针 得到后端服务器返回的正文数据。memcached 模块实现了自己的 input_filter，在后面会具体分析这个模块。</td>
+</tr>
+<tr>
+<td>input_filter_init</td>
+<td>初始化 input filter 的上下文。Nginx 默认的 input_filter_init 直接返回。</td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>负载均衡模块<br>负载均衡模块用于从upstream指令定义的后端主机列表中选取一台主机。Nginx先使用负载均衡找到一台主机，再使用upstram模块实现与这台主机的交互</li>
+</ol>
+<h1 id="六-其他模块"><a href="#六-其他模块" class="headerlink" title="六.其他模块"></a>六.其他模块</h1><ol>
+<li>core模块：Nginx的启动模块</li>
+<li>event模块：监听后建立的连接<br>accept锁：80端口是个进程所共享的，避免多个进程同时调用accept<br>nginx事件处理是根据触发顺序在一个大的循环里依次处理的<br>nginx对个进程的请求处理的均衡性做了优化，负载高时，进程抢到的锁过多，会导致这个进程被禁止接受访问一段时间<br>定时器：需要用到超时时用到定时器机制，使用红黑树（有序的二叉平衡树，比较理想的二叉树）来构造定时器，二叉树的值是超时时间，每次查找最小值，过期则删除节点直至所有超时节点都被删除</li>
+<li></li>
+<li>nginx: 运行方式，异步非阻塞<br>nginx配置url中有api的进行反向代理</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/https加密体系/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1706,153 +1936,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/input组件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="楚妍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会飞@-@鱼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/04/input组件/" itemprop="url">input组件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T21:09:48+08:00">
-                2018-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">微信小程序</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当前微信小程序运行框架为mpvue1.0.12版本</p>
-<ol>
-<li>添加button组件后@click可以使用，bindtap不可以使用<br>报错信息：command根本无法跳转<br><img src="../picture/input.png" alt="avatar"><br>原因：(1)mpvue框架问题，不支持使用bindchange、bindinput,需要修改为@chang、@input<br>(2)这种错误，也有可能是第三方框架编译后生成的dist/app.json中pages顺序与第三方框架中定义的pages顺序不同，需要调整</li>
-<li>需要数据绑定 v-model<br>问题：去掉就会无法正常获取input数据<br>讲解：(1)v-model:双向数据绑定（表单控件）&lt; input&gt; &lt; textarea&gt; &lt; select&gt;<br>(2)v-bind:绑定数据和属性 e.g v-bind:class=  –&gt; :class</li>
-<li>event绑定在mpvue中也不同 e.detail.value</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1905,7 +1988,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
