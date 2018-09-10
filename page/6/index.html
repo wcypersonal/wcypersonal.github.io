@@ -259,6 +259,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/ssh生成/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/ssh生成/" itemprop="url">ssh生成</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T22:37:17+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Ubuntu开发日记（一）：SSH登录</p>
+<h1 id="一．ssh生成"><a href="#一．ssh生成" class="headerlink" title="一．ssh生成"></a>一．ssh生成</h1><p>  Ssh有公钥和密钥，可要求生成passphrase，也可以没有。.pub为公钥。密钥保存在自己的Linux系统上。然后公钥上传到Linux服务器，之后我们就能无密码SSH登录了．SSH密钥就好比是你的身份证明。就是一种加密算法，有很多类型的，默认的RSA长度是2048位．</p>
+<ol>
+<li>阿里云生成：阿里云默认生成2048位的rsa类型加密：<a href="https://helpcdn.aliyun.com/document_detail/51793.html" target="_blank" rel="noopener">https://helpcdn.aliyun.com/document_detail/51793.html</a><br>Ssh-keygen</li>
+<li>生成自己生成的密钥为id_rsa，存储在C：&gt;Users&gt;lenovo&gt;.ssh文件夹中<br>生成方式：制造密钥对，在Git Bash中使用root来生成rsa公约和密钥，命令：ssh-keygen  -t rsa（若在系统中生成<a href="http://blog.csdn.net/spring292713/article/details/14000737" target="_blank" rel="noopener">http://blog.csdn.net/spring292713/article/details/14000737</a>）<br><img src="../picture/ssh.png" alt="avatar"><br><a href="http://blog.csdn.net/permike/article/details/52386868" target="_blank" rel="noopener">http://blog.csdn.net/permike/article/details/52386868</a></li>
+</ol>
+<p>[root@host] ssh-keygen  &lt;== 建立密钥对<br>Generating public/private rsa key pair.<br>Enter file in which to save the key (/root/.ssh/id_rsa): &lt;== 按 Enter<br>Created directory ‘/root/.ssh’<br>Enter passphrase (empty for no passphrase): &lt;== 输入密钥锁码，或直接按 Enter 留空<br>Enter same passphrase again: &lt;== 再输入一遍密钥锁码<br>Your identification has been saved in /root/.ssh/id_rsa. &lt;== 私钥<br>Your public key has been saved in /root/.ssh/id_rsa.pub. &lt;== 公钥<br>The key fingerprint is:</p>
+<h2 id="0f-d3-e7-1a-1c-bd-5c-03-f1-19-f1-22-df-9b-cc-08-root-host"><a href="#0f-d3-e7-1a-1c-bd-5c-03-f1-19-f1-22-df-9b-cc-08-root-host" class="headerlink" title="0f:d3:e7:1a:1c:bd:5c:03:f1:19:f1:22:df:9b:cc:08 root@host"></a>0f:d3:e7:1a:1c:bd:5c:03:f1:19:f1:22:df:9b:cc:08 root@host</h2><h1 id="二．使用Xshell登录登录用户"><a href="#二．使用Xshell登录登录用户" class="headerlink" title="二．使用Xshell登录登录用户"></a>二．使用Xshell登录登录用户</h1><p><a href="http://blog.csdn.net/kangshihang1998/article/details/60465724?locationNum=2&amp;fps=1" target="_blank" rel="noopener">http://blog.csdn.net/kangshihang1998/article/details/60465724?locationNum=2&amp;fps=1</a></p>
+<h1 id="三．生成普通用户：sudo-adduser-bike"><a href="#三．生成普通用户：sudo-adduser-bike" class="headerlink" title="三．生成普通用户：sudo adduser bike"></a>三．生成普通用户：sudo adduser bike</h1><p><img src="../picture/ssh1.png" alt="avatar"><br><img src="../picture/ssh2.png" alt="avatar"><br>下面的内容若无要求，直接Enter即可</p>
+<h1 id="四．"><a href="#四．" class="headerlink" title="四．"></a>四．</h1><p>更换bash和dash（sh）：两种状态下的语句不同<br>相互切换：sudo dpkg-reconfigure dash<br>查看：/bin/sh<br><img src="../picture/ssh3.png" alt="avatar"> </p>
+<h1 id="五．复制公钥（不确定，有待考究）"><a href="#五．复制公钥（不确定，有待考究）" class="headerlink" title="五．复制公钥（不确定，有待考究）"></a>五．复制公钥（不确定，有待考究）</h1><p><img src="../picture/ssh4.png" alt="avatar"> </p>
+<h1 id="六．设置root密码"><a href="#六．设置root密码" class="headerlink" title="六．设置root密码"></a>六．设置root密码</h1><p><img src="../picture/ssh5.png" alt="avatar"> </p>
+<ol>
+<li>修改普通用户权限，允许root</li>
+<li>chmod u+w /etc/sudoers//添加文件的写权限</li>
+<li>vi /etc/sudoers//添加普通用户的root权限</li>
+<li>chmod u-w /etc/sudoers//关闭文件的写权限</li>
+<li><p>编辑/etc/sudoers文件。也就是输入命令”vim /etc/sudoers”,进入编辑模式，找到这一 行：”root ALL=(ALL) ALL”（这一句不同系统可能不同）在起下面添加”xxx ALL=(ALL) ALL”(这里的xxx是你的用户名)，然后保存退出。<br>所以自行添加时需要关注root用户的格式，xxx用户应该要写成一样的</p>
+</li>
+<li><p>root执行sudo时不需要输入密码(eudoers文件中有配置root ALL=(ALL) ALL这样一条规则)</p>
+</li>
+<li>欲切换的身份与执行者的身份相同，不需要输入密码</li>
+<li>/etc/sudoers文件设置为允许用户在不输入该用户的密码的情况下使用所有命令<br>如设置允许wheel用户组中的用户在不输入该用户的密码的情况下使用所有命令<br>（ %wheel        ALL=(ALL)       NOPASSWD: ALL）</li>
+</ol>
+<p>ps:这里说下你可以sudoers添加下面四行中任意一条<br>youuser            ALL=(ALL)                ALL<br>%youuser          ALL=(ALL)                ALL<br>youuser            ALL=(ALL)                NOPASSWD: ALL<br>%youuser          ALL=(ALL)                NOPASSWD: ALL<br>第一行:允许用户youuser执行sudo命令(需要输入密码).<br>第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).<br>第三行:允许用户youuser执行sudo命令,并且在执行的时候不输入密码.<br>第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不输入密码.</p>
+<h1 id="七．格式化并挂载磁盘"><a href="#七．格式化并挂载磁盘" class="headerlink" title="七．格式化并挂载磁盘"></a>七．格式化并挂载磁盘</h1><p>格式化次磁盘<br><a href="http://blog.chinaunix.net/uid-25829053-id-3067619.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-25829053-id-3067619.html</a><br>（Linux下添加新硬盘,分区及挂载）<br>1.查看磁盘和系统盘sudo fdisk -lu<br><img src="../picture/ssh6.png" alt="avatar"><br>2.查看格式化的类型sudo mkfs.<br><img src="../picture/ssh7.png" alt="avatar"><br>3.查看磁盘具体内容sudo fdisk -l /dev/vdb<br><img src="../picture/ssh8.png" alt="avatar"><br>4.格式化磁盘mkfs -t ext4 /dev/vdb<br><img src="../picture/ssh9.png" alt="avatar"> </p>
+<h2 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h2><p>1.挂载磁盘到/mnt: mount /dev/vdb /mnt<br>2.查看挂载情况：df -TH<br><img src="../picture/ssh10.png" alt="avatar"><br>挂载：mount /dev/vdb /mnt<br>取消挂载：umount /dev/vdb /home </p>
+<p>ssh 所选的用户密钥未在远程主机上注册<br>错误原因：硬盘本来挂载点为/mnt,修改为/home后用户没有修改权限，导致结果<br>错误修改方法：先把磁盘恢复挂载到/mnt 下面，然后把整个/home 文件夹内的内容在根目录下面复制一份，随便叫另外一个名字。然后再把磁盘挂载到/home 下面，然后再把之前copy出来的文件再copy进新的home文件夹下面。需要注意的是拷贝的只是/home中的内容，刚开始我就将/home中本来有的内容，拷贝成了/home/home,这样的话是没用的，必须和原来一样才可以</p>
+<h1 id="八．虚拟内存"><a href="#八．虚拟内存" class="headerlink" title="八．虚拟内存"></a>八．虚拟内存</h1><p>虚拟内存：free -m可查看虚拟内存大小（swap大小，951为951MB大小）<br><a href="https://wenku.baidu.com/view/0e23f9f9a6c30c2258019e3d.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/0e23f9f9a6c30c2258019e3d.html</a><br><a href="http://www.educity.cn/os/1577257.html" target="_blank" rel="noopener">http://www.educity.cn/os/1577257.html</a><br>1.首先用命令free查看系统内 Swap 分区大小。 free -m<br>total used free shared buffers cached Mem: 1002 964 38 0 21 410 -/+ buffers/cache: 532 470 Swap: 951 32 929<br>可以看到 Swap 只有951M，不符合 Oracle-xe-client 的安装要求。<br>3.创建一个 Swap 文件。 mkdir swap<br>cd swap<br>sudo dd if=/dev/zero  bs=1024 count=100000  of=swapfile<br><img src="../picture/ssh11.png" alt="avatar"><br>出现下列提示，上面命令中的 count 即代表swap文件大小。<br>记录了 100000+0 的读入 记录了 100000+0 的写出<br>102400000 字节 (102 MB) 已复制，0.74704 秒，137 MB/秒<br>（count=2100000时大小为2G）<br>3.把生成的文件转换成 Swap 文件 （sudo） mkswap swapfile<br>Setting up swapspace version 1, size = 102395 kB<br>no label, UUID=09fde987-5567-498a-a60b-477e302a988b<br>出错记录：sudo dd if=/dev/zero  of=swapfile bs=1024<br>count=100000<br>（dd语句从/dev/zero输入，系统不能识别bs和count的参数）<br>错误显示为：系统生成了一个名称为《swapfile bs=1024<br>count=100000 》的文件<br><img src="../picture/ssh12.png" alt="avatar"><br>所以应该正确语句为sudo dd if=/dev/zero  bs=1024 count=100000  of=swapfile<br>4.激活 Swap 文件： sudo swapon swapfile<br>再次查看 free -m 的结果。<br>total used free shared buffers cached Mem: 1002 967 34 0 22 410 -/+ buffers/cache: 534 467<br>5.若是临时生成swap<br>需要将swapfile删除: 如果需要卸载这个 swap 文件，可以进入建立的 swap 文件目录。执行下列命令。 sudo swapoff swapfile<br>如果需要一直保持这个 swap ，换到root 然后把它写入 /etc/fstab 文件，设置自动挂载。<br>swapfile    path（修改） swap swap defaults 0 0<br>（需要再查一下）</p>
+<h1 id="九．保证普通用户一定可以登录，关闭ssh的root登录权限"><a href="#九．保证普通用户一定可以登录，关闭ssh的root登录权限" class="headerlink" title="九．保证普通用户一定可以登录，关闭ssh的root登录权限"></a>九．保证普通用户一定可以登录，关闭ssh的root登录权限</h1><p>vim /etc/ssh/sshd_config<br>关闭root权限<br>禁止root用户的登陆，修改/etc/ssh/sshd_config<br>permitrootlogin yes  改为<br>permitrootlogin no</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Ajax基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1597,159 +1770,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/package-json中库的版本号详解（～和-）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/28/package-json中库的版本号详解（～和-）/" itemprop="url">package.json中库的版本号详解（～和^）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T23:58:06+08:00">
-                2018-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node-js/" itemprop="url" rel="index">
-                    <span itemprop="name">Node.js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-使用npm-install-–save-XXX"><a href="#1-使用npm-install-–save-XXX" class="headerlink" title="1. 使用npm install –save XXX"></a>1. 使用npm install –save XXX</h2><h2 id="2-会优先考虑使用插入符号-而不是～"><a href="#2-会优先考虑使用插入符号-而不是～" class="headerlink" title="2. 会优先考虑使用插入符号^而不是～"></a>2. 会优先考虑使用插入符号^而不是～</h2><h2 id="3-：更新到当前minor-version（中间那位数字）中最新的版本"><a href="#3-：更新到当前minor-version（中间那位数字）中最新的版本" class="headerlink" title="3. ~：更新到当前minor version（中间那位数字）中最新的版本"></a>3. ~：更新到当前minor version（中间那位数字）中最新的版本</h2><p>e.g body-parser:~1.15.2 会匹配1.15.x的最新版本<br>出现1.16.0,不会自动升级</p>
-<h2 id="4-把当前库的版本更新到当前major-version"><a href="#4-把当前库的版本更新到当前major-version" class="headerlink" title="4. 把当前库的版本更新到当前major version"></a>4. 把当前库的版本更新到当前major version</h2><p>也就是第一位的最新版本<br>e.g bluebird：^3.3.4<br>会匹配3.x.x中的最新版本，不会更新到4.0.0</p>
-<h2 id="1-15-2"><a href="#1-15-2" class="headerlink" title="1.15.2"></a>1.15.2</h2><p>1:major version：有了一个不可以和上一个版本兼容的大更改<br>15:minor version：增加了新的功能，可以向后兼容<br>2:patch version：表示修复了bug，可以向后兼容</p>
-<hr>
-<h2 id="使用yarn"><a href="#使用yarn" class="headerlink" title="使用yarn"></a>使用yarn</h2><p>yarn.lock：只要文件不发生变化，线上的包管理系统，无论如何更新，使用的antd版本永远是3.0.2</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1797,7 +1822,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1808,7 +1833,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
