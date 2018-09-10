@@ -259,183 +259,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/webpack简单教程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/30/webpack简单教程/" itemprop="url">webpack简单教程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T02:57:21+08:00">
-                2018-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当前webpack 的最新稳定版本为 3.10.0。</p>
-<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><p>当前项目是一个空文件夹，在项目根目录的命令行中执行：yarn add -D webpack，将会生成与 webpack 相关的必要文件。</p>
-<ol>
-<li>在项目根目录下新建 src 文件夹用于存放源文件。</li>
-<li><p>新建 src/index.html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//src/index.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建 src/index.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// src/index.js</span><br><span class="line">console.log(&quot;Hello World!&quot;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建 webpack.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// webpack.config.js</span><br><span class="line"></span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &apos;./src/index.js&apos;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: path.resolve(__dirname, &apos;src&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目根目录命令行下执行：webpack，在 src 文件夹下生成 bundle.js 文件，用浏览器打开 src/index.html，可以在浏览器的命令行中看到 Hello World! 输出。</p>
-</li>
-</ol>
-<h1 id="将编译结果移动至-dist-文件夹"><a href="#将编译结果移动至-dist-文件夹" class="headerlink" title="将编译结果移动至 dist 文件夹"></a>将编译结果移动至 dist 文件夹</h1><ol>
-<li>删除之前编译生成的 src/bundle.js。</li>
-<li><p>项目根目录命令行下执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D clean-webpack-plugin</span><br><span class="line">yarn add -D html-webpack-plugin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 webpack.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// webpack.config.js</span><br><span class="line"></span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line">const CleanWebpackPlugin = require(&apos;clean-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &apos;./src/index.js&apos;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: path.resolve(__dirname, &apos;dist&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new CleanWebpackPlugin([&apos;dist&apos;]),</span><br><span class="line">        new HtmlWebpackPlugin(&#123;</span><br><span class="line">            filename: &apos;index.html&apos;,</span><br><span class="line">            template: &apos;src/index.html&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除 src/index.html 中 <figure class="highlight plain"><figcaption><span>src</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># webpack-dev-server</span><br><span class="line">1. 在项目根目录的命令行中执行：```yarn add -D webpack-dev-server```。</span><br><span class="line">2. 在项目根目录的命令行中执行：```node_modules/.bin/webpack-dev-server```，可以进入 webpack 的开发者模式。</span><br><span class="line"></span><br><span class="line"># npm 脚本</span><br><span class="line">在 package.json 中添加：</span><br></pre></td></tr></table></figure></p>
-</li>
-</ol>
-<p>{<br>    …<br>    “scripts”: {<br>        “build”: “webpack”,<br>        “start”: “node_modules/.bin/webpack-dev-server”<br>    }<br>    …<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在项目根目录的命令行中可以使用 yarn build 代替 webpack 进行编译；可以使用 yarn start 代替 node_modules/.bin/webpack-dev-server 进入开发者模式。</span><br><span class="line"></span><br><span class="line"># 用 typescript 代替 javascript 进行开发</span><br><span class="line">1. 在项目根目录的命令行中执行：```yarn add -D typescript ts-loader ```安装必要的包。</span><br><span class="line">2. 在项目根目录下新建 tsconfig.json</span><br></pre></td></tr></table></figure></p>
-<p>// tsconfig.json</p>
-<p>{<br>  “compilerOptions”: {<br>    “outDir”: “./dist/“,<br>    “noImplicitAny”: true,<br>    “module”: “es6”,<br>    “target”: “es5”,<br>    “jsx”: “react”,<br>    “allowJs”: true<br>  }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3. 将 src/index.js 修改成 src/index.ts。</span><br><span class="line">4. 修改 webpack.config.js</span><br></pre></td></tr></table></figure></p>
-<p>// webpack.config.js</p>
-<p>const path = require(‘path’);<br>const HtmlWebpackPlugin = require(‘html-webpack-plugin’);<br>const CleanWebpackPlugin = require(‘clean-webpack-plugin’);</p>
-<p>module.exports = {<br>    entry: ‘./src/index.ts’,<br>    output: {<br>        filename: ‘bundle.js’,<br>        path: path.resolve(__dirname, ‘dist’)<br>    },<br>    plugins: [<br>        new CleanWebpackPlugin([‘dist’]),<br>        new HtmlWebpackPlugin({<br>            filename: ‘index.html’,<br>            template: ‘src/index.html’<br>        })<br>    ],<br>    module: {<br>        rules: [<br>            {<br>                test: /.tsx?$/,<br>                use: ‘ts-loader’,<br>                exclude: /node_modules/<br>            }<br>        ]<br>    }<br>};</p>
-<p><code>`</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/mongodb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1868,6 +1691,150 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Ajax基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Ajax基础/" itemprop="url">Ajax基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T22:24:19+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><p>Ajax从服务器获取，用componentDidMount(调用数据)设置Ajax<br>请求成功，再用setState重新渲染<br>（1）$(this)获取组件<br>（2）$(e.target)获取数据<br>jQuery：<br>（1）ajax-get()方法<br>（2）远程HTTP GET请求载入信息<br>（3）请求成功时可调用回调函数<br>（4）$ajax较复杂，出错时也会执行</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1920,7 +1887,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1942,7 +1909,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
