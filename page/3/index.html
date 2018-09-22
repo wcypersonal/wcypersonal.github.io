@@ -259,6 +259,317 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/等待整理内容/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/23/等待整理内容/" itemprop="url">等待整理内容</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T17:18:12+08:00">
+                2018-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/wait/" itemprop="url" rel="index">
+                    <span itemprop="name">wait</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>Ruby-json用法</li>
+<li>net/https用法，网络请求</li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/Rails路由/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/20/Rails路由/" itemprop="url">Rails路由</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-20T19:33:07+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://ruby-china.github.io/rails-guides/routing.html" target="_blank" rel="noopener">Rails中文官网地址</a><br><a href="http://guides.rubyonrails.org/routing.html" target="_blank" rel="noopener">Rails官网地址</a></p>
+<ol>
+<li>Rails收到请求：<em>GET /patients/17</em><br>查询路由，找到controller的action： <em>get ‘/patient/:id’,to: ‘patients#show’</em></li>
+<li>生成路径和URL地址<br>route.rb :<em>get ‘/patient/:id’,to: ‘patients#show’,as: ‘patient1’</em><br>model: <em>Patient</em><br>Controller(patient_controller.rb): <em>@patient1=Patient.find(params[:id])</em><br>View(patient/show.html.erb): <em>&lt;%= link_to ‘Patient Record’,Patient_path(@patient1)%&gt;</em><br>(patient_path: Patient-model)</li>
+<li>资源路由resource：Rails的默认风格,声明所有常用动作 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">e.g :photos(复数资源)</span><br><span class="line">生成路径和URL的辅助方法：</span><br><span class="line">（1）photos_path 返回/photos</span><br><span class="line">（2）new_photo_path 返回/photos/new</span><br><span class="line">（3）edit_photo_path(:id) 返回/photos/:id/edit </span><br><span class="line">（4）photo_path(:id) 返回/photos/:id</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">e.g :geocoder（单数资源）映射到Geocoders控制器动作上</span><br><span class="line">生成路径和URL的辅助方法：</span><br><span class="line">（1）geocoder_path 返回/geocoder</span><br><span class="line">（2）new_geocoder_path 返回/geocoder/new</span><br><span class="line">（3）edit_geocoder_path 返回/geocoder/edit</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>指定action和controller<br>get ‘profile’,to: ‘users#show’<br>get ‘profile’,to: :show, controller: ‘users’</li>
+<li>指定命名空间controller/admin/articles_controller.rb指定命名空间为Admin<br>Controller: <em>class Admin::ArticlesController</em><br>route.rb :(1) /admin/articles/new<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace :admin do</span><br><span class="line">   resourcs :articles</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>(2)/articles映射到Admin::Articles<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scope module: &apos;admin&apos; do</span><br><span class="line">  resources :articles</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>(3)/admin/articles映射到Articles<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scope &apos;/admin&apos; do</span><br><span class="line">  resources :articles</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<ol start="6">
+<li><p>嵌套资源</p>
+</li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/Lodash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1552,333 +1863,6 @@ NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PH
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/AssetPipeline/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/09/AssetPipeline/" itemprop="url">AssetPipeline</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T21:32:36+08:00">
-                2018-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ruby/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Asset-Pipeline"><a href="#Asset-Pipeline" class="headerlink" title="Asset Pipeline"></a>Asset Pipeline</h1><p>合理组织应用的静态资源文件</p>
-<h2 id="一"><a href="#一" class="headerlink" title="一."></a>一.</h2><ol>
-<li>连接静态资源，减少渲染网页时的请求次数<br>Javascript、CSS –Sprockets–》 主js、css文件<br>在production下，Rails在每个文件名中插入SHA265指纹，以便web浏览器缓存</li>
-<li>简化、压缩静态资源</li>
-<li>使用更高级语言编写 e.g SaaS</li>
-</ol>
-<h2 id="二-指纹识别（可以设置关闭）"><a href="#二-指纹识别（可以设置关闭）" class="headerlink" title="二. 指纹识别（可以设置关闭）"></a>二. 指纹识别（可以设置关闭）</h2><p>可通过设置HTTP首部来建议所有缓存（CDN、ISP、网络devices或web浏览器的缓存）都保存该文件副本<br>Sprockets使用指纹：在文件名中添加Hash</p>
-<h2 id="三-Asset-pipeline"><a href="#三-Asset-pipeline" class="headerlink" title="三. Asset pipeline"></a>三. Asset pipeline</h2><ol>
-<li>原rails放在public中，asset pipeline放在app/assets<br>静态资源文件放在app/assets，进行预处理</li>
-</ol>
-<hr>
-<p>Sprockets中间处理（添加指纹）<br>2.不要使用require_tree指令，在config/application.rb下配置</p>
-<blockquote>
-<p>清单文件是不是要添加？<br>js文件夹和css文件夹javascripts、stylesheets<br>官网只介绍了css和js文件添加清单文件，在清单文件中添加//=require_tree .<br>3.app/assets 应用自有的静态资源文件<br>lib/assets 存储自有代码库的静态资源文件（共享）<br>vendor/assets 第三方代码库的静态资源文件</p>
-</blockquote>
-<h2 id="四-预处理"><a href="#四-预处理" class="headerlink" title="四.预处理"></a>四.预处理</h2><ol>
-<li>顺序 .coffee.erb 先按erb文件处理，再按coffee文件处理</li>
-</ol>
-<h2 id="五-开发环境"><a href="#五-开发环境" class="headerlink" title="五.开发环境"></a>五.开发环境</h2><p>按清单文件中指定的顺序处理静态资源文件<br>e.g app/assets/javascripts/application.js<br>//= require core<br>–生成HTML–》</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;/assets/core.js?body=1&quot;&gt;</span><br><span class="line">//body=1 为参数（sprockets）</span><br></pre></td></tr></table></figure>
-<h2 id="六-生产模式"><a href="#六-生产模式" class="headerlink" title="六. 生产模式"></a>六. 生产模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= javascript_include_tag &quot;application&quot;&gt;</span><br><span class="line">//生成HTML</span><br><span class="line">&lt;script src=&quot;/assets/application......js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="七-CDN内容分发网络"><a href="#七-CDN内容分发网络" class="headerlink" title="七. CDN内容分发网络"></a>七. CDN内容分发网络</h2><p>各地服务器的副本，减小服务器压力</p>
-<hr>
-<h1 id="Asset-Pipeline配置"><a href="#Asset-Pipeline配置" class="headerlink" title="Asset Pipeline配置"></a>Asset Pipeline配置</h1><ol>
-<li>产品环境下编译，在项目下运行rake assets:precompile RAILS_ENV=production<br>会将app/assets/javascript/application.js、app/assets/stylesheets/application.js和app/assets子目录下的所有非js和css文件编译到public/assets目录下，目录下的文件均打上指纹</li>
-<li>但是上述命令不会自动编译vendor/assets、lib/assets文件夹下文件，若要编译，则通过config.asssets.precompile来配置</li>
-<li>编译到public/assets目录下，需要通过配置nginx、apache等web服务器来访问静态资源</li>
-<li>引入第三方库 e.g 前端文件上传SWFUpload，借助flash</li>
-</ol>
-<h1 id="JBuilder配置"><a href="#JBuilder配置" class="headerlink" title="JBuilder配置"></a>JBuilder配置</h1><p>访问http…../hello.json</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/ActiveModel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/09/ActiveModel/" itemprop="url">ActiveModel</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T21:30:55+08:00">
-                2018-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ruby/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>提供ActiveRecord的部分model，但不受数据库限制，任何ruby类都有model行为不使用数据库的数据需求</p>
-<ol>
-<li>validator<br>验证需要的字段，具有valid？方法，可以返回布尔值</li>
-<li>有Active Record，class继承自ActiveRecord::Base<br>–解除继承关系–》输入验证失败<br>–Avtice Model独立验证–》 加载Validations模块和提供getter方法属性</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include ActiveModel::Validations</span><br><span class="line">attr_accessor :name,:email,:content</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>–》controller继承自ApplicationController，Message.new和Message.save会失效，Message.new用initialize方法调用send；Message.save用message.valid？替代</p>
-<ol start="4">
-<li>attr_accessor定义成员变量时定义get和set方法</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1931,7 +1915,7 @@ NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PH
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1942,7 +1926,7 @@ NGX_HTTP_POST_READ_PHASE: 读取请求内容阶段<br>NGX_HTTP_SERVER_REWRITE_PH
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

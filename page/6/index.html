@@ -259,6 +259,377 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/this用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/this用法/" itemprop="url">this用法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T23:38:14+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一"><a href="#一" class="headerlink" title="一."></a>一.</h1><p>(1)javascript的宿主环境是web浏览器，浏览器环境需要提供一些接口<br>javascript引擎才是真正执行代码的地方，e.g V8，Javascript core<br>(2)Javascript的宿主环境是nodejs，对应引擎是V8</p>
+<h1 id="二-global-this"><a href="#二-global-this" class="headerlink" title="二.global this"></a>二.global this</h1><p>this == window对象<br>(1)声明变量没有var/let -&gt; 给全局的this添加或改改变属性值<br>(2)node环境中 REPL：交互的编程环境</p>
+<ol>
+<li>执行js脚本，全局范围内this以一个空对象开始作为最高级的命名空间，this不等同于global</li>
+<li>执行js脚本，用REPL执行一个脚本，用var声明一个变量不会将变量添加给this<br>执行js脚本，不用REPL执行一个脚本，用var声明一个变量会将变量添加给this<br>（和浏览器中一样）</li>
+<li>声明变量无var和let<br>||global对象|this|<br>|-|–|–|<br>|用REPL执行|有|无|<br>|直接执行|有|有|</li>
+<li><blockquote>
+<p>浏览器 this == window，this最大<br>node<br>执行写好的：声明的变量不会自动添加到this，会自动添加global<br>一行行执行：global最大，global=this，声明的变量自动添加到this和global</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="三-function-this"><a href="#三-function-this" class="headerlink" title="三.function this"></a>三.function this</h1><ol>
+<li>指代全局范围内this</li>
+<li>严格 –&gt; this变成undefined</li>
+<li>调用函数前有new，this变成一个新值，this不等于global</li>
+<li>绑定事件处理程序，this指代事件处理程序对应的对象 e.g button</li>
+</ol>
+<h1 id="四-prototype-this"><a href="#四-prototype-this" class="headerlink" title="四.prototype this"></a>四.prototype this</h1><p>prototype:每一个函数都是函数对象，会自动获得一个特殊属性prototype；用new方法调用函数，可以用this访问给prototype赋的值</p>
+<ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thing.prototype.foo = &quot;bar&quot;</span><br><span class="line">var thing = new Thing</span><br><span class="line">console.log(thing.foo) //&quot;bar&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例中this是一个特殊对象，new之后会隐藏同名属性</p>
+</li>
+<li>从一个function中new的实例，会共享所有的prototype赋值</li>
+<li>可形成原型链，this会一层一层寻值<br>Thing1.prototype.foo = “bar”<br>Thing2.prototype = new Thing1<br>原型链中重新赋值，就会隐藏本身的值</li>
+<li><em>嵌套函数</em> 中的this没有继承 –&gt; undefined<br>把一个实例的方法当成一个值，把值当成函数参数传给另一个函数，但不把实例传给这个函数<br>–&gt; 环境变为全局global</li>
+<li><p>把this捕捉到变量里 self （改变undefined）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thing.prototype.logFoo = function()&#123;</span><br><span class="line">	var self = this</span><br><span class="line">	//可调用self.foo</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把一个方法作为一个值传递给一个函数无效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function doItIndirectly(method) &#123;</span><br><span class="line">	method()</span><br><span class="line">&#125;</span><br><span class="line">doItIndirectly(thing.logFoo) //logs undefined</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用bind解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doItIndirectly(thing.logFoo.bind(thing)) //logs bar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用apply和call解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thing.prototype.logFoo = function () &#123;</span><br><span class="line">	doIt.apply(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用Object.create(Thing.prototype)替换new</p>
+</li>
+</ol>
+<h1 id="五-object-this"><a href="#五-object-this" class="headerlink" title="五.object this"></a>五.object this</h1><ol>
+<li>用apply将function绑定到var obj上</li>
+<li>只有有相同直接父元素的属性才能通过this共享变量，即元素嵌套不可以</li>
+<li>嵌套后可以直接用obj.foo调用</li>
+</ol>
+<h1 id="六-DOM-event-this"><a href="#六-DOM-event-this" class="headerlink" title="六.DOM event this"></a>六.DOM event this</h1><p>HTML DOM事件处理程序里，this始终指向DOM节点</p>
+<h1 id="七-HTML-this"><a href="#七-HTML-this" class="headerlink" title="七.HTML this"></a>七.HTML this</h1><h1 id="八-重写this"><a href="#八-重写this" class="headerlink" title="八.重写this"></a>八.重写this</h1><p>不可override</p>
+<h1 id="九-with-this"><a href="#九-with-this" class="headerlink" title="九.with this"></a>九.with this</h1><p>with 将this添加到当前环境<br>Thing.prototype.logFoo = function () {<br>    with(this) {<br> }<br>}</p>
+<h1 id="十-jQuery-this"><a href="#十-jQuery-this" class="headerlink" title="十.jQuery this"></a>十.jQuery this</h1><p>this指向HTML元素节点<br>e.g $( ).each</p>
+<h1 id="十一-thisArg-this"><a href="#十一-thisArg-this" class="headerlink" title="十一.thisArg this"></a>十一.thisArg this</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/基础命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/基础命令/" itemprop="url">基础命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T23:26:56+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一．rm语句-rm为删除文件或者文件夹"><a href="#一．rm语句-rm为删除文件或者文件夹" class="headerlink" title="一．rm语句:rm为删除文件或者文件夹"></a>一．rm语句:rm为删除文件或者文件夹</h1><ol>
+<li>rm 后面必须跟一个文件名，如果文件不存在，会提示文件不存在。（也可以 -f 不提示信息）。（这里test.text只是表明他是文件，其实只要 rm test 就可以了）。<br><img src="../picture/ubuntu1.png" alt="avatar"><br>2.在ubuntu里面删除文件夹必须带 -r 因为删除文件夹和删除文件不同，删除文件夹还要删除子文件，子文件夹。<br><img src="../picture/ubuntu2.png" alt="avatar"><br>二．cp(copy)命令：该命令的功能是将给出的文件或目录拷贝到另一文件或目录中。<br><img src="../picture/ubuntu3.png" alt="avatar"><br>将/home/home中的内容复制到/root/xy文件夹下<br>语法： cp [选项] 源文件或目录 目标文件或目录<br>该命令的各选项含义如下：</li>
+</ol>
+<ul>
+<li>a 该选项通常在拷贝目录时使用。它保留链接、文件属性，并递归地拷贝目录，其作用等于dpR选项的组合。</li>
+<li>d 拷贝时保留链接。</li>
+<li>f 删除已经存在的目标文件而不提示。</li>
+<li>i 和f选项相反，在覆盖目标文件之前将给出提示要求用户确认。回答y时目标文件将被覆盖，是交互式拷贝。</li>
+<li><p>p 此时cp除复制源文件的内容外，还将把其修改时间和访问权限也复制到新文件中。</p>
+</li>
+<li><p>r 若给出的源文件是一目录文件，此时cp将递归复制该目录下所有的子目录和文件。此时目标文件必须为一个目录名。</p>
+</li>
+<li>l 不作拷贝，只是链接文件。<br>需要说明的是，为防止用户在不经意的情况下用cp命令破坏另一个文件，如用户指定的目标文件名已存在，用cp命令拷贝文件后，这个文件就会被新源文件覆盖，因此，建议用户在使用cp命令拷贝文件时，最好使用i选项。</li>
+</ul>
+<h1 id="三．用户语句"><a href="#三．用户语句" class="headerlink" title="三．用户语句"></a>三．用户语句</h1><p>1.su root：进入root用户<br>2.生成普通用户：生成普通用户：sudo adduser bike<br><img src="../picture/ubuntu4.png" alt="avatar"><br><img src="../picture/ubuntu5.png" alt="avatar"><br>下面的内容若无要求，直接Enter即可</p>
+<h1 id="四．Vi-vim-gedit-nano语句（都是开启文本编辑器）"><a href="#四．Vi-vim-gedit-nano语句（都是开启文本编辑器）" class="headerlink" title="四．Vi/vim/gedit/nano语句（都是开启文本编辑器）"></a>四．Vi/vim/gedit/nano语句（都是开启文本编辑器）</h1><ol>
+<li>vi和vim区别在于：vim更高级<br>（1）打开之后：点击《i》才可以编辑<br>（2）退出：（有些含有说明的按照说明退出）<br>  点击Esc键，退出编辑模式（不再编辑模式也退出），点击w键后点击：键进而就可以输入退出命令了<br>点击：键之后界面就会出现：<br>然后输入w或者q或者wq或者w！或者q！或者wq！<br>（3）异常退出之后怎么办：异常退出之后会出现同名文件后面多.swp，所以进不去<br><img src="../picture/ubuntu6.png" alt="avatar"></li>
+<li>gedit需要安装</li>
+<li>Nano<br>nano是一个小巧自由，并且友好的编辑器，在大部分linux上都有nano命令。相对vi，不熟悉linux的我感觉nano要简单许多：<br>打开后直接编辑，命令如下：<br>sudo nano /etc/hosts<br>完成后按ctrl+x退出，按y保存，回车</li>
+</ol>
+<h1 id="五．Cat语句"><a href="#五．Cat语句" class="headerlink" title="五．Cat语句"></a>五．Cat语句</h1><p>bike@iZbp10meg70e4zgyus0e57Z:/root$ cat /root/.ssh/songlian.pub &gt; /home/bike/.ssh/authorized_keys<br><img src="../picture/ubuntu7.png" alt="avatar"><br>六．L语句<br>1.ls查看文件夹中子目录<br>2.ll -h查看</p>
+<h1 id="七．cd语句"><a href="#七．cd语句" class="headerlink" title="七．cd语句"></a>七．cd语句</h1><ol>
+<li>cd ..退出到上一级</li>
+</ol>
+<h1 id="八．dd语句"><a href="#八．dd语句" class="headerlink" title="八．dd语句"></a>八．dd语句</h1><p>dd：用指定大小的块拷贝一个文件，并在拷贝的同时进行指定的转换。<br><a href="http://blog.csdn.net/demo_deng/article/details/9428491" target="_blank" rel="noopener">http://blog.csdn.net/demo_deng/article/details/9428491</a></p>
+<h1 id="九．基础知识"><a href="#九．基础知识" class="headerlink" title="九．基础知识"></a>九．基础知识</h1><p>/dev/null，外号叫无底洞，你可以向它输出任何数据，它通吃，并且不会撑着！<br>/dev/zero，是一个输入设备，你可你用它来初始化文件。该设备无穷尽地提供0，可以使用任何你需要的数目——设备提供的要多的多。他可以用于向设备或文件写入字符串0</p>
+<h1 id="十．Chmod语句"><a href="#十．Chmod语句" class="headerlink" title="十．Chmod语句"></a>十．Chmod语句</h1><ol>
+<li>linux下chmod -x  //去除执行权限</li>
+<li>chmod命令用于改变linux系统文件或目录的访问权限。用它控制文件或目录的访问权限。该命令有两种用法。一种是包含字母和操作符表达式的文字设定法；另一种是包含数字的数字设定法。Linux系统中的每个文件和目录都有访问许可权限，用它来确定谁可以通过何种方式对文件和目录进行访问和操作。文件或目录的访问权限分为只读，只写和可执行三种</li>
+<li>该命令有两种用法。一种是包含字母和操作符表达式的文字设定法；另一种是包含数字的数字设定法。</li>
+<li><ul>
+<li>rw- r– r–<br>表示log2012.log是一个普通文件；log2012.log的属主有读写权限；与log2012.log属主同组的用户只有读权限；其他用户也只有读权限。</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Docker-compile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1452,330 +1823,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Generator函数的理解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/Generator函数的理解/" itemprop="url">Generator函数的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T00:55:46+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/异步/" itemprop="url" rel="index">
-                    <span itemprop="name">异步</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h1><ol>
-<li>语法上：状态机器，封装了多个内部状态；遍历器对象生成函数</li>
-<li>返回：遍历器对象<br>遍历Generator函数内部的每一个状态</li>
-<li>特征<br>（1）function*<br>（2）内部使用yield</li>
-<li>调用<br>调用后并不执行，返回一个指向状态的指针对象（IteratorObject）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function* helloworld () &#123;</span><br><span class="line">	yield &apos;hello&apos;;</span><br><span class="line">	yield &apos;world&apos;;</span><br><span class="line">	return &apos;ending&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">=&gt; </span><br><span class="line">执行函数 当前状态值 布尔值</span><br><span class="line">hw.next() 返回hello   done:false    //执行第一个yield</span><br><span class="line">hw.next() world done:false</span><br><span class="line">hw.next() undefined done:true。//遍历已经结束</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>可暂停执行的函数，yield为暂停标志</p>
-<blockquote>
-<p>next方法：可有一个参数，作为上个yield的返回值<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function* f() &#123;</span><br><span class="line">  for (var i = 0;true;i++)&#123;</span><br><span class="line">  	 var reset = yield ;</span><br><span class="line">  	 if (reset) &#123;i = -1 &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br><span class="line">var g = f()</span><br><span class="line">g.next()</span><br><span class="line">g.next()</span><br><span class="line">g.next(true)</span><br><span class="line">=&gt;</span><br><span class="line">value:0 false</span><br><span class="line">value:1 false</span><br><span class="line">value:0 false</span><br><span class="line">next函数中有参数true，可调整函数行为</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p> 第一个next()函数传参数无效，用来启动遍历器对象<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function* foo(x)&#123;</span><br><span class="line">	var y = 2 * (yield (x+1))</span><br><span class="line">	var z = yield(y/3)</span><br><span class="line">	return (x+y+z)</span><br><span class="line">&#125;</span><br><span class="line">---&gt;</span><br><span class="line">var a = foo(5)</span><br><span class="line">a.next()  //6  ..</span><br><span class="line">a.next()  //x,y均无值 NaN ..</span><br><span class="line">a.next()  //NaN ..</span><br><span class="line">---&gt;</span><br><span class="line">var b = foo(5)</span><br><span class="line">b.next()  //6 done:false:yield的值为5+1=6，返回yield的值为6</span><br><span class="line">b.next(12) //8 done:false  12传递给等待状态的yield(x+1)语句，y=24,所以返回24/3=8</span><br><span class="line">b.next(13) //42 done:true  8赋值给等待状态的yield(y/3),z=13,赋值完成（12+26+4=42）</span><br></pre></td></tr></table></figure></p>
-<p> 若需要第一个参数有效，则外包一层<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function wrapper(generatorFunction)&#123;</span><br><span class="line">	return function(...args)&#123;</span><br><span class="line">		let generatorObject = generatorFunction(...args)</span><br><span class="line">		generatorObject.next()</span><br><span class="line">		return generatorObject</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">const wrappered = wrapper(function* () &#123;</span><br><span class="line">	console.log(`First input:$&#123;yield&#125;`)</span><br><span class="line">	&#125;)</span><br><span class="line">wrappered.next(&apos;hello!&apos;)</span><br></pre></td></tr></table></figure></p>
-<p> 直接迭代集合：for of循环，不用yield<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function *foo() &#123;</span><br><span class="line">   yield 1;</span><br><span class="line">   yield 2;</span><br><span class="line">   yield 3;</span><br><span class="line">   yield 4;</span><br><span class="line">   yield 5;</span><br><span class="line">   return 6;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (var v of foo()) &#123;</span><br><span class="line">   console.log( v );</span><br><span class="line">&#125;</span><br><span class="line">// 1 2 3 4 5</span><br></pre></td></tr></table></figure></p>
-<ol start="5">
-<li>return<br>若无return，则返回对象值undefined</li>
-<li>return与yield：return无记忆功能，只返回一次</li>
-<li>和Iterator接口关系<br>（1）myIterable[Symbol.iterator] = function * () {</li>
-</ol>
-<p>}<br>（2）返回的遍历器对象，有Symbol.iterator属性<br>执行后返回自身</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/yield的理解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/yield的理解/" itemprop="url">yield的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T00:29:11+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/异步/" itemprop="url" rel="index">
-                    <span itemprop="name">异步</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h1><p>带有保存功能的return</p>
-<ol>
-<li>2个yield<br>将第一个yield返回一个常量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const response:RequestResponse = yield(() =&gt; &#123;</span><br><span class="line">	return request(action.payload)</span><br><span class="line">	return getMyLocation().then(location =&gt; (&#123;location&#125;))</span><br><span class="line">	&#125;)()</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yield effects.put(updateGroupInfoAction(groupInfoData))</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li><p>yield关键字用来暂停和恢复一个生成器(function* 或遗留的生成器函数)<br>[rv] = yield [expression]<br>rv:返回传递给生成器的next()方法的可选值，以恢复执行<br>expression:通过迭代器协议从生成器函数返回的值<br>（1）yield使生成器函数执行暂停<br>基于生成器版本的return关键字<br>（2）返回实际为IteratorResult对象</p>
-<blockquote>
-<p>2个属性：<br>value：yield表达式求值结果<br>done：false（表示未完成）</p>
-</blockquote>
-</li>
-<li><p>yield暂停<br>用next()方法恢复执行 —&gt; 结束<br>（1）yield<br>（2）throw异常，生成器完全停止执行<br>（3）到达生成器函数结尾，返回undefined，done=true<br>（4）return执行结束  done = true</p>
-</li>
-<li><p>function* countAppleSales()  —&gt; appleStore.next()</p>
-</li>
-<li>函数运行到yield时退出，并保留上下文，下次进入时可以继续进行</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1828,7 +1875,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1839,7 +1886,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
