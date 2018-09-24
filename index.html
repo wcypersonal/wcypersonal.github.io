@@ -259,6 +259,326 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/24/小程序40分钟教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/24/小程序40分钟教程/" itemprop="url">小程序40分钟教程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-24T11:45:23+08:00">
+                2018-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本篇教程主要关注于原生小程序的开发过程及基本情况介绍（最好先从原生的小程序开始写起，在熟练了小程序的写法之后，再来添加框架来写）</p>
+<h1 id="一-项目初始化过程："><a href="#一-项目初始化过程：" class="headerlink" title="一.项目初始化过程："></a>一.项目初始化过程：</h1><p>直接创建一个空文件夹，通过微信小程序工具的quickstart创建文件，生成文件列表，创建的结果如图1</p>
+<h1 id="二-项目基本结构"><a href="#二-项目基本结构" class="headerlink" title="二.项目基本结构"></a>二.项目基本结构</h1><ol>
+<li>项目整体结构<br>包含两个文件夹（pages，utils）和四个项目配置文件(app.js,app.json,app.wxss,<br>project.config.json)<br>2.pages文件夹<br>pages的每一个文件夹都代表小程序里的一个页面，每个页面被分为4个文件，文件名称保持一致，根据文件除后缀不同的内容进行识别<br>（1）文件夹中有四种文件类型<br>js ———- JavaScrip文件，和用户交互的内容<br>json ——– 项目配置文件，负责窗口颜色等等<br>wxml ——- 类似HTML文件，描述页面的结构，通过数据绑定将变量绑定到界面上<br>wxss ——- 类似CSS文件，配置页面的样式<br>（2）装载过程<br>先根据json文件配置成一个界面，定义顶部颜色、文字等内容，然后装载WXML结构和WXSS样式，最后装载js文件，页面渲染完毕后会出现最终的结构</li>
+<li>项目基础配置文件<br>app.js：小程序(全局)逻辑<br>app.json：小程序(全局)公共设置，决定页面文件的路径、窗口表现、设置网络超时时间、设置底部tab 等<br>app.wxss：小程序公共(全局)样式表<br>project.config.json：setting、项目名称、appId内容在内的项目配置；做过前端的项目会比较熟悉，类似于package.json文件</li>
+</ol>
+<h1 id="三-项目的加载顺序"><a href="#三-项目的加载顺序" class="headerlink" title="三.项目的加载顺序"></a>三.项目的加载顺序</h1><ol>
+<li>项目整体加载<br>(1)用户首次打开小程序，触发 onLaunch（全局只触发一次）<br>(2)小程序初始化完成后，触发onShow方法，监听小程序显示<br>(3)小程序从前台进入后台，触发 onHide方法<br>(4)小程序从后台进入前台显示，触发onShow方法<br>(5)小程序后台运行一定时间，或系统资源占用过高，会被销毁。 </li>
+<li>页面加载顺序<br>(1)小程序注册完成后，加载页面，触发onLoad方法。<br>(2)页面载入后触发onShow方法，显示页面。<br>(3)首次显示页面，会触发onReady方法，渲染页面元素和样式，一个页面只会调用一次。<br>(4)当小程序后台运行或跳转到其他页面时，触发onHide方法。<br>(5)当小程序有后台进入到前台运行或重新进入页面时，触发onShow方法。<br>(6)当使用重定向方法wx.redirectTo(OBJECT)或关闭当前页返回上一页wx.navigateBack()，触发onUnload。同时，应用生命周期会影响到页面生命周期。</li>
+</ol>
+<h1 id="四-小程序的逻辑"><a href="#四-小程序的逻辑" class="headerlink" title="四.小程序的逻辑"></a>四.小程序的逻辑</h1><ol>
+<li>从组成一个页面的四个文件，还是从package.config.json文件都可以看出，微信小程序的众多配置和HTMl页面、前端项目都很相似</li>
+<li>小程序的逻辑结构，类似于MVVM的开发模式（React、Vue），JS并不直接操控DOM，JS只需要管理状态即可，再通过一种模版语法来描述状态和界面结构的关系即可</li>
+<li>JSBridge下架起上层开发与Native（系统层）的桥梁，使得小程序可通过API使用原生的功能，且部分组件为原生组件实现，从而有良好体验<br>JSBridge：各种 Web 页面可以通过 Bridge 调用微信提供的一些原生功能，为用户提供相关的功能。</li>
+</ol>
+<h1 id="五-相应的框架和组件库"><a href="#五-相应的框架和组件库" class="headerlink" title="五.相应的框架和组件库"></a>五.相应的框架和组件库</h1><ol>
+<li>组件库<br>(1)WeUI： <a href="https://weui.io/WeUI" target="_blank" rel="noopener">WeUI</a> 是一套同微信原生视觉体验一致的基础样式库,在调用的时候实际只定义了WXSS文件<br>(2)iView<br><a href="https://weapp.iviewui.com/" target="_blank" rel="noopener">https://weapp.iviewui.com/</a><br>iView Weapp 提供了与 iView 一致的 UI 和尽可能相同的接口名称<br>(3)ZanUI<br><a href="https://cnodejs.org/topic/589d625a5c8036f7019e7a4a" target="_blank" rel="noopener">https://cnodejs.org/topic/589d625a5c8036f7019e7a4a</a><br>ZanUI-WeApp结合了微信的视觉规范，为用户提供更加统一的使用感受。 包含 badge、btn、等共计 17 类组件或元素。</li>
+<li>框架选择：<br>(1)官方框架MINA：它类似于淘宝Weex、Vue框架<br>(2)美团小程序框架mpvue：基于 Vue.js 核心，mpvue 修改了 Vue.js 的runtime和compiler 实现，使其可以运行在小程序环境中<br>Github：<a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">https://github.com/Meituan-Dianping/mpvue</a><br>官网： <a href="http://mpvue.com/" target="_blank" rel="noopener">http://mpvue.com/</a><br>(3)Tina.js: 轻盈小巧,保留 MINA (微信小程序官方框架) 的大部分 API 设计<br>(4)WePY: 让小程序支持组件化开发的框架，通过预编译的手段让开发者可以选择自己喜欢的开发风格去开发小程序。<br>特点：类Vue开发风格，支持引入NPM包，指出插件等<br>Github地址:<br><a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">https://github.com/Tencent/wepy</a><br>官网地址：<br><a href="https://tencent.github.io/wepy" target="_blank" rel="noopener">https://tencent.github.io/wepy</a></li>
+</ol>
+<p>写在最后：1. 微信小程序的开发很可能会出现一些反应不及时的问题，关闭重新打开是个必要的手段</p>
+<ol start="2">
+<li><a href="https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html</a> 微信小程序的API内容是比较齐全的，多看一看</li>
+</ol>
+<p>2个小时作业安排: </p>
+<ol>
+<li>通过微信开发者工具的QuickStart创建新的项目</li>
+<li>通过设置小程序整体属性，设置页面标题为WechatTutorial</li>
+<li>在页面中添加3个tabBar,设置选择颜色为蓝色</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/23/typescript导入image的正确姿势/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Root">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Root">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/23/typescript导入image的正确姿势/" itemprop="url">typescript导入image的正确姿势</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-23T11:24:01+08:00">
+                2018-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="">项目尝试地址</a><br>用webpack对image等文件进行封装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Test from &quot;./test.jpg&quot;</span><br></pre></td></tr></table></figure></p>
+<p>直接使用会报错的，最开始以为是webpack的设置中设置es6的语法模式的问题，索性全部研究一下</p>
+<h3 id="1-选择typescript，Typescript作为js的超集，提供了静态数据类型，这是Typescript的核心"><a href="#1-选择typescript，Typescript作为js的超集，提供了静态数据类型，这是Typescript的核心" class="headerlink" title="1.选择typescript，Typescript作为js的超集，提供了静态数据类型，这是Typescript的核心"></a>1.选择typescript，Typescript作为js的超集，提供了静态数据类型，这是Typescript的核心</h3><p>Typescript也在跟进JavaScript的规范标准 ECMAScript 提案</p>
+<h3 id="2-Typescript的类型声明文件（-d-ts）-一般放在包目录的types文件夹中"><a href="#2-Typescript的类型声明文件（-d-ts）-一般放在包目录的types文件夹中" class="headerlink" title="2.Typescript的类型声明文件（*.d.ts）,一般放在包目录的types文件夹中"></a>2.Typescript的类型声明文件（*.d.ts）,一般放在包目录的types文件夹中</h3><h3 id="3-babel-是将高级版本的-JavaScript-编译为目标版本的-JavaScript，TypeScript-是将-TypeScript-编译为目标版本的-JavaScript。它们的编译是重叠的"><a href="#3-babel-是将高级版本的-JavaScript-编译为目标版本的-JavaScript，TypeScript-是将-TypeScript-编译为目标版本的-JavaScript。它们的编译是重叠的" class="headerlink" title="3.babel 是将高级版本的 JavaScript 编译为目标版本的 JavaScript，TypeScript 是将 TypeScript 编译为目标版本的 JavaScript。它们的编译是重叠的"></a>3.babel 是将高级版本的 JavaScript 编译为目标版本的 JavaScript，TypeScript 是将 TypeScript 编译为目标版本的 JavaScript。它们的编译是重叠的</h3><h3 id="4-typescript的类型保护"><a href="#4-typescript的类型保护" class="headerlink" title="4.typescript的类型保护"></a>4.typescript的类型保护</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 类型保护(判断)</span><br><span class="line">if (typeof foo === &apos;string&apos;) &#123;</span><br><span class="line">  // dosomething</span><br><span class="line">&#125;</span><br><span class="line">// 类型保护(判断)</span><br><span class="line">if (foo instanceof String) &#123;</span><br><span class="line">  // dosomething</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-typescript的类型检查"><a href="#5-typescript的类型检查" class="headerlink" title="5. typescript的类型检查"></a>5. typescript的类型检查</h3><p>一些没有行为只需要类型检查的类型（没有方法的Models），可以使用Typescript声明文件（*.d.ts）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">declare namespace Models &#123;</span><br><span class="line">  interface GPS &#123;</span><br><span class="line">    lat: number</span><br><span class="line">    lng: number</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/22/https-ruby-taobao-org/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1442,324 +1762,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/react/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/06/react/" itemprop="url">react</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-06T17:58:27+08:00">
-                2018-09-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一. MAIN CONCEPTS<br>10.Lifting State Up<br>input:e.target.value<br>11.Composition vs Inheritance 组合与继承<br>组件作为props属性进行传递<br>JSX中{props.left}   left={<contacts>}<br>建议使用组件而不是继承</contacts></p>
-<p>12.Thinking in React</p>
-<p>二.ADVANCED GUIDES</p>
-<ol>
-<li>Accessibility无障碍访问</li>
-<li></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/加密算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Root">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Root">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/28/加密算法/" itemprop="url">加密算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-28T20:58:22+08:00">
-                2018-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzI0ODU5Mzg0NA%3D%3D&amp;mid=2247483722&amp;idx=1&amp;sn=7f0677471519b75eb0c20b6e5e955020&amp;chksm=e99f2d91dee8a4876811dda2ac7598c880305dbdc4a111f288e9627865053a559dba23561fae" target="_blank" rel="noopener">javascript加密库</a></p>
-</li>
-<li><p>AES和RSA的应用:混合密码系统<br>通过比较，我们知道：<br>RSA 比 AES 更难破解，因为它不需要担心密钥在传递过程中有泄露，只存在暴力破解一种可能；<br>AES的优势是以分组为轮，加解密速度非常快，一般而言，AES 速度上数百倍于 RSA<br>所以在实际应用中，我们会混合应用AES和RSA，比如 需要加密一个尺寸不小的文件，可能会这么干：<br>生成一个一次性随机密钥，算法上采用 AES 的CBC模式  aes-256-cbc（加密分组为256比特）对文件进行加密<br>加密完成后，为了安全的传递这个一次性随机密钥，我们使用 接收方的RSA公钥 对其进行加密，随加密后的文件一起发送<br>接收方使用私钥进行解密，得到AES密钥原文，并用其解密文件<br>例子<br>以上场景的应用，比如在 Node.js 中，可以这么实现：<br>(1) 生成 AES 随机密钥：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var passwdLength = 256;  // 初始化随机向量长度</span><br><span class="line">var aesPassword = require(&apos;crypto&apos;).randomBytes(passwdLength);</span><br><span class="line">require(&apos;fs&apos;).writeFileSync(&apos;aesPassword&apos;, aesPassword); // 写入文件供openssl使用</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>(2) 使用openssl aes 加密 filename代表的文件：<br>openssl enc -aes-256-cbc -kfile aesPassword -in filename -out filename.out<br>(3) 使用open rsa 加密密钥<br>openssl enc rsautl -encrypt -pubin -inkey id_rsa.pub -in aespassword -out aespassword.out<br>将 filename.out 和 aespassword.out 一并发给对方即可，接收方使用openssl 进行一次逆操作即可实现解密。</p>
-<ol start="3">
-<li>选用AES算法，3DES需要三个密钥，且加密时间较长<br>AES算法密钥配置128长度即可<br>rails实现：（1）gem 安装aes <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a>：还是选用ase，github上的<br>（2）gem 安装aescrypt <a href="https://rubygems.org/gems/aes" target="_blank" rel="noopener">GEM-AES地址</a><br>（3）<a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL/Cipher.html" target="_blank" rel="noopener">Open::SSL::Cipher</a><br>OPENSSL::PKey::RSA</li>
-<li><p>加密算法</p>
-</li>
-<li><p>自行加解密自己来搞加解密，核心在于密钥的生成与管理，密钥管理方式有多种，主要有这么三种：<br>（1）固定密钥<br>服务端和客户端约定好一个密钥，同时约定好一个加密算法（eg：AES ），每次客户端im在发送前，就用约定好的算法，以及约定好的密钥加密再传输，服务端收到报文后，用约定好的算法，约定好的密钥再解密。这种方式，密钥和算法对程序员都是透明的。<br>（2）一人一密钥<br>简单说来就是每个人的密钥是固定的，但是每个人之间又不同，其实就是在固定密钥的算法中包含用户的某一特殊属性，比如用户uid、手机号、qq号等。<br>（3）动态密钥（一session一密钥）<br>动态密钥，一Session一密钥的安全性更高，每次会话前协商密钥。密钥协商的过程要经过2次非对称密钥的随机生成，1次对称加密密钥的随机生成，参考固态秘钥，用于加密的秘钥由客户端通过公钥加密发送给服务端，服务端使用私钥解密拿到后续通讯时使用改秘钥对信息进行加密<br>我尽量简单一些说，如果是大虾，就不用看了。注意，和具体的情况会有些不同，因为为了说明原理，简化了。</p>
-</li>
-</ol>
-<hr>
-<h1 id="一-对称算法"><a href="#一-对称算法" class="headerlink" title="一.对称算法"></a>一.对称算法</h1><p>AES<br>块加密和流加密</p>
-<h1 id="二-非对称算法"><a href="#二-非对称算法" class="headerlink" title="二.非对称算法"></a>二.非对称算法</h1><ol>
-<li>RSA</li>
-<li></li>
-</ol>
-<h1 id="三-Hash算法"><a href="#三-Hash算法" class="headerlink" title="三.Hash算法"></a>三.Hash算法</h1><ol>
-<li>SHA<br>require ‘digest/sha1’<br>puts Digest::SHA1.hexdigest(‘admin’)</li>
-<li>不要把密钥存储在本地计算机上，应该使用密钥存储器</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1812,7 +1814,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1823,7 +1825,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
